@@ -209,7 +209,8 @@ header.inner h1 { font-size: clamp(48px, 7vw, 76px); margin-top: 10px; }
   box-shadow: 0 4px 14px rgba(40,60,80,0.14);
   transition: background 200ms ease, transform 200ms ease;
 }
-.btn:hover { background: #fff; color: var(--ink); transform: translateY(-2px); }
+.btn { background: rgba(255,255,255,0.4); box-shadow: 0 4px 14px rgba(40,60,80,0.08); }
+.btn:hover { background: rgba(255,255,255,0.75); color: var(--ink); transform: translateY(-2px); }
 
 /* ---------- content ---------- */
 main { max-width: var(--width); margin: 0 auto; padding: 0 16px 56px; }
