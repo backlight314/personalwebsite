@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Experience · Alina Du</title>
+<title>About Me · Alina Du</title>
 <meta name="description" content="Alina Du, engineering student at Columbia studying quantitative finance, computer science and math.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23DCE5EC'/><path d='M6 28V16h4v12M12 28V8h3v-4h2v4h3v20M22 28V13h4v15' fill='%2381A0B8'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,19 +17,20 @@
 
 <div class="page">
 <nav class="quick" aria-label="Pages">
+  <a href="index.html">Home</a>
+  <a href="about.html" aria-current="page">About Me</a>
   <a href="education.html">Education</a>
-  <a href="experience.html" aria-current="page">Experience</a>
-  <a href="skills.html">Skills</a>
   <a href="awards.html">Awards</a>
   <a href="gallery.html">Gallery</a>
 </nav>
   <header class="inner">
     <a class="home" href="index.html">Alina Du</a>
-    <h1>Experience</h1>
+    <h1>About Me</h1>
   </header>
 
 <main>
-  <section aria-label="Experience">
+  <section aria-labelledby="experience-h">
+    <h2 id="experience-h">Experience</h2>
     <ol class="jobs">
       <li><span class="when">May 2026 – now</span><div><span class="role">Math Modelling Research Intern</span><span class="org">Columbia University</span></div></li>
       <li><span class="when">Sep 2026 – now</span><div><span class="role">Research Assistant, Data Engineering</span><span class="org">Columbia University</span></div></li>
@@ -37,6 +38,16 @@
       <li><span class="when">Mar 2026 – Jun 2026</span><div><span class="role">Software Engineer Intern</span><span class="org">Intelligence Cubed</span></div></li>
       <li><span class="when">Aug 2025 – Mar 2026</span><div><span class="role">Software Engineer Intern</span><span class="org">MeloMed</span></div></li>
     </ol>
+  </section>
+
+  <section aria-labelledby="skills-h">
+    <h2 id="skills-h">Skills</h2>
+    <dl class="skills">
+      <div><dt>Languages</dt><dd>Python &middot; Java &middot; TypeScript &middot; SQL &middot; HTML</dd></div>
+      <div><dt>ML &amp; Data</dt><dd>PyTorch &middot; Scikit-learn &middot; Hugging Face &middot; NumPy &middot; Pandas &middot; SciPy</dd></div>
+      <div><dt>Frameworks</dt><dd>React / React Native &middot; Next.js &middot; FastAPI &middot; LangChain &middot; LangGraph</dd></div>
+      <div><dt>Infrastructure</dt><dd>AWS (EC2) &middot; GCP &middot; Vercel &middot; PostgreSQL &middot; MongoDB &middot; Supabase &middot; Firebase &middot; Git</dd></div>
+    </dl>
   </section>
 </main>
 
