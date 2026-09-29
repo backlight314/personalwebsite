@@ -40,36 +40,41 @@
   a:hover { color: var(--ink); text-decoration-color: currentColor; }
   a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
-  /* ---------- skyline header ---------- */
-  .top { position: relative; }
+  /* ---------- background: skyline and drifting clouds ---------- */
   .skyline {
-    display: block;
-    width: 100%;
-    height: clamp(130px, 18vw, 260px);
-    position: absolute;
+    position: fixed;
     left: 0;
-    right: 0;
-    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: clamp(220px, min(50vh, 34vw), 660px);
+    z-index: 0;
     pointer-events: none;
   }
-  .skyline .far { fill: var(--sky-far); opacity: 0.45; }
-  .skyline .near { fill: var(--sky-near); opacity: 0.4; }
-  .top::after {
-    /* faint street line under the skyline */
-    content: "";
+  .skyline .far { fill: var(--sky-far); opacity: 0.5; }
+  .skyline .near { fill: var(--sky-near); opacity: 0.42; }
+
+  .clouds { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+  .cloud {
     position: absolute;
     left: 0;
-    right: 0;
-    top: clamp(130px, 18vw, 260px);
-    height: 1px;
-    background: var(--line);
+    width: var(--w);
+    top: var(--y);
+    opacity: var(--o, 0.75);
+    animation: drift var(--t) linear infinite;
+    animation-delay: var(--delay);
   }
+  @keyframes drift {
+    from { transform: translateX(-40vw); }
+    to { transform: translateX(110vw); }
+  }
+
+  .page { position: relative; z-index: 1; }
 
   header {
     position: relative;
     max-width: 720px;
     margin: 0 auto;
-    padding: calc(clamp(130px, 18vw, 260px) + 40px) 16px 36px;
+    padding: clamp(72px, 12vh, 120px) 16px 36px;
   }
   header h1 {
     font-family: var(--serif);
@@ -158,6 +163,10 @@
     border-top: 1px solid var(--line);
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .cloud { animation: none; transform: translateX(calc(var(--x, 20) * 1vw)); }
+  }
+
   @media (max-width: 600px) {
     body { font-size: 16px; }
     .jobs li { grid-template-columns: 1fr; gap: 2px; }
@@ -167,12 +176,26 @@
 </head>
 <body>
 
-<div class="top">
-  <svg class="skyline" viewBox="0 0 1440 260" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <filter id="soft" x="-20%" y="-40%" width="140%" height="180%"><feGaussianBlur stdDeviation="7"/></filter>
+</svg>
+
+<svg class="skyline" viewBox="0 0 1440 460" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+  <g transform="translate(0 460) scale(1 1.77) translate(0 -260)">
     <path class="far" d="M0 260V191H32V260ZM15 191V173H17V191ZM36 260V164H61V260ZM62 260V199H85V260ZM72 199V181H74V199ZM85 260V156H124V260ZM94 260V139H113V260ZM125 260V130H167V260ZM145 130V112H147V130ZM171 260V204H205V260ZM187 204V186H189V204ZM206 260V157H237V260ZM213 260V148H228V260ZM241 260V187H284V260ZM251 260V170H272V260ZM286 260V140H311V260ZM315 260V147H343V260ZM345 260V136H381V260ZM382 260V121H409V260ZM394 121V103H396V121ZM411 260V147H449V260ZM451 260V201H492V260ZM461 260V187H481V260ZM494 260V148H520V260ZM520 260V139H566V260ZM568 260V122H600V260ZM603 260V199H627V260ZM627 260V121H650V260ZM653 260V161H684V260ZM687 260V189H720V260ZM721 260V174H767V260ZM732 260V163H755V260ZM770 260V189H794V260ZM795 260V140H830V260ZM803 260V126H820V260ZM833 260V191H862V260ZM840 260V181H854V260ZM863 260V148H885V260ZM887 260V192H909V260ZM913 260V194H945V260ZM949 260V124H991V260ZM995 260V160H1029V260ZM1011 160V142H1013V160ZM1032 260V186H1055V260ZM1056 260V167H1081V260ZM1067 167V149H1069V167ZM1085 260V142H1111V260ZM1111 260V184H1135V260ZM1137 260V133H1170V260ZM1173 260V149H1209V260ZM1190 149V131H1192V149ZM1209 260V167H1254V260ZM1255 260V208H1293V260ZM1264 260V192H1283V260ZM1297 260V143H1319V260ZM1319 260V177H1363V260ZM1365 260V182H1411V260ZM1413 260V182H1455V260Z"/>
     <path class="near" d="M0 260V167H23V260ZM26 260V160H50V260ZM54 260V190H88V260ZM70 190V172H72V190ZM92 260V212H123V260ZM99 260V192H114V260ZM238 260V178H257V260ZM259 260V201H277V260ZM267 201V183H269V201ZM277 260V200H309V260ZM312 260V197H334V260ZM335 260V195H355V260ZM359 260V205H379V260ZM382 260V177H406V260ZM409 260V174H436V260ZM438 260V171H471V260ZM446 260V150H462V260ZM453 171V153H455V171ZM474 260V158H492V260ZM496 260V180H521V260ZM602 260V176H630V260ZM881 260V158H910V260ZM911 260V212H934V260ZM937 260V184H956V260ZM1090 260V188H1109V260ZM1112 260V193H1130V260ZM1131 260V166H1160V260ZM1163 260V203H1190V260ZM1190 260V204H1220V260ZM1204 204V186H1206V204ZM1224 260V189H1252V260ZM1254 260V169H1293V260ZM1294 260V202H1316V260ZM1304 202V184H1306V202ZM1316 260V163H1354V260ZM1334 163V145H1336V163ZM1354 260V184H1392V260ZM1363 260V168H1382V260ZM1395 260V192H1428V260ZM1431 260V150H1455V260ZM150 260V70L162 40H198L210 70V260Z M178 40V4H182V40ZM660 260V150H672V112H684V84H692V62H700V46H704V10H708V46H712V62H720V84H728V112H740V150H752V260ZM800 260V118H806V108C806 96 812 88 820 80C828 88 834 96 834 108V118H840V260Z M818 80L820 34L822 80Z M810 104C812 98 816 94 820 90C824 94 828 98 830 104ZM968 260V52H990V260ZM1030 260V70H1044V44H1066V260ZM560 260V96L572 70H590V260Z M583 70V44H585V70Z"/>
-  </svg>
+  </g>
+</svg>
 
+<div class="clouds" aria-hidden="true">
+  <svg class="cloud" style="--w:340px;--y:6%;--t:95s;--delay:-10s;--x:10" viewBox="0 0 300 120" aria-hidden="true"><g fill="#fff" filter="url(#soft)"><ellipse cx="150" cy="78" rx="120" ry="28"/><ellipse cx="110" cy="62" rx="56" ry="34"/><ellipse cx="175" cy="52" rx="64" ry="42"/><ellipse cx="225" cy="72" rx="48" ry="26"/></g></svg>
+  <svg class="cloud" style="--w:220px;--y:18%;--t:130s;--delay:-70s;--o:.6;--x:70" viewBox="0 0 300 120" aria-hidden="true"><g fill="#fff" filter="url(#soft)"><ellipse cx="150" cy="78" rx="120" ry="28"/><ellipse cx="110" cy="62" rx="56" ry="34"/><ellipse cx="175" cy="52" rx="64" ry="42"/><ellipse cx="225" cy="72" rx="48" ry="26"/></g></svg>
+  <svg class="cloud" style="--w:420px;--y:34%;--t:160s;--delay:-40s;--o:.55;--x:40" viewBox="0 0 300 120" aria-hidden="true"><g fill="#fff" filter="url(#soft)"><ellipse cx="150" cy="78" rx="120" ry="28"/><ellipse cx="110" cy="62" rx="56" ry="34"/><ellipse cx="175" cy="52" rx="64" ry="42"/><ellipse cx="225" cy="72" rx="48" ry="26"/></g></svg>
+  <svg class="cloud" style="--w:260px;--y:52%;--t:110s;--delay:-85s;--o:.65;--x:80" viewBox="0 0 300 120" aria-hidden="true"><g fill="#fff" filter="url(#soft)"><ellipse cx="150" cy="78" rx="120" ry="28"/><ellipse cx="110" cy="62" rx="56" ry="34"/><ellipse cx="175" cy="52" rx="64" ry="42"/><ellipse cx="225" cy="72" rx="48" ry="26"/></g></svg>
+  <svg class="cloud" style="--w:300px;--y:62%;--t:140s;--delay:-20s;--o:.5;--x:5" viewBox="0 0 300 120" aria-hidden="true"><g fill="#fff" filter="url(#soft)"><ellipse cx="150" cy="78" rx="120" ry="28"/><ellipse cx="110" cy="62" rx="56" ry="34"/><ellipse cx="175" cy="52" rx="64" ry="42"/><ellipse cx="225" cy="72" rx="48" ry="26"/></g></svg>
+</div>
+
+<div class="page">
   <header>
     <h1>Alina Du</h1>
     <p class="tag">Quantitative finance, computer science &amp; math at Columbia</p>
@@ -184,7 +207,6 @@
     
     </nav>
   </header>
-</div>
 
 <main>
   <section aria-labelledby="about">
@@ -217,6 +239,7 @@
 </main>
 
 <footer>Alina Du &middot; New York</footer>
+</div>
 
 </body>
 </html>
