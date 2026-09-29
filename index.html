@@ -239,8 +239,8 @@
 
   .skills { display: grid; gap: 16px; margin: 0; }
   .skills div { display: grid; grid-template-columns: 170px 1fr; gap: 18px; }
-  .skills dt { color: var(--ink-soft); font-size: 15px; padding-top: 5px; }
-  .skills dd { margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .skills dt { color: var(--ink-soft); font-size: 15px; padding-top: 2px; }
+  .skills dd { margin: 0; }
   .chip {
     padding: 3px 12px;
     border-radius: 999px;
@@ -262,7 +262,6 @@
   .awards li { padding: 12px 0; border-bottom: 1px dashed var(--line); }
   .awards li:last-child { border-bottom: 0; }
   .awards strong { font-weight: 600; }
-  .awards span { color: var(--ink-soft); }
 
   footer {
     max-width: 720px;
@@ -342,11 +341,10 @@
     <h2 id="education-h">Education</h2>
     <div class="edu">
       <div class="edu-head">
-        <div><span class="role">Columbia University</span><span class="org">B.S. Computer Science, minors in Financial Engineering and Math</span></div>
-        <span class="when">Class of May 2028</span>
+        <div><span class="role">Columbia University</span><span class="org">Computer Science, Quantitative Finance and Math</span></div>
       </div>
       <p class="gpa"><strong>GPA</strong> 3.9 / 4.0</p>
-      <div class="course"><strong>Coursework</strong><span class="chips"><span class="chip">Software Quality and Design</span><span class="chip">Data Structures</span><span class="chip">Machine Learning</span><span class="chip">Optimization</span></span></div>
+      <div class="course"><strong>Coursework</strong><span class="chips"><span class="chip">Software Quality and Design</span><span class="chip">Data Structures</span><span class="chip">Machine Learning</span><span class="chip">Optimization</span><span class="chip">Multivariable Calculus</span><span class="chip">Probability Theory</span><span class="chip">Linear Algebra</span></span></div>
     </div>
   </section>
 
@@ -364,10 +362,10 @@
   <section id="skills" aria-labelledby="skills-h">
     <h2 id="skills-h">Skills</h2>
     <dl class="skills">
-      <div><dt>Languages</dt><dd><span class="chip">Python</span><span class="chip">Java</span><span class="chip">TypeScript</span><span class="chip">SQL</span></dd></div>
-      <div><dt>ML &amp; Data</dt><dd><span class="chip">PyTorch</span><span class="chip">Scikit-learn</span><span class="chip">Hugging Face</span><span class="chip">NumPy</span><span class="chip">Pandas</span><span class="chip">SciPy</span></dd></div>
-      <div><dt>Frameworks</dt><dd><span class="chip">React / React Native</span><span class="chip">Next.js</span><span class="chip">FastAPI</span><span class="chip">LangChain</span><span class="chip">LangGraph</span></dd></div>
-      <div><dt>Infrastructure</dt><dd><span class="chip">AWS (EC2)</span><span class="chip">GCP</span><span class="chip">Vercel</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Git</span></dd></div>
+      <div><dt>Languages</dt><dd>Python &middot; Java &middot; TypeScript &middot; SQL &middot; HTML</dd></div>
+      <div><dt>ML &amp; Data</dt><dd>PyTorch &middot; Scikit-learn &middot; Hugging Face &middot; NumPy &middot; Pandas &middot; SciPy</dd></div>
+      <div><dt>Frameworks</dt><dd>React / React Native &middot; Next.js &middot; FastAPI &middot; LangChain &middot; LangGraph</dd></div>
+      <div><dt>Infrastructure</dt><dd>AWS (EC2) &middot; GCP &middot; Vercel &middot; PostgreSQL &middot; MongoDB &middot; Supabase &middot; Firebase &middot; Git</dd></div>
     </dl>
   </section>
 
@@ -383,11 +381,11 @@
   <section id="awards" aria-labelledby="awards-h">
     <h2 id="awards-h">Awards</h2>
     <ul class="awards">
-      <li><strong>Jane Street WiSE</strong> <span>&middot; Top 60</span></li>
+      <li><strong>Jane Street WiSE</strong></li>
       <li><strong>2&times; Hackathon Winner</strong></li>
       <li><strong>MIT Math Prize for Girls</strong></li>
       <li><strong>2&times; AIME Qualifier</strong></li>
-      <li><strong>Waterloo National Math Scholarship</strong> <span>&middot; One of 15 recipients</span></li>
+      <li><strong>Waterloo National Math Scholarship</strong></li>
     </ul>
   </section>
 
