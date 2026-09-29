@@ -208,17 +208,20 @@ header.inner h1 { font-size: clamp(48px, 7vw, 76px); margin-top: 10px; }
 .btn {
   padding: 10px 20px;
   border-radius: 999px;
-  border: 1px solid var(--ink);
+  border: 1px solid var(--line);
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--ink);
-  background: rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 14px rgba(40,60,80,0.10);
   transition: background 200ms ease, color 200ms ease, transform 200ms ease;
 }
-.btn:hover { background: var(--ink); color: #fff; transform: translateY(-2px); }
+.btn:hover { background: #fff; color: var(--accent); transform: translateY(-2px); }
 
 /* ---------- content ---------- */
 main { max-width: var(--width); margin: 0 auto; padding: 0 16px 56px; }
