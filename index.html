@@ -25,7 +25,7 @@
   }
 
   * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; background: var(--bg); }
+  html { -webkit-text-size-adjust: 100%; background: var(--bg); scroll-behavior: smooth; }
   body {
     margin: 0;
     background: linear-gradient(to bottom, #E4ECF2, var(--bg) 420px, var(--bg-deep));
@@ -163,6 +163,34 @@
   .contact svg { width: 18px; height: 18px; display: block; }
   .contact .line { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
+  /* ---------- quick links ---------- */
+  .quick {
+    position: fixed;
+    top: calc(16px + env(safe-area-inset-top, 0px));
+    right: 16px;
+    z-index: 3;
+    display: flex;
+    gap: 2px;
+    padding: 4px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.6);
+    border: 1px solid var(--line);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 14px rgba(40,60,80,0.08);
+  }
+  .quick a {
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    transition: background 200ms ease, color 200ms ease;
+  }
+  .quick a:hover { background: #fff; color: var(--accent); }
+  section[id] { scroll-margin-top: 72px; }
+
   /* ---------- content ---------- */
   main { max-width: 720px; margin: 0 auto; padding: 0 16px 56px; }
   section { padding: 36px 0; border-top: 1px solid var(--line); }
@@ -209,6 +237,33 @@
   .jobs .org { display: block; color: var(--ink-soft); }
   .jobs .desc { display: block; font-size: 15px; color: var(--ink-soft); }
 
+  .skills { display: grid; gap: 16px; margin: 0; }
+  .skills div { display: grid; grid-template-columns: 170px 1fr; gap: 18px; }
+  .skills dt { color: var(--ink-soft); font-size: 15px; padding-top: 5px; }
+  .skills dd { margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    padding: 3px 12px;
+    border-radius: 999px;
+    font-size: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+  }
+
+  .edu-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  .edu .role { display: block; font-weight: 600; }
+  .edu .org { display: block; color: var(--ink-soft); }
+  .edu .when { color: var(--ink-soft); font-size: 15px; }
+  .edu strong { font-weight: 600; margin-right: 10px; }
+  .edu .gpa { margin: 14px 0 10px; }
+  .course { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .awards { list-style: none; margin: 0; padding: 0; }
+  .awards li { padding: 12px 0; border-bottom: 1px dashed var(--line); }
+  .awards li:last-child { border-bottom: 0; }
+  .awards strong { font-weight: 600; }
+  .awards span { color: var(--ink-soft); }
+
   footer {
     max-width: 720px;
     margin: 0 auto;
@@ -226,6 +281,10 @@
   @media (max-width: 600px) {
     body { font-size: 16px; }
     .jobs li { grid-template-columns: 1fr; gap: 2px; }
+    .skills div { grid-template-columns: 1fr; gap: 6px; }
+    .skills dt { padding-top: 0; }
+    .quick { left: 16px; right: 16px; justify-content: space-between; }
+    .quick a { padding: 6px 6px; font-size: 12.5px; }
     .project { padding: 16px; }
   }
 </style>
@@ -252,6 +311,13 @@
 </div>
 
 <div class="page">
+<nav class="quick" aria-label="Sections">
+  <a href="#education">Education</a>
+  <a href="#experience">Experience</a>
+  <a href="#skills">Skills</a>
+  <a href="#projects">Projects</a>
+  <a href="#awards">Awards</a>
+</nav>
   <header>
     <h1>Alina Du</h1>
     <p class="tag">Quantitative Finance, Computer Science &amp; Math at Columbia</p>
@@ -272,16 +338,19 @@
     <p>I love meeting new people, feel free to reach out at <a href="mailto:alinadu0703@gmail.com">alinadu0703@gmail.com</a> or <a href="mailto:xd2364@columbia.edu">xd2364@columbia.edu</a>!</p>
   </section>
 
-  <section aria-labelledby="projects">
-    <h2 id="projects">Projects</h2>
-    <div class="projects">
-      <a class="project" href="https://github.com/backlight314/think-before-you-trust"><strong>Think before you trust</strong><span>Research code for choosing which steps of an LLM's reasoning to verify under a fixed budget.</span></a>
-      <a class="project" href="https://github.com/backlight314/gptinder"><strong>Hack the Heart</strong><span>Two AI agents learn how two people text, then go on a simulated date to guess whether the real people would get along.</span></a>
-      <a class="project" href="https://github.com/backlight314/pacmanhattan"><strong>Pac-Manhattan</strong><span>A 3D Pac-Man across real New York streets where you play the ghost, dodging chompers and collecting landmark stamps.</span></a>
+  <section id="education" aria-labelledby="education-h">
+    <h2 id="education-h">Education</h2>
+    <div class="edu">
+      <div class="edu-head">
+        <div><span class="role">Columbia University</span><span class="org">B.S. Computer Science, minors in Financial Engineering and Math</span></div>
+        <span class="when">Class of May 2028</span>
+      </div>
+      <p class="gpa"><strong>GPA</strong> 3.9 / 4.0</p>
+      <div class="course"><strong>Coursework</strong><span class="chips"><span class="chip">Software Quality and Design</span><span class="chip">Data Structures</span><span class="chip">Machine Learning</span><span class="chip">Optimization</span></span></div>
     </div>
   </section>
 
-  <section aria-labelledby="work">
+  <section id="experience" aria-labelledby="work">
     <h2 id="work">Experience</h2>
     <ol class="jobs">
       <li><span class="when">May 2026 – now</span><div><span class="role">Math Modelling Research Intern</span><span class="org">Columbia University</span></div></li>
@@ -291,6 +360,37 @@
       <li><span class="when">Aug 2025 – Mar 2026</span><div><span class="role">Software Engineer Intern</span><span class="org">MeloMed</span></div></li>
     </ol>
   </section>
+
+  <section id="skills" aria-labelledby="skills-h">
+    <h2 id="skills-h">Skills</h2>
+    <dl class="skills">
+      <div><dt>Languages</dt><dd><span class="chip">Python</span><span class="chip">Java</span><span class="chip">TypeScript</span><span class="chip">SQL</span></dd></div>
+      <div><dt>ML &amp; Data</dt><dd><span class="chip">PyTorch</span><span class="chip">Scikit-learn</span><span class="chip">Hugging Face</span><span class="chip">NumPy</span><span class="chip">Pandas</span><span class="chip">SciPy</span></dd></div>
+      <div><dt>Frameworks</dt><dd><span class="chip">React / React Native</span><span class="chip">Next.js</span><span class="chip">FastAPI</span><span class="chip">LangChain</span><span class="chip">LangGraph</span></dd></div>
+      <div><dt>Infrastructure</dt><dd><span class="chip">AWS (EC2)</span><span class="chip">GCP</span><span class="chip">Vercel</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Git</span></dd></div>
+    </dl>
+  </section>
+
+  <section id="projects" aria-labelledby="projects-h">
+    <h2 id="projects-h">Projects</h2>
+    <div class="projects">
+      <a class="project" href="https://github.com/backlight314/think-before-you-trust"><strong>Think before you trust</strong><span>Research code for choosing which steps of an LLM's reasoning to verify under a fixed budget.</span></a>
+      <a class="project" href="https://github.com/backlight314/gptinder"><strong>Hack the Heart</strong><span>Two AI agents learn how two people text, then go on a simulated date to guess whether the real people would get along.</span></a>
+      <a class="project" href="https://github.com/backlight314/pacmanhattan"><strong>Pac-Manhattan</strong><span>A 3D Pac-Man across real New York streets where you play the ghost, dodging chompers and collecting landmark stamps.</span></a>
+    </div>
+  </section>
+
+  <section id="awards" aria-labelledby="awards-h">
+    <h2 id="awards-h">Awards</h2>
+    <ul class="awards">
+      <li><strong>Jane Street WiSE</strong> <span>&middot; Top 60</span></li>
+      <li><strong>2&times; Hackathon Winner</strong></li>
+      <li><strong>MIT Math Prize for Girls</strong></li>
+      <li><strong>2&times; AIME Qualifier</strong></li>
+      <li><strong>Waterloo National Math Scholarship</strong> <span>&middot; One of 15 recipients</span></li>
+    </ul>
+  </section>
+
 </main>
 
 <footer>Alina Du &middot; New York</footer>
