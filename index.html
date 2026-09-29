@@ -350,16 +350,8 @@
 
   .page p { margin: 0 0 16px; }
   .salutation { font-family: var(--script); font-size: 36px; margin: 0 0 14px; line-height: 1.2; }
-  .body p:first-child::first-letter {
-    font-family: var(--engraved);
-    float: left;
-    font-size: 64px;
-    line-height: 0.8;
-    padding: 6px 8px 0 0;
-    color: var(--wax);
-  }
   .body p { text-indent: 2em; }
-  .body p:first-child { text-indent: 0; display: flow-root; }
+  .body p:first-child { text-indent: 0; }
 
   .closing { margin-top: 32px; text-align: right; padding-right: 8%; }
   .closing p { font-family: var(--engraved); font-style: italic; font-size: 18px; }
@@ -417,7 +409,6 @@
     .contact { top: 26px; right: 30px; gap: 12px; }
     .contact a { width: 19px; height: 19px; }
     .letterhead { padding-top: 22px; }
-    .body p:first-child::first-letter { font-size: 52px; }
     .signature { font-size: 68px; }
     .rows { grid-template-columns: 1fr; gap: 0; }
     .rows dd { margin-bottom: 14px; }
