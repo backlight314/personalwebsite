@@ -70,6 +70,61 @@
 
   .page { position: relative; z-index: 1; }
 
+  /* ---------- snow toggle ---------- */
+  body { transition: background-color 1.2s ease; }
+  body::before {
+    /* cooler, greyer wash over the sky while it snows */
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(180,192,204,0.55), rgba(220,228,236,0.2));
+    opacity: 0;
+    transition: opacity 1.2s ease;
+  }
+  body.snowing::before { opacity: 1; }
+
+  .snow { position: fixed; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; opacity: 0; transition: opacity 1s ease; }
+  body.snowing .snow { opacity: 1; }
+  .snow i {
+    position: absolute;
+    top: -12px;
+    width: var(--s);
+    height: var(--s);
+    border-radius: 50%;
+    background: #fff;
+    opacity: var(--o);
+    filter: blur(var(--b));
+    animation: snowfall var(--t) linear infinite, sway var(--sw) ease-in-out infinite alternate;
+    animation-delay: var(--delay), var(--delay);
+  }
+  @keyframes snowfall { to { top: 102%; } }
+  @keyframes sway { from { translate: -14px 0; } to { translate: 14px 0; } }
+
+  .weather-btn {
+    position: fixed;
+    right: 16px;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font: 500 15px var(--sans);
+    color: var(--ink);
+    background: rgba(255,255,255,0.7);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 10px 18px;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 14px rgba(40,60,80,0.12);
+    transition: background 200ms ease, transform 200ms ease;
+  }
+  .weather-btn:hover { background: #fff; transform: translateY(-2px); }
+  .weather-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
   header {
     position: relative;
     max-width: 720px;
@@ -165,6 +220,7 @@
 
   @media (prefers-reduced-motion: reduce) {
     .cloud { animation: none; transform: translateX(calc(var(--x, 20) * 1vw)); }
+    .snow i { animation: none; top: var(--y); }
   }
 
   @media (max-width: 600px) {
@@ -198,7 +254,7 @@
 <div class="page">
   <header>
     <h1>Alina Du</h1>
-    <p class="tag">Quantitative finance, computer science &amp; math at Columbia</p>
+    <p class="tag">Quantitative Finance, Computer Science &amp; Math at Columbia</p>
     <nav class="contact" aria-label="Contact">
       <a href="https://github.com/backlight314" title="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a>
       <a href="mailto:alinadu0703@gmail.com" title="Email" aria-label="Email"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 5.46v13.9c0 .9-.73 1.64-1.64 1.64h-3.82v-9.27L12 16.64l-6.55-4.91V21H1.64C.73 21 0 20.27 0 19.37V5.46c0-2.02 2.31-3.18 3.93-1.97l1.52 1.15L12 9.55l6.55-4.91 1.52-1.15C21.69 2.28 24 3.43 24 5.46z"/></svg></a>
@@ -210,8 +266,8 @@
 
 <main>
   <section aria-labelledby="about">
-    <h2 id="about">Hello</h2>
-    <p>Hey! I'm Alina, an engineering student studying Quantitative Finance, Computer Science and Math at Columbia University. I have experience in software engineering, research and math modelling.</p>
+    <h2 id="about">Hey!</h2>
+    <p>I'm Alina, an engineering student studying Quantitative Finance, Computer Science and Math at Columbia University. I have experience in software engineering, research and math modelling.</p>
     <p>Outside of classes, I like to walk/jog around Manhattan, try out new sports, hunt down restaurants, test new recipes, travel and more&hellip;</p>
     <p>I love meeting new people, feel free to reach out at <a href="mailto:alinadu0703@gmail.com">alinadu0703@gmail.com</a> or <a href="mailto:xd2364@columbia.edu">xd2364@columbia.edu</a>!</p>
   </section>
@@ -222,7 +278,6 @@
       <a class="project" href="https://github.com/backlight314/think-before-you-trust"><strong>Think before you trust</strong><span>Research code for choosing which steps of an LLM's reasoning to verify under a fixed budget.</span></a>
       <a class="project" href="https://github.com/backlight314/gptinder"><strong>Hack the Heart</strong><span>Two AI agents learn how two people text, then go on a simulated date to guess whether the real people would get along.</span></a>
       <a class="project" href="https://github.com/backlight314/pacmanhattan"><strong>Pac-Manhattan</strong><span>A 3D Pac-Man across real New York streets where you play the ghost, dodging chompers and collecting landmark stamps.</span></a>
-      <a class="project" href="resume.pdf"><strong>Resume</strong><span>One page, if you'd rather skim.</span></a>
     </div>
   </section>
 
@@ -241,5 +296,39 @@
 <footer>Alina Du &middot; New York</footer>
 </div>
 
+<div class="snow" id="snow" aria-hidden="true"></div>
+<button class="weather-btn" id="weather" type="button" aria-pressed="false">❄️ Make it snow</button>
+
+<script>
+  const snow = document.getElementById("snow");
+  const weather = document.getElementById("weather");
+  let made = false;
+
+  // build the flakes the first time it snows
+  function makeFlakes() {
+    const n = window.innerWidth < 600 ? 60 : 120;
+    for (let i = 0; i < n; i++) {
+      const f = document.createElement("i");
+      const size = 2 + Math.random() * 5;
+      f.style.left = Math.random() * 100 + "%";
+      f.style.setProperty("--s", size + "px");
+      f.style.setProperty("--o", (0.55 + Math.random() * 0.45).toFixed(2));
+      f.style.setProperty("--b", size > 5 ? "1px" : "0px");
+      f.style.setProperty("--t", (7 + Math.random() * 9).toFixed(1) + "s");
+      f.style.setProperty("--sw", (2 + Math.random() * 3).toFixed(1) + "s");
+      f.style.setProperty("--delay", (-Math.random() * 16).toFixed(1) + "s");
+      f.style.setProperty("--y", Math.random() * 100 + "%");
+      snow.appendChild(f);
+    }
+    made = true;
+  }
+
+  weather.addEventListener("click", () => {
+    if (!made) makeFlakes();
+    const on = document.body.classList.toggle("snowing");
+    weather.setAttribute("aria-pressed", String(on));
+    weather.textContent = on ? "☀️ Let the sun out" : "❄️ Make it snow";
+  });
+</script>
 </body>
 </html>
