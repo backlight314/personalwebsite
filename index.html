@@ -5,49 +5,55 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Alina Du</title>
 <meta name="description" content="Alina Du, computer science at Columbia. Research on verifying LLM reasoning, plus things I build.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%238E1A20'/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%237B1E22'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Mrs+Saint+Delafield&family=Pinyon+Script&family=Special+Elite&display=swap" rel="stylesheet">
 <style>
   :root {
-    --desk: #2E3B34;
-    --desk-dark: #1E2722;
-    --ink: #3B2616;
-    --ink-soft: #6B4E32;
-    --wax: #8E1A20;
-    --wax-light: #C0343B;
-    --wax-dark: #4E0A0E;
+    --sky: #C9DDEE;
+    --sky-light: #DDEAF5;
+    --sky-deep: #A9C4DC;
+    --sky-ink: #3E5670;
+    --paper: #EFE3C6;
+    --paper-dark: #E2D1A8;
+    --foxing: rgba(150,100,45,0.16);
+    --envelope: #EAE2CE;
+    --env-inside: #D6CAAE;
+    --env-edge: rgba(92,70,40,0.32);
+    --tooth: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='t' x='0' y='0' width='100%' height='100%'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' seed='4' stitchTiles='stitch' result='tooth'/%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012 0.18' numOctaves='2' seed='9' stitchTiles='stitch' result='fib'/%3E%3CfeComposite in='tooth' in2='fib' operator='arithmetic' k2='0.7' k3='0.45' result='h'/%3E%3CfeDiffuseLighting in='h' surfaceScale='1.6' diffuseConstant='1' lighting-color='%23fff' result='lit'%3E%3CfeDistantLight azimuth='225' elevation='58'/%3E%3C/feDiffuseLighting%3E%3CfeColorMatrix in='lit' type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='0.55' intercept='0.5'/%3E%3CfeFuncG type='linear' slope='0.55' intercept='0.5'/%3E%3CfeFuncB type='linear' slope='0.55' intercept='0.49'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23t)'/%3E%3C/svg%3E");
+    --mottle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='700' height='700'%3E%3Cfilter id='m' x='0' y='0' width='100%' height='100%'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006' numOctaves='4' seed='21' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.55  0 0 0 0 0.38  0 0 0 0 0.15  0 0 0 0.9 -0.38'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23m)'/%3E%3C/svg%3E");
+    --spots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900'%3E%3Cfilter id='f' x='0' y='0' width='100%' height='100%'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.07' numOctaves='3' seed='13' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5  0 0 0 0 0.3  0 0 0 0 0.1  0 0 0 30 -22.2'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.3'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23f)'/%3E%3C/svg%3E");
+    --laid: repeating-linear-gradient(90deg, rgba(90,70,40,0.025) 0 1px, transparent 1px 4px);
+    --ink: #3A2A1D;
+    --ink-soft: #6E5843;
+    --wax: #7B1E22;
+    --wax-light: #A8343A;
+    --stamp-ink: #2B2F3F;
+    --sig: "Mrs Saint Delafield", "Pinyon Script", "Snell Roundhand", cursive;
     --script: "Pinyon Script", "Snell Roundhand", "Apple Chancery", cursive;
-    --serif: "IM Fell English", "Iowan Old Style", Georgia, serif;
-
-    /* Paper textures, generated from SVG noise so they need no image files. */
-    /* fine grain: speckled brown pulp */
-    --grain: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .38  0 0 0 0 .26  0 0 0 0 .12  .9 0 0 0 -.38'/></filter><rect width='240' height='240' filter='url(%23g)'/></svg>");
-    /* long fibres running across the sheet */
-    --fibres: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='.004 .35' numOctaves='2' seed='4' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .32  0 0 0 0 .16  1.1 0 0 0 -.62'/></filter><rect width='400' height='400' filter='url(%23f)'/></svg>");
-    /* creases: sharp turbulence lit from the upper left */
-    --crumple: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='700' height='700'><filter id='c' x='0' y='0' width='100%' height='100%'><feTurbulence type='turbulence' baseFrequency='.005 .007' numOctaves='5' seed='11' stitchTiles='stitch'/><feDiffuseLighting surfaceScale='5' lighting-color='%23fff'><feDistantLight azimuth='225' elevation='58'/></feDiffuseLighting><feComponentTransfer><feFuncR type='linear' slope='.7' intercept='.38'/><feFuncG type='linear' slope='.7' intercept='.38'/><feFuncB type='linear' slope='.7' intercept='.38'/></feComponentTransfer></filter><rect width='700' height='700' filter='url(%23c)'/></svg>");
-    /* blotchy age stains */
-    --stains: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='1000' height='1600' viewBox='0 0 1000 1600' preserveAspectRatio='none'><filter id='s'><feTurbulence type='fractalNoise' baseFrequency='.004' numOctaves='4' seed='23'/><feColorMatrix values='0 0 0 0 .55  0 0 0 0 .36  0 0 0 0 .14  0 0 0 -2.2 1.08'/></filter><rect width='1000' height='1600' filter='url(%23s)'/></svg>");
-    --texture: var(--grain), var(--fibres), var(--stains), var(--crumple);
+    --engraved: "IM Fell English", "Iowan Old Style", Georgia, serif;
+    --engraved-sc: "IM Fell English SC", "IM Fell English", Georgia, serif;
+    --type: "Special Elite", "Courier Prime", "Courier New", Courier, monospace;
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.25 0 0 0 0 0.12 0 0 0 0.22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
   * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; background: var(--desk-dark); }
+  html { -webkit-text-size-adjust: 100%; background: var(--sky); }
   body {
     margin: 0;
     min-height: 100vh;
+    display: flow-root;
     background:
-      radial-gradient(ellipse at 50% 30%, rgba(255,255,255,0.05), transparent 60%),
-      radial-gradient(ellipse at center, var(--desk) 40%, var(--desk-dark) 100%);
+      radial-gradient(circle at 1px 1px, rgba(255,255,255,0.55) 1px, transparent 1.5px) 0 0 / 22px 22px,
+      radial-gradient(ellipse at 50% 20%, var(--sky-light), transparent 65%),
+      radial-gradient(ellipse at center, var(--sky) 45%, var(--sky-deep) 120%);
     background-attachment: fixed;
     color: var(--ink);
-    font-family: var(--serif);
-    font-size: 18px;
-    line-height: 1.6;
+    font-family: var(--type);
+    font-size: 16px;
+    line-height: 1.7;
     padding: env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px);
-    overflow-x: hidden;
   }
   body.intro { overflow: hidden; height: 100vh; }
 
@@ -69,79 +75,96 @@
   .envelope {
     position: relative;
     width: min(560px, 86vw);
-    aspect-ratio: 1.55;
-    margin-top: 10vh;
-    transform: rotate(-4deg);
-  }
-  /* everything paper sits in one layer so a single filter roughens the edges */
-  .env-paper {
-    position: absolute;
-    inset: 0;
+    aspect-ratio: 1.6;
     perspective: 1400px;
-    filter: url(#rough-envelope) drop-shadow(0 22px 26px rgba(0,0,0,0.45));
+    margin-top: 10vh;
+    transform: rotate(-1.2deg);
   }
-
-  /* shared paper look for every envelope piece */
-  .env-body, .pocket i, .flap i {
-    background-image: var(--texture);
-    background-size: 240px, 400px, 100% 100%, 700px;
-    background-position: 0 0;
-    background-repeat: repeat, repeat, no-repeat, repeat;
-    background-blend-mode: normal, normal, multiply, multiply;
-  }
-
+  /* inside of the envelope, only seen behind the letter once it's open */
   .env-body {
     position: absolute;
     inset: 0;
-    background-color: #CDB48A;
-    box-shadow: inset 0 0 50px rgba(92,56,20,0.55), inset 0 0 8px rgba(70,40,12,0.6);
+    background: linear-gradient(to bottom, rgba(60,40,20,0.18), transparent 40%), var(--env-inside);
+    border-radius: 3px;
+    box-shadow:
+      0 1px 1px rgba(30,45,70,0.22),
+      0 6px 12px rgba(30,45,70,0.12),
+      0 26px 40px -10px rgba(30,45,70,0.28);
     z-index: 1;
   }
 
   .env-letter {
     position: absolute;
-    left: 6%;
-    right: 6%;
-    top: 7%;
-    height: 86%;
+    left: 4%;
+    right: 4%;
+    top: 5%;
+    height: 90%;
+    background: var(--grain), var(--paper);
     padding: 7% 8%;
     z-index: 2;
-    background-color: #EEDDB8;
-    background-image: var(--texture);
-    background-size: 240px, 400px, 100% 100%, 700px;
-    background-repeat: repeat, repeat, no-repeat, repeat;
-    background-blend-mode: normal, normal, multiply, multiply;
-    box-shadow: inset 0 0 30px rgba(130,80,30,0.45), 0 1px 3px rgba(0,0,0,0.2);
-    text-align: center;
+    box-shadow: 0 0 1px rgba(60,40,20,0.4);
     transition: transform 1100ms cubic-bezier(.2,.7,.2,1);
   }
-  .env-letter .mini-name { font-family: var(--script); font-size: clamp(22px, 5vw, 34px); line-height: 1; color: var(--ink); }
+  .env-letter .mini-name {
+    font-family: var(--engraved-sc);
+    font-size: clamp(18px, 4vw, 26px);
+    letter-spacing: 0.12em;
+    line-height: 1;
+    color: var(--ink);
+  }
   .env-letter .mini-lines {
-    margin: 8% auto 0;
+    margin-top: 8%;
     height: 55%;
-    width: 80%;
-    background: repeating-linear-gradient(to bottom, transparent 0 13px, rgba(59,38,22,0.3) 13px 14px);
+    background: repeating-linear-gradient(to bottom, transparent 0 14px, rgba(58,42,29,0.3) 14px 15px);
+    width: 85%;
   }
   .envelope.pull .env-letter { transform: translateY(-64%); }
 
-  .pocket { position: absolute; inset: 0; z-index: 3; }
-  .pocket i { position: absolute; inset: 0; }
-  .pocket.l, .pocket.r { filter: drop-shadow(0 0 2px rgba(60,34,10,0.35)); }
-  .pocket.b { filter: drop-shadow(0 -2px 3px rgba(60,34,10,0.4)); }
-  .pocket.l i {
-    background-color: #C9AE82;
-    box-shadow: inset 40px 0 50px -20px rgba(92,56,20,0.55);
-    clip-path: polygon(0 0, 50% 52%, 0 100%);
+  /* each folded panel is clipped inside a wrapper, so the wrapper's drop-shadow
+     draws a thin shadow along the fold where one panel overlaps another */
+  .fold { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+  .fold.sides { filter: drop-shadow(0 0 0.6px var(--env-edge)); }
+  .fold.bottom { filter: drop-shadow(0 -1px 0.6px var(--env-edge)) drop-shadow(0 -2px 3px rgba(80,60,30,0.10)); }
+  .panel, .flap-paper { background-blend-mode: normal, multiply, multiply, normal; }
+  .panel {
+    position: absolute;
+    inset: 0;
+    border-radius: 3px;
+    background: var(--laid), var(--tooth), var(--envelope);
   }
-  .pocket.r i {
-    background-color: #C6AA7D;
-    box-shadow: inset -40px 0 50px -20px rgba(92,56,20,0.55);
-    clip-path: polygon(100% 0, 50% 52%, 100% 100%);
+  .panel.l {
+    background: linear-gradient(100deg, rgba(255,255,255,0.18), transparent 60%), var(--laid), var(--tooth), var(--envelope);
+    clip-path: polygon(0 0, 47.5% 49%, 48.6% 52%, 47.5% 55%, 0 100%);
   }
-  .pocket.b i {
-    background-color: #D2BA90;
-    box-shadow: inset 0 -40px 50px -20px rgba(92,56,20,0.6);
-    clip-path: polygon(0 100%, 50% 44%, 100% 100%);
+  .panel.r {
+    background: linear-gradient(260deg, rgba(80,60,30,0.05), transparent 60%), var(--laid), var(--tooth), var(--envelope);
+    clip-path: polygon(100% 0, 52.5% 49%, 51.4% 52%, 52.5% 55%, 100% 100%);
+  }
+  .panel.b {
+    background: linear-gradient(to top, rgba(255,255,255,0.12), transparent 70%), var(--laid), var(--tooth), var(--envelope);
+    clip-path: polygon(0 100%, 47% 47.5%, 50% 45.5%, 53% 47.5%, 100% 100%);
+  }
+
+  /* light handling wear around the outer edge */
+  .frame {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+    border-radius: 3px;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35), inset 0 0 5px rgba(110,85,45,0.18);
+  }
+
+  .postmark {
+    position: absolute;
+    right: 5%;
+    bottom: 8%;
+    width: 36%;
+    z-index: 4;
+    pointer-events: none;
+    transform: rotate(-11deg);
+    mix-blend-mode: multiply;
+    opacity: 0.78;
   }
 
   .flap {
@@ -153,67 +176,58 @@
     z-index: 5;
     transform-origin: top center;
     transition: transform 800ms cubic-bezier(.5,0,.3,1);
-    filter: drop-shadow(0 3px 3px rgba(50,28,8,0.4));
+    filter: drop-shadow(0 1px 0.6px var(--env-edge)) drop-shadow(0 3px 4px rgba(80,60,30,0.14));
   }
-  .flap i {
+  .flap-paper {
     position: absolute;
     inset: 0;
-    background-color: #D6BF95;
-    box-shadow: inset 0 40px 50px -20px rgba(92,56,20,0.5);
-    clip-path: polygon(0 0, 100% 0, 52% 100%, 48% 100%);
+    border-radius: 3px 3px 0 0;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.2), transparent 50%), var(--laid), var(--tooth), var(--envelope);
+    clip-path: polygon(0 0, 100% 0, 100% 1.5%, 53.5% 94%, 50% 97%, 46.5% 94%, 0 1.5%);
   }
   .envelope.open .flap { transform: rotateX(180deg); }
+  .envelope.open .flap-paper { background: var(--laid), var(--tooth), var(--env-inside); }
   .envelope.flipped .flap { z-index: 0; }
 
-  /* ---------- wax seal ---------- */
   .seal {
     position: absolute;
     left: 50%;
-    top: 60%;
-    width: clamp(86px, 20vw, 112px);
-    height: clamp(86px, 20vw, 112px);
-    transform: translate(-50%, -50%) rotate(8deg);
+    top: 58%;
+    width: clamp(84px, 20vw, 108px);
+    height: clamp(84px, 20vw, 108px);
+    transform: translate(-50%, -50%);
     z-index: 6;
     border: 0;
     padding: 0;
     background: none;
     cursor: pointer;
-    filter: url(#wax-blob) drop-shadow(0 5px 5px rgba(0,0,0,0.4));
+    filter: drop-shadow(0 4px 5px rgba(0,0,0,0.35));
   }
   .seal .half {
     position: absolute;
     inset: 0;
     display: grid;
     place-items: center;
-    border-radius: 47% 53% 44% 56% / 52% 45% 55% 48%;
-    background:
-      radial-gradient(ellipse 30% 18% at 30% 22%, rgba(255,190,190,0.55), transparent 70%),
-      radial-gradient(circle at 50% 50%, transparent 58%, rgba(255,120,120,0.28) 62%, transparent 68%),
-      radial-gradient(circle at 50% 52%, var(--wax) 0 52%, var(--wax-dark) 57%, var(--wax-light) 64%, var(--wax) 76%, var(--wax-dark) 100%);
-    box-shadow: inset 0 -4px 8px rgba(40,0,4,0.55), inset 0 3px 5px rgba(255,160,160,0.3);
+    border-radius: 48% 52% 50% 50% / 51% 47% 53% 49%;
+    background: radial-gradient(circle at 34% 30%, var(--wax-light), var(--wax) 55%, #5A1216);
     transition: transform 600ms cubic-bezier(.4,0,.6,1), opacity 600ms ease;
   }
-  /* the pressed oval from the stamp */
   .seal .half::before {
     content: "";
     position: absolute;
-    left: 27%;
-    right: 27%;
-    top: 22%;
-    bottom: 22%;
+    inset: 11%;
     border-radius: 50%;
-    border: 2px solid rgba(60,4,8,0.45);
-    box-shadow: 0 1px 0 rgba(255,170,170,0.35), inset 0 1px 0 rgba(255,170,170,0.25);
+    border: 1.5px solid rgba(40,4,6,0.35);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.12);
   }
   .seal .half span {
-    position: relative;
     font-family: var(--script);
-    font-size: clamp(24px, 5.4vw, 32px);
+    font-size: clamp(20px, 4.6vw, 26px);
     line-height: 1;
-    color: #5A0C12;
-    text-shadow: 0 1px 0 rgba(255,170,170,0.4), 0 -1px 0 rgba(30,0,2,0.5);
+    color: #4A0C10;
+    text-shadow: 0 1px 0 rgba(255,190,180,0.3);
     white-space: nowrap;
-    transform: translateY(-2px);
+    transform: rotate(-6deg);
   }
   .seal .half.l { clip-path: polygon(0 0, 52% 0, 46% 28%, 56% 50%, 46% 74%, 53% 100%, 0 100%); }
   .seal .half.r { clip-path: polygon(52% 0, 100% 0, 100% 100%, 53% 100%, 46% 74%, 56% 50%, 46% 28%); }
@@ -222,26 +236,29 @@
   .envelope.cracked .seal .half.r { transform: translate(18px, 52px) rotate(14deg); opacity: 0; }
 
   .hint {
-    margin-top: 32px;
+    margin-top: 28px;
     text-align: center;
-    color: rgba(240,226,196,0.75);
-    font-size: 16px;
+    color: var(--sky-ink);
+    font-family: var(--engraved);
     font-style: italic;
+    font-size: 17px;
     transition: opacity 400ms;
   }
   .envelope.cracked + .hint { opacity: 0; }
 
+  .skip, .reseal {
+    background: none;
+    border: 0;
+    color: var(--sky-ink);
+    font: italic 16px var(--engraved);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+  }
   .skip {
     position: fixed;
     top: calc(16px + env(safe-area-inset-top, 0px));
     right: 16px;
-    background: none;
-    border: 0;
-    color: rgba(240,226,196,0.75);
-    font: italic 16px var(--serif);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    cursor: pointer;
     z-index: 11;
   }
   #stage.gone .skip { display: none; }
@@ -250,124 +267,142 @@
   .page {
     position: relative;
     isolation: isolate;
-    max-width: 740px;
+    max-width: 720px;
     margin: 56px auto 40px;
-    padding: 80px 84px 88px;
+    padding: 64px 68px 72px;
     opacity: 0;
-    transform: translateY(28px);
+    transform: translateY(28px) rotate(-0.4deg);
     transition: opacity 800ms ease, transform 800ms ease;
   }
-  /* the parchment itself, torn by an SVG filter so the text stays crisp */
+  /* paper sits on its own layer so the deckled edge filter doesn't blur the text */
   .page::before {
     content: "";
     position: absolute;
     inset: 0;
     z-index: -1;
-    background-color: #EAD6AE;
-    background-image:
-      var(--grain), var(--fibres), var(--stains), var(--crumple),
-      radial-gradient(ellipse 75% 60% at 50% 45%, #F6EAD0 0%, #EEDCB6 55%, #D9B886 100%);
-    background-size: 240px, 400px, 100% 100%, 700px, 100% 100%;
-    background-repeat: repeat, repeat, no-repeat, repeat, no-repeat;
-    background-blend-mode: normal, normal, multiply, multiply, normal;
-    box-shadow:
-      inset 0 0 90px 18px rgba(140,86,30,0.55),
-      inset 0 0 22px 4px rgba(96,54,16,0.7),
-      inset 0 0 4px 1px rgba(60,30,8,0.8);
-    filter: url(#torn) drop-shadow(0 18px 30px rgba(0,0,0,0.5));
+    background:
+      linear-gradient(to bottom,
+        transparent 33.1%, rgba(110,75,30,0.10) 33.3%, rgba(255,250,235,0.45) 33.5%, transparent 33.9%,
+        transparent 66.4%, rgba(110,75,30,0.10) 66.6%, rgba(255,250,235,0.45) 66.8%, transparent 67.2%),
+      radial-gradient(ellipse at 50% 45%, transparent 55%, rgba(140,95,40,0.28) 100%),
+      var(--spots) 0 0 / 900px 900px,
+      var(--mottle) 0 0 / 700px 700px,
+      var(--tooth),
+      var(--paper);
+    background-blend-mode: normal, normal, normal, normal, multiply, normal;
+    filter: url(#deckle) drop-shadow(0 14px 22px rgba(40,60,90,0.3));
   }
-  .page.shown { opacity: 1; transform: none; }
+  .page.shown { opacity: 1; transform: rotate(-0.4deg); }
 
-  .letterhead { text-align: center; margin-bottom: 8px; }
+  .letterhead {
+    text-align: center;
+    padding-bottom: 10px;
+    margin-bottom: 34px;
+    color: var(--ink);
+  }
   .letterhead h1 {
-    font-family: var(--script);
+    font-family: var(--engraved-sc);
     font-weight: 400;
-    font-size: 76px;
+    font-size: 46px;
+    letter-spacing: 0.14em;
     line-height: 1;
     margin: 0;
   }
-  .letterhead address {
+  .letterhead .sub {
+    font-family: var(--engraved);
     font-style: italic;
     font-size: 16px;
     color: var(--ink-soft);
-    margin-top: 6px;
+    margin: 6px 0 0;
   }
-
-  .flourish {
+  .rule {
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 12px;
-    margin: 18px auto 34px;
-    width: 60%;
+    margin: 14px auto 0;
+    max-width: 360px;
     color: var(--ink-soft);
+    font-family: var(--engraved);
+    font-size: 18px;
+    line-height: 1;
   }
-  .flourish::before, .flourish::after {
+  .rule::before, .rule::after {
     content: "";
     flex: 1;
-    height: 1px;
-    background: linear-gradient(to var(--dir, right), transparent, currentColor);
+    height: 4px;
+    border-top: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
   }
-  .flourish::after { --dir: left; }
-  .flourish span { font-size: 12px; line-height: 1; }
+  .dateline {
+    text-align: right;
+    font-family: var(--engraved);
+    font-style: italic;
+    font-size: 17px;
+    margin: 0 0 22px;
+  }
 
-  .salutation { font-family: var(--script); font-size: 38px; margin: 0 0 14px; line-height: 1.2; }
   .page p { margin: 0 0 16px; }
+  .salutation { font-family: var(--script); font-size: 36px; margin: 0 0 14px; line-height: 1.2; }
+  .body p:first-child::first-letter {
+    font-family: var(--engraved);
+    float: left;
+    font-size: 64px;
+    line-height: 0.8;
+    padding: 6px 8px 0 0;
+    color: var(--wax);
+  }
+  .body p { text-indent: 2em; }
+  .body p:first-child { text-indent: 0; }
 
-  .closing { margin-top: 30px; }
+  .closing { margin-top: 32px; text-align: right; padding-right: 8%; }
+  .closing p { font-family: var(--engraved); font-style: italic; font-size: 18px; }
   .signature {
-    font-family: var(--script);
-    font-size: 54px;
-    line-height: 1;
+    font-family: var(--sig);
+    font-size: 84px;
+    line-height: 0.9;
     display: inline-block;
-    transform: rotate(-4deg);
-    margin: 4px 0 0 12px;
+    transform: rotate(-5deg) translateX(-6px);
+    margin: 0;
+    padding: 0 10px;
+    color: #1E1B2E;
+    filter: url(#pen);
   }
 
   h2 {
-    font-family: var(--script);
+    font-family: var(--engraved-sc);
     font-weight: 400;
-    font-size: 36px;
-    line-height: 1.1;
-    margin: 44px 0 14px;
+    font-size: 22px;
+    letter-spacing: 0.1em;
+    text-align: center;
+    margin: 48px 0 16px;
   }
-  .enc { margin-bottom: 14px; }
-  .enc a { font-style: italic; }
+  h2::before, h2::after { content: "~"; margin: 0 12px; color: var(--ink-soft); }
+  .enc { margin-bottom: 16px; }
+  .enc a { font-family: var(--engraved); font-style: italic; font-size: 18px; }
 
-  .rows { display: grid; grid-template-columns: 130px 1fr; gap: 6px 18px; margin: 0; }
-  .rows dt { color: var(--ink-soft); font-style: italic; }
+  .rows { display: grid; grid-template-columns: 190px 1fr; gap: 14px 18px; margin: 0; }
+  .rows dt { color: var(--ink-soft); }
   .rows dd { margin: 0; }
 
-  .page .ps { margin-top: 36px; }
-  .page .flourish.end { margin: 40px auto 0; width: 40%; }
+  .rows .role { display: block; }
+  .rows .org { display: block; color: var(--ink-soft); font-family: var(--engraved); font-style: italic; font-size: 17px; }
 
   .reseal {
     display: block;
     margin: 0 auto 64px;
-    background: none;
-    border: 0;
-    color: rgba(240,226,196,0.75);
-    font: italic 16px var(--serif);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    cursor: pointer;
     opacity: 0;
     transition: opacity 800ms ease 300ms;
   }
   .page.shown + .reseal { opacity: 1; }
 
   @media (max-width: 640px) {
-    .page { margin: 20px 12px 32px; padding: 52px 30px 60px; font-size: 17px; }
-    .page::before {
-      box-shadow:
-        inset 0 0 50px 8px rgba(140,86,30,0.55),
-        inset 0 0 14px 3px rgba(96,54,16,0.7),
-        inset 0 0 4px 1px rgba(60,30,8,0.8);
-    }
-    .letterhead h1 { font-size: 58px; }
-    .flourish { width: 80%; }
+    .page { margin: 16px 16px 32px; padding: 44px 24px 52px; font-size: 15px; }
+    .page, .page.shown { transform: none; }
+    .letterhead h1 { font-size: 34px; }
+    .body p:first-child::first-letter { font-size: 52px; }
+    .signature { font-size: 68px; }
     .rows { grid-template-columns: 1fr; gap: 0; }
-    .rows dd { margin-bottom: 10px; }
+    .rows dd { margin-bottom: 14px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -378,70 +413,98 @@
 <body class="intro">
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <defs>
-    <!-- ragged, torn parchment edge -->
-    <filter id="torn" x="-5%" y="-2%" width="110%" height="104%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="5" seed="3" result="noise"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="22" xChannelSelector="R" yChannelSelector="G"/>
-    </filter>
-    <!-- softer wear on the envelope; tall region so the flap and letter stay inside it -->
-    <filter id="rough-envelope" x="-10%" y="-90%" width="120%" height="200%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="4" seed="8" result="noise"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="9" xChannelSelector="R" yChannelSelector="G"/>
-    </filter>
-    <!-- lumpy poured-wax outline -->
-    <filter id="wax-blob" x="-20%" y="-20%" width="140%" height="140%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="5" result="noise"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="10" xChannelSelector="R" yChannelSelector="G"/>
-    </filter>
-  </defs>
+  <filter id="deckle" x="-3%" y="-3%" width="106%" height="106%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="4" seed="7" result="noise"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="9" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <!-- slight wobble and bleed so the signature reads as wet ink rather than type -->
+  <filter id="pen" x="-5%" y="-10%" width="110%" height="120%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="1.6" xChannelSelector="R" yChannelSelector="G" result="d"/>
+    <feGaussianBlur in="d" stdDeviation="0.35" result="b"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="11" result="pool"/>
+    <feColorMatrix in="pool" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.1 1.35" result="poolA"/>
+    <feComposite in="b" in2="poolA" operator="in" result="faded"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="faded"/></feMerge>
+  </filter>
+  <!-- uneven, patchy ink for the postmark -->
+  <filter id="stampink" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="2" seed="5" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="1.8" xChannelSelector="R" yChannelSelector="G" result="d"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.09" numOctaves="3" seed="2" result="patch"/>
+    <feColorMatrix in="patch" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1.8 -0.1" result="patchA"/>
+    <feComposite in="d" in2="patchA" operator="in"/>
+  </filter>
 </svg>
 
 <div id="stage" aria-hidden="false">
   <button class="skip" id="skip" type="button">Skip to the letter</button>
   <div>
     <div class="envelope" id="envelope">
-      <div class="env-paper">
-        <div class="env-body"></div>
-        <div class="env-letter" aria-hidden="true">
-          <div class="mini-name">Alina Du</div>
-          <div class="mini-lines"></div>
-        </div>
-        <div class="pocket l"><i></i></div>
-        <div class="pocket r"><i></i></div>
-        <div class="pocket b"><i></i></div>
-        <div class="flap"><i></i></div>
+      <div class="env-body"></div>
+      <div class="env-letter" aria-hidden="true">
+        <div class="mini-name">Alina Du</div>
+        <div class="mini-lines"></div>
       </div>
+      <div class="fold sides"><div class="panel l"></div><div class="panel r"></div></div>
+      <div class="fold bottom"><div class="panel b"></div></div>
+      <div class="frame"></div>
+      <svg class="postmark" viewBox="0 0 200 90" aria-hidden="true">
+        <defs><path id="pm-top" d="M14 45 a31 31 0 1 1 62 0"/><path id="pm-bot" d="M10 45 a35 35 0 0 0 70 0"/></defs>
+        <g filter="url(#stampink)">
+          <g fill="none" stroke="var(--stamp-ink)" stroke-width="2.2">
+            <circle cx="45" cy="45" r="39"/>
+            <circle cx="45" cy="45" r="25" stroke-width="1.4"/>
+            <path d="M94 26 q12 -7 24 0 t24 0 t24 0 t24 0"/>
+            <path d="M94 38 q12 -7 24 0 t24 0 t24 0 t24 0"/>
+            <path d="M94 50 q12 -7 24 0 t24 0 t24 0 t24 0"/>
+            <path d="M94 62 q12 -7 24 0 t24 0 t24 0 t24 0"/>
+          </g>
+          <g fill="var(--stamp-ink)" font-family="IM Fell English SC, Georgia, serif" text-anchor="middle">
+            <text font-size="9.5" letter-spacing="1.2"><textPath href="#pm-top" startOffset="50%">NEW YORK, N.Y.</textPath></text>
+            <text x="45" y="44" font-size="11" id="pm-day">SEP 28</text>
+            <text x="45" y="56" font-size="9" letter-spacing="1" id="pm-year">2026</text>
+            <text font-size="7" letter-spacing="1.5" dy="7"><textPath href="#pm-bot" startOffset="50%">REC'D</textPath></text>
+          </g>
+        </g>
+      </svg>
+      <div class="flap"><div class="flap-paper"></div></div>
       <button class="seal" id="seal" type="button" aria-label="Break the seal and open the letter">
-        <span class="half l"><span>AD</span></span>
-        <span class="half r"><span>AD</span></span>
+        <span class="half l"><span>Alina Du</span></span>
+        <span class="half r"><span>Alina Du</span></span>
       </button>
     </div>
-    <p class="hint">Click the seal to open</p>
+    <p class="hint">Kindly break the seal to open</p>
   </div>
 </div>
 
 <main class="page" id="page">
   <header class="letterhead">
     <h1>Alina Du</h1>
-    <address>New York, NY &middot; September 2026</address>
+    <p class="sub">Columbia University, City of New York</p>
+    <div class="rule" aria-hidden="true">&#10086;</div>
   </header>
-  <div class="flourish" aria-hidden="true"><span>&#10070;</span></div>
+
+  <p class="dateline" id="dateline">New York, September 2026</p>
 
   <p class="salutation">Dear reader,</p>
 
-  <p>Thanks for opening this. I'm Alina, and I study computer science at Columbia, with minors in financial engineering and math.</p>
+  <div class="body">
+    <p>Thanks for opening this. I'm Alina, and I study computer science at Columbia, with minors in financial engineering and math.</p>
 
-  <p>Most of my time goes to research. When a language model gets an early step of its reasoning wrong, every step built on it can go wrong too, so I study which steps are worth checking when you can't afford to check all of them. Across about 15,000 claims from 8 models, a step's position in the reasoning graph turned out to be a better guide than the model's own confidence. The paper is in progress, and I presented a poster on it at the Jane Street and Columbia Research Fair this year.</p>
+    <p>Most of my time goes to research. When a language model gets an early step of its reasoning wrong, every step built on it can go wrong too, so I study which steps are worth checking when you can't afford to check all of them. Across about 15,000 claims from 8 models, a step's position in the reasoning graph turned out to be a better guide than the model's own confidence. The paper is in progress, and I presented a poster on it at the Jane Street and Columbia Research Fair this year.</p>
 
-  <p>When I'm not doing research, I'm usually building something, often at a hackathon. A couple of those are enclosed below.</p>
+    <p>When I'm not doing research, I'm usually building something, often at a hackathon. A couple of those are enclosed below.</p>
 
-  <p>I also TA Intro to Python and teach English with the Arctic Reading Circle. On weekends I'm usually walking around Manhattan, trying a new food spot, or losing at tennis and pickleball.</p>
+    <p>I also TA Calculus I and Intro to Python, and I teach English with the Arctic Reading Circle. On weekends I'm usually walking around Manhattan, trying a new food spot, or losing at tennis and pickleball.</p>
 
-  <p>If you'd like to talk, I'd be glad to hear from you.</p>
+    <p>If you'd like to talk, I'd be glad to hear from you.</p>
+
+    <p>You can also reach me at <a href="mailto:alinadu0703@gmail.com">alinadu0703@gmail.com</a>, or find me on <a href="https://github.com/backlight314">GitHub</a> and <a href="https://www.linkedin.com/in/alina-du31415">LinkedIn</a>.</p>
+  </div>
 
   <div class="closing">
-    <p style="margin:0">Yours,</p>
+    <p style="margin:0">Yours sincerely,</p>
     <span class="signature">Alina</span>
   </div>
 
@@ -453,13 +516,13 @@
 
   <h2>Where I've worked</h2>
   <dl class="rows">
-    <dt>2026 to now</dt><dd>Research, machine learning and data engineering, Columbia</dd>
-    <dt>2026</dt><dd>Software engineer intern, Intelligence Cubed</dd>
-    <dt>2025 to 2026</dt><dd>Software engineer intern, MeloMed</dd>
+    <dt>May 2026 to now</dt><dd><span class="role">Math Modelling Research Intern</span><span class="org">Columbia University</span></dd>
+    <dt>Sep 2026 to now</dt><dd><span class="role">Research Assistant, Data Engineering</span><span class="org">Columbia University</span></dd>
+    <dt>Sep 2026 to now</dt><dd><span class="role">Teaching Assistant, Calculus I</span><span class="org">Columbia University</span></dd>
+    <dt>Sep 2026 to now</dt><dd><span class="role">Teaching Assistant, Intro to Python</span><span class="org">Columbia University</span></dd>
+    <dt>Mar 2026 to Jun 2026</dt><dd><span class="role">Software Engineer Intern</span><span class="org">Intelligence Cubed</span></dd>
+    <dt>Aug 2025 to Mar 2026</dt><dd><span class="role">Software Engineer Intern</span><span class="org">MeloMed</span></dd>
   </dl>
-
-  <p class="ps">P.S. You can reach me at <a href="mailto:alinadu0703@gmail.com">alinadu0703@gmail.com</a>, or find me on <a href="https://github.com/backlight314">GitHub</a> and <a href="https://www.linkedin.com/in/alina-du31415">LinkedIn</a>.</p>
-  <div class="flourish end" aria-hidden="true"><span>&#10070;</span></div>
 </main>
 <button class="reseal" id="reseal" type="button">Put it back in the envelope</button>
 
@@ -472,6 +535,17 @@
   let started = false;
 
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // stamp the postmark and letter with the reader's own date
+  (function dateToday() {
+    const d = new Date();
+    const n = d.getDate();
+    const suffix = (n % 100 >= 11 && n % 100 <= 13) ? "th" : ["th","st","nd","rd"][n % 10] || "th";
+    const month = d.toLocaleString("en-US", { month: "long" });
+    document.getElementById("dateline").textContent = `New York, ${month} ${n}${suffix}, ${d.getFullYear()}`;
+    document.getElementById("pm-day").textContent = `${month.slice(0, 3).toUpperCase()} ${n}`;
+    document.getElementById("pm-year").textContent = d.getFullYear();
+  })();
 
   function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
   function clearTimers() { timers.forEach(clearTimeout); timers = []; }
