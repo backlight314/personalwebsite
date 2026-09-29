@@ -9,313 +9,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #DCE5EC;
-    --bg-deep: #CFDAE3;
-    --card: rgba(255,255,255,0.45);
-    --line: rgba(60,85,110,0.16);
-    --sky-far: #BACBD9;
-    --sky-near: #A3B7C9;
-    --ink: #22303D;
-    --ink-soft: #5A6B7A;
-    --accent: #4E7294;
-    --serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
-    --sans: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  }
-
-  * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; background: var(--bg); scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    background: linear-gradient(to bottom, #E4ECF2, var(--bg) 420px, var(--bg-deep));
-    background-attachment: fixed;
-    color: var(--ink);
-    font-family: var(--sans);
-    font-size: 17px;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: rgba(78,114,148,0.4); }
-  a:hover { color: var(--ink); text-decoration-color: currentColor; }
-  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
-
-  /* ---------- background: skyline and drifting clouds ---------- */
-  .skyline {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: clamp(220px, min(50vh, 34vw), 660px);
-    z-index: 0;
-    pointer-events: none;
-  }
-  .skyline .far { fill: var(--sky-far); opacity: 0.5; }
-  .skyline .near { fill: var(--sky-near); opacity: 0.42; }
-
-  .clouds { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-  .cloud {
-    position: absolute;
-    left: 0;
-    width: var(--w);
-    top: var(--y);
-    opacity: var(--o, 0.75);
-    animation: drift var(--t) linear infinite;
-    animation-delay: var(--delay);
-  }
-  @keyframes drift {
-    from { transform: translateX(-40vw); }
-    to { transform: translateX(110vw); }
-  }
-
-  .page { position: relative; z-index: 1; }
-
-  /* ---------- snow toggle ---------- */
-  body { transition: background-color 1.2s ease; }
-  body::before {
-    /* cooler, greyer wash over the sky while it snows */
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background: linear-gradient(to bottom, rgba(180,192,204,0.55), rgba(220,228,236,0.2));
-    opacity: 0;
-    transition: opacity 1.2s ease;
-  }
-  body.snowing::before { opacity: 1; }
-
-  .snow { position: fixed; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; opacity: 0; transition: opacity 1s ease; }
-  body.snowing .snow { opacity: 1; }
-  .snow i {
-    position: absolute;
-    top: -12px;
-    width: var(--s);
-    height: var(--s);
-    border-radius: 50%;
-    background: #fff;
-    opacity: var(--o);
-    filter: blur(var(--b));
-    animation: snowfall var(--t) linear infinite, sway var(--sw) ease-in-out infinite alternate;
-    animation-delay: var(--delay), var(--delay);
-  }
-  @keyframes snowfall { to { top: 102%; } }
-  @keyframes sway { from { translate: -14px 0; } to { translate: 14px 0; } }
-
-  .weather-btn {
-    position: fixed;
-    right: 16px;
-    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
-    z-index: 3;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font: 500 15px var(--sans);
-    color: var(--ink);
-    background: rgba(255,255,255,0.7);
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 10px 18px;
-    cursor: pointer;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    box-shadow: 0 4px 14px rgba(40,60,80,0.12);
-    transition: background 200ms ease, transform 200ms ease;
-  }
-  .weather-btn:hover { background: #fff; transform: translateY(-2px); }
-  .weather-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-
-  header {
-    position: relative;
-    max-width: 720px;
-    margin: 0 auto;
-    padding: clamp(72px, 12vh, 120px) 16px 36px;
-  }
-  header h1 {
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: clamp(56px, 9vw, 96px);
-    line-height: 0.95;
-    letter-spacing: -0.01em;
-    margin: 0;
-  }
-  header .tag {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: clamp(20px, 2.6vw, 25px);
-    color: var(--ink-soft);
-    margin: 14px 0 0;
-  }
-
-  .contact { display: flex; gap: 10px; margin-top: 22px; }
-  .contact a {
-    display: grid;
-    place-items: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 1px solid var(--line);
-    background: var(--card);
-    color: var(--ink);
-    transition: background 200ms ease, color 200ms ease, transform 200ms ease;
-  }
-  .contact a:hover { background: #fff; color: var(--accent); transform: translateY(-2px); }
-  .contact svg { width: 18px; height: 18px; display: block; }
-  .contact .line { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-
-  /* ---------- quick links ---------- */
-  .quick {
-    position: fixed;
-    top: calc(16px + env(safe-area-inset-top, 0px));
-    right: 16px;
-    z-index: 3;
-    display: flex;
-    gap: 2px;
-    padding: 4px;
-    border-radius: 999px;
-    background: rgba(255,255,255,0.6);
-    border: 1px solid var(--line);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    box-shadow: 0 4px 14px rgba(40,60,80,0.08);
-  }
-  .quick a {
-    padding: 6px 14px;
-    border-radius: 999px;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--ink);
-    text-decoration: none;
-    transition: background 200ms ease, color 200ms ease;
-  }
-  .quick a:hover { background: #fff; color: var(--accent); }
-  section[id] { scroll-margin-top: 72px; }
-
-  /* ---------- content ---------- */
-  main { max-width: 720px; margin: 0 auto; padding: 0 16px 56px; }
-  section { padding: 36px 0; border-top: 1px solid var(--line); }
-  h2 {
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: 32px;
-    line-height: 1.1;
-    margin: 0 0 18px;
-  }
-  section p { margin: 0 0 14px; }
-  section p:last-child { margin-bottom: 0; }
-
-  .projects { display: grid; gap: 12px; }
-  .project {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 4px 16px;
-    padding: 18px 20px;
-    border-radius: 14px;
-    border: 1px solid var(--line);
-    background: var(--card);
-    color: var(--ink);
-    text-decoration: none;
-    transition: background 200ms ease, transform 200ms ease;
-  }
-  .project:hover { background: rgba(255,255,255,0.75); color: var(--ink); transform: translateY(-2px); }
-  .project strong { font-weight: 600; }
-  .project span { grid-column: 1; color: var(--ink-soft); font-size: 15px; line-height: 1.55; }
-  .project::after { content: "↗"; grid-column: 2; grid-row: 1; color: var(--accent); transition: transform 200ms ease; }
-  .project:hover::after { transform: translate(2px, -2px); }
-
-  .jobs { list-style: none; margin: 0; padding: 0; }
-  .jobs li {
-    display: grid;
-    grid-template-columns: 170px 1fr;
-    gap: 18px;
-    padding: 14px 0;
-    border-bottom: 1px dashed var(--line);
-  }
-  .jobs li:last-child { border-bottom: 0; }
-  .jobs .when { color: var(--ink-soft); font-size: 15px; padding-top: 2px; font-variant-numeric: tabular-nums; }
-  .jobs .role { display: block; font-weight: 600; }
-  .jobs .org { display: block; color: var(--ink-soft); }
-  .jobs .desc { display: block; font-size: 15px; color: var(--ink-soft); }
-
-  .skills { display: grid; gap: 16px; margin: 0; }
-  .skills div { display: grid; grid-template-columns: 170px 1fr; gap: 18px; }
-  .skills dt { color: var(--ink-soft); font-size: 15px; padding-top: 2px; }
-  .skills dd { margin: 0; }
-  .chip {
-    padding: 3px 12px;
-    border-radius: 999px;
-    font-size: 14px;
-    background: var(--card);
-    border: 1px solid var(--line);
-  }
-
-  .edu-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
-  .edu .role { display: block; font-weight: 600; }
-  .edu .org { display: block; color: var(--ink-soft); }
-  .edu .when { color: var(--ink-soft); font-size: 15px; }
-  .edu strong { font-weight: 600; margin-right: 10px; }
-  .edu .gpa { margin: 14px 0 10px; }
-  .course { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-
-  .awards { list-style: none; margin: 0; padding: 0; }
-  .awards li { padding: 12px 0; border-bottom: 1px dashed var(--line); }
-  .awards li:last-child { border-bottom: 0; }
-  .awards strong { font-weight: 600; }
-
-  footer {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 24px 16px 48px;
-    color: var(--ink-soft);
-    font-size: 14px;
-    border-top: 1px solid var(--line);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .cloud { animation: none; transform: translateX(calc(var(--x, 20) * 1vw)); }
-    .snow i { animation: none; top: var(--y); }
-  }
-
-  @media (max-width: 600px) {
-    body { font-size: 16px; }
-    .jobs li { grid-template-columns: 1fr; gap: 2px; }
-    .skills div { grid-template-columns: 1fr; gap: 6px; }
-    .skills dt { padding-top: 0; }
-    .quick { left: 16px; right: 16px; justify-content: space-between; }
-    .quick a { padding: 6px 6px; font-size: 12.5px; }
-    .project { padding: 16px; }
-  }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <filter id="soft" x="-20%" y="-40%" width="140%" height="180%"><feGaussianBlur stdDeviation="7"/></filter>
-</svg>
-
-<svg class="skyline" viewBox="0 0 1440 460" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-  <g transform="translate(0 460) scale(1 1.77) translate(0 -260)">
-    <path class="far" d="M0 260V191H32V260ZM15 191V173H17V191ZM36 260V164H61V260ZM62 260V199H85V260ZM72 199V181H74V199ZM85 260V156H124V260ZM94 260V139H113V260ZM125 260V130H167V260ZM145 130V112H147V130ZM171 260V204H205V260ZM187 204V186H189V204ZM206 260V157H237V260ZM213 260V148H228V260ZM241 260V187H284V260ZM251 260V170H272V260ZM286 260V140H311V260ZM315 260V147H343V260ZM345 260V136H381V260ZM382 260V121H409V260ZM394 121V103H396V121ZM411 260V147H449V260ZM451 260V201H492V260ZM461 260V187H481V260ZM494 260V148H520V260ZM520 260V139H566V260ZM568 260V122H600V260ZM603 260V199H627V260ZM627 260V121H650V260ZM653 260V161H684V260ZM687 260V189H720V260ZM721 260V174H767V260ZM732 260V163H755V260ZM770 260V189H794V260ZM795 260V140H830V260ZM803 260V126H820V260ZM833 260V191H862V260ZM840 260V181H854V260ZM863 260V148H885V260ZM887 260V192H909V260ZM913 260V194H945V260ZM949 260V124H991V260ZM995 260V160H1029V260ZM1011 160V142H1013V160ZM1032 260V186H1055V260ZM1056 260V167H1081V260ZM1067 167V149H1069V167ZM1085 260V142H1111V260ZM1111 260V184H1135V260ZM1137 260V133H1170V260ZM1173 260V149H1209V260ZM1190 149V131H1192V149ZM1209 260V167H1254V260ZM1255 260V208H1293V260ZM1264 260V192H1283V260ZM1297 260V143H1319V260ZM1319 260V177H1363V260ZM1365 260V182H1411V260ZM1413 260V182H1455V260Z"/>
-    <path class="near" d="M0 260V167H23V260ZM26 260V160H50V260ZM54 260V190H88V260ZM70 190V172H72V190ZM92 260V212H123V260ZM99 260V192H114V260ZM238 260V178H257V260ZM259 260V201H277V260ZM267 201V183H269V201ZM277 260V200H309V260ZM312 260V197H334V260ZM335 260V195H355V260ZM359 260V205H379V260ZM382 260V177H406V260ZM409 260V174H436V260ZM438 260V171H471V260ZM446 260V150H462V260ZM453 171V153H455V171ZM474 260V158H492V260ZM496 260V180H521V260ZM602 260V176H630V260ZM881 260V158H910V260ZM911 260V212H934V260ZM937 260V184H956V260ZM1090 260V188H1109V260ZM1112 260V193H1130V260ZM1131 260V166H1160V260ZM1163 260V203H1190V260ZM1190 260V204H1220V260ZM1204 204V186H1206V204ZM1224 260V189H1252V260ZM1254 260V169H1293V260ZM1294 260V202H1316V260ZM1304 202V184H1306V202ZM1316 260V163H1354V260ZM1334 163V145H1336V163ZM1354 260V184H1392V260ZM1363 260V168H1382V260ZM1395 260V192H1428V260ZM1431 260V150H1455V260ZM150 260V70L162 40H198L210 70V260Z M178 40V4H182V40ZM660 260V150H672V112H684V84H692V62H700V46H704V10H708V46H712V62H720V84H728V112H740V150H752V260ZM800 260V118H806V108C806 96 812 88 820 80C828 88 834 96 834 108V118H840V260Z M818 80L820 34L822 80Z M810 104C812 98 816 94 820 90C824 94 828 98 830 104ZM968 260V52H990V260ZM1030 260V70H1044V44H1066V260ZM560 260V96L572 70H590V260Z M583 70V44H585V70Z"/>
-  </g>
-</svg>
-
-<div class="clouds" aria-hidden="true">
-  <svg class="cloud" style="--w:340px;--y:6%;--t:95s;--delay:-10s;--x:10" viewBox="0 0 300 120" aria-hidden="true"><g fill="#fff" filter="url(#soft)"><ellipse cx="150" cy="78" rx="120" ry="28"/><ellipse cx="110" cy="62" rx="56" ry="34"/><ellipse cx="175" cy="52" rx="64" ry="42"/><ellipse cx="225" cy="72" rx="48" ry="26"/></g></svg>
-  <svg class="cloud" style="--w:220px;--y:18%;--t:130s;--delay:-70s;--o:.6;--x:70" viewBox="0 0 300 120" aria-hidden="true"><g fill="#fff" filter="url(#soft)"><ellipse cx="150" cy="78" rx="120" ry="28"/><ellipse cx="110" cy="62" rx="56" ry="34"/><ellipse cx="175" cy="52" rx="64" ry="42"/><ellipse cx="225" cy="72" rx="48" ry="26"/></g></svg>
-  <svg class="cloud" style="--w:420px;--y:34%;--t:160s;--delay:-40s;--o:.55;--x:40" viewBox="0 0 300 120" aria-hidden="true"><g fill="#fff" filter="url(#soft)"><ellipse cx="150" cy="78" rx="120" ry="28"/><ellipse cx="110" cy="62" rx="56" ry="34"/><ellipse cx="175" cy="52" rx="64" ry="42"/><ellipse cx="225" cy="72" rx="48" ry="26"/></g></svg>
-  <svg class="cloud" style="--w:260px;--y:52%;--t:110s;--delay:-85s;--o:.65;--x:80" viewBox="0 0 300 120" aria-hidden="true"><g fill="#fff" filter="url(#soft)"><ellipse cx="150" cy="78" rx="120" ry="28"/><ellipse cx="110" cy="62" rx="56" ry="34"/><ellipse cx="175" cy="52" rx="64" ry="42"/><ellipse cx="225" cy="72" rx="48" ry="26"/></g></svg>
-  <svg class="cloud" style="--w:300px;--y:62%;--t:140s;--delay:-20s;--o:.5;--x:5" viewBox="0 0 300 120" aria-hidden="true"><g fill="#fff" filter="url(#soft)"><ellipse cx="150" cy="78" rx="120" ry="28"/><ellipse cx="110" cy="62" rx="56" ry="34"/><ellipse cx="175" cy="52" rx="64" ry="42"/><ellipse cx="225" cy="72" rx="48" ry="26"/></g></svg>
-</div>
+<img class="skyline" src="skyline.svg" alt="" aria-hidden="true">
 
 <div class="page">
-<nav class="quick" aria-label="Sections">
-  <a href="#education">Education</a>
-  <a href="#experience">Experience</a>
-  <a href="#skills">Skills</a>
-  <a href="#projects">Projects</a>
-  <a href="#awards">Awards</a>
+<nav class="quick" aria-label="Pages">
+  <a href="index.html" aria-current="page">Home</a>
+  <a href="about.html">About Me</a>
+  <a href="education.html">Education</a>
+  <a href="awards.html">Awards</a>
+  <a href="gallery.html">Gallery</a>
 </nav>
   <header>
     <h1>Alina Du</h1>
@@ -325,7 +31,6 @@
       <a href="mailto:alinadu0703@gmail.com" title="Email" aria-label="Email"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 5.46v13.9c0 .9-.73 1.64-1.64 1.64h-3.82v-9.27L12 16.64l-6.55-4.91V21H1.64C.73 21 0 20.27 0 19.37V5.46c0-2.02 2.31-3.18 3.93-1.97l1.52 1.15L12 9.55l6.55-4.91 1.52-1.15C21.69 2.28 24 3.43 24 5.46z"/></svg></a>
       <a href="https://www.linkedin.com/in/alina-du31415" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zm1.78 13.02H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
       <a href="resume.pdf" title="Resume" aria-label="Resume"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="line" d="M5.5 1.8h9l4 4v16.4h-13z"/><path class="line" d="M14.5 1.8v4h4M8.5 10.5h7M8.5 14h7M8.5 17.5h4.5"/></svg></a>
-    
     </nav>
   </header>
 
@@ -337,38 +42,6 @@
     <p>I love meeting new people, feel free to reach out at <a href="mailto:alinadu0703@gmail.com">alinadu0703@gmail.com</a> or <a href="mailto:xd2364@columbia.edu">xd2364@columbia.edu</a>!</p>
   </section>
 
-  <section id="education" aria-labelledby="education-h">
-    <h2 id="education-h">Education</h2>
-    <div class="edu">
-      <div class="edu-head">
-        <div><span class="role">Columbia University</span><span class="org">Computer Science, Quantitative Finance and Math</span></div>
-      </div>
-      <p class="gpa"><strong>GPA</strong> 3.9 / 4.0</p>
-      <div class="course"><strong>Coursework</strong><span class="chips"><span class="chip">Software Quality and Design</span><span class="chip">Data Structures</span><span class="chip">Machine Learning</span><span class="chip">Optimization</span><span class="chip">Multivariable Calculus</span><span class="chip">Probability Theory</span><span class="chip">Linear Algebra</span></span></div>
-    </div>
-  </section>
-
-  <section id="experience" aria-labelledby="work">
-    <h2 id="work">Experience</h2>
-    <ol class="jobs">
-      <li><span class="when">May 2026 – now</span><div><span class="role">Math Modelling Research Intern</span><span class="org">Columbia University</span></div></li>
-      <li><span class="when">Sep 2026 – now</span><div><span class="role">Research Assistant, Data Engineering</span><span class="org">Columbia University</span></div></li>
-      <li><span class="when">Sep 2026 – now</span><div><span class="role">Teaching Assistant</span><span class="org">Columbia University</span><span class="desc">Calc 1 [F26]</span><span class="desc">Intro to Python [F26]</span></div></li>
-      <li><span class="when">Mar 2026 – Jun 2026</span><div><span class="role">Software Engineer Intern</span><span class="org">Intelligence Cubed</span></div></li>
-      <li><span class="when">Aug 2025 – Mar 2026</span><div><span class="role">Software Engineer Intern</span><span class="org">MeloMed</span></div></li>
-    </ol>
-  </section>
-
-  <section id="skills" aria-labelledby="skills-h">
-    <h2 id="skills-h">Skills</h2>
-    <dl class="skills">
-      <div><dt>Languages</dt><dd>Python &middot; Java &middot; TypeScript &middot; SQL &middot; HTML</dd></div>
-      <div><dt>ML &amp; Data</dt><dd>PyTorch &middot; Scikit-learn &middot; Hugging Face &middot; NumPy &middot; Pandas &middot; SciPy</dd></div>
-      <div><dt>Frameworks</dt><dd>React / React Native &middot; Next.js &middot; FastAPI &middot; LangChain &middot; LangGraph</dd></div>
-      <div><dt>Infrastructure</dt><dd>AWS (EC2) &middot; GCP &middot; Vercel &middot; PostgreSQL &middot; MongoDB &middot; Supabase &middot; Firebase &middot; Git</dd></div>
-    </dl>
-  </section>
-
   <section id="projects" aria-labelledby="projects-h">
     <h2 id="projects-h">Projects</h2>
     <div class="projects">
@@ -377,56 +50,11 @@
       <a class="project" href="https://github.com/backlight314/pacmanhattan"><strong>Pac-Manhattan</strong><span>A 3D Pac-Man across real New York streets where you play the ghost, dodging chompers and collecting landmark stamps.</span></a>
     </div>
   </section>
-
-  <section id="awards" aria-labelledby="awards-h">
-    <h2 id="awards-h">Awards</h2>
-    <ul class="awards">
-      <li><strong>Jane Street WiSE</strong></li>
-      <li><strong>2&times; Hackathon Winner</strong></li>
-      <li><strong>MIT Math Prize for Girls</strong></li>
-      <li><strong>2&times; AIME Qualifier</strong></li>
-      <li><strong>Waterloo National Math Scholarship</strong></li>
-    </ul>
-  </section>
-
 </main>
 
 <footer>Alina Du &middot; New York</footer>
 </div>
 
-<div class="snow" id="snow" aria-hidden="true"></div>
-<button class="weather-btn" id="weather" type="button" aria-pressed="false">❄️ Make it snow</button>
-
-<script>
-  const snow = document.getElementById("snow");
-  const weather = document.getElementById("weather");
-  let made = false;
-
-  // build the flakes the first time it snows
-  function makeFlakes() {
-    const n = window.innerWidth < 600 ? 60 : 120;
-    for (let i = 0; i < n; i++) {
-      const f = document.createElement("i");
-      const size = 2 + Math.random() * 5;
-      f.style.left = Math.random() * 100 + "%";
-      f.style.setProperty("--s", size + "px");
-      f.style.setProperty("--o", (0.55 + Math.random() * 0.45).toFixed(2));
-      f.style.setProperty("--b", size > 5 ? "1px" : "0px");
-      f.style.setProperty("--t", (7 + Math.random() * 9).toFixed(1) + "s");
-      f.style.setProperty("--sw", (2 + Math.random() * 3).toFixed(1) + "s");
-      f.style.setProperty("--delay", (-Math.random() * 16).toFixed(1) + "s");
-      f.style.setProperty("--y", Math.random() * 100 + "%");
-      snow.appendChild(f);
-    }
-    made = true;
-  }
-
-  weather.addEventListener("click", () => {
-    if (!made) makeFlakes();
-    const on = document.body.classList.toggle("snowing");
-    weather.setAttribute("aria-pressed", String(on));
-    weather.textContent = on ? "☀️ Let the sun out" : "❄️ Make it snow";
-  });
-</script>
+<script src="site.js"></script>
 </body>
 </html>
