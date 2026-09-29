@@ -109,8 +109,9 @@ header h1 {
   font-family: var(--serif);
   font-size: clamp(56px, 9vw, 96px);
   line-height: 0.95;
-  font-weight: 300;
-  letter-spacing: 0.01em;
+  font-weight: 600;
+  font-variation-settings: "SOFT" 100, "opsz" 144;
+  letter-spacing: 0.005em;
   margin: 0;
 }
 header .tag {
@@ -188,6 +189,34 @@ header.inner h1 { font-size: clamp(48px, 7vw, 76px); margin-top: 10px; }
   color: var(--ink-soft);
   margin: 0;
 }
+
+/* ---------- opening signature ---------- */
+.intro { display: none; }
+.intro-on body { overflow: hidden; }
+.intro-on .page, .intro-on .weather-btn { opacity: 0; }
+.page, .weather-btn { transition: opacity 800ms ease; }
+.intro-on .intro {
+  display: grid;
+  place-items: center;
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  padding: 16px;
+  cursor: pointer;
+  transition: opacity 700ms ease;
+}
+.intro svg { width: min(900px, 100%); height: auto; overflow: visible; }
+.intro text {
+  font-family: "Great Vibes", "Snell Roundhand", cursive;
+  font-size: 190px;
+  fill: var(--ink);
+  stroke: var(--ink);
+  stroke-width: 0.6;
+}
+/* the mask slides left to right, so the name appears as if written */
+.intro.writing .nib { animation: write 2.6s cubic-bezier(.45,.05,.55,.95) forwards; }
+@keyframes write { to { transform: translateX(1000px); } }
+.intro.leaving { opacity: 0; pointer-events: none; }
 
 /* ---------- bio buttons ---------- */
 .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }

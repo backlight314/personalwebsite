@@ -1,3 +1,26 @@
+// opening: write the name in calligraphy, then fade into the page
+(function signature() {
+  const root = document.documentElement;
+  const intro = document.getElementById("intro");
+  if (!intro || !root.classList.contains("intro-on")) { if (intro) intro.remove(); return; }
+  const timers = [];
+  const finish = () => {
+    timers.forEach(clearTimeout);
+    intro.classList.add("leaving");
+    root.classList.remove("intro-on");
+    try { sessionStorage.setItem("signed", "1"); } catch (e) {}
+    setTimeout(() => intro.remove(), 800);
+  };
+  const start = () => {
+    intro.classList.add("writing");
+    timers.push(setTimeout(finish, 3400));
+  };
+  intro.addEventListener("click", finish);
+  // wait for the script font so the fallback never flashes, but don't hang if it fails
+  const ready = document.fonts ? document.fonts.load('190px "Great Vibes"') : Promise.resolve();
+  Promise.race([ready, new Promise(r => setTimeout(r, 1500))]).then(start);
+})();
+
 // drifting clouds behind the page
 (function clouds() {
   const layer = document.createElement("div");
@@ -12,7 +35,7 @@
   ];
   for (const c of specs) {
     const img = document.createElement("img");
-    img.src = "cloud.svg";
+    img.src = "/cloud.svg";
     img.alt = "";
     img.className = "cloud";
     img.style.cssText = `--w:${c.w}px;--y:${c.y}%;--t:${c.t}s;--delay:${c.d}s;--o:${c.o};--x:${c.x}`;
