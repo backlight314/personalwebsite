@@ -7,18 +7,19 @@
   --ink: #22303D;
   --ink-soft: #5A6B7A;
   --accent: #4E7294;
-  --serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --serif: "Fraunces", "Iowan Old Style", Georgia, serif;
   --sans: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 * { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; background: var(--bg); }
+html { -webkit-text-size-adjust: 100%; background: var(--bg); scroll-behavior: smooth; }
 body {
   margin: 0;
   background: linear-gradient(to bottom, #E4ECF2, var(--bg) 420px, var(--bg-deep));
   background-attachment: fixed;
   color: var(--ink);
   font-family: var(--sans);
+  letter-spacing: 0.012em;
   font-size: 17px;
   line-height: 1.7;
   overflow-x: hidden;
@@ -120,10 +121,10 @@ header {
 }
 header h1 {
   font-family: var(--serif);
-  font-weight: 400;
   font-size: clamp(56px, 9vw, 96px);
   line-height: 0.95;
-  letter-spacing: -0.01em;
+  font-weight: 300;
+  letter-spacing: 0.01em;
   margin: 0;
 }
 header .tag {
@@ -177,6 +178,7 @@ header .tag {
 }
 .quick a:hover { background: #fff; color: var(--accent); }
 .quick a[aria-current="page"] { background: var(--ink); color: #fff; }
+section[id] { scroll-margin-top: 80px; }
 
 /* ---------- inner pages ---------- */
 header .home {
@@ -293,6 +295,7 @@ footer {
   .skills div { grid-template-columns: 1fr; gap: 6px; }
   .skills dt { padding-top: 0; }
   .quick { left: 16px; right: 16px; justify-content: space-between; }
-  .quick a { padding: 6px 4px; font-size: 12px; }
+  .quick { overflow-x: auto; scrollbar-width: none; }
+  .quick a { padding: 6px 8px; font-size: 12px; white-space: nowrap; }
   .project { padding: 16px; }
 }
