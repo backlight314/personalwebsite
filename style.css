@@ -271,6 +271,7 @@ section p:last-child { margin-bottom: 0; }
 .project strong { font-weight: 600; }
 .project span { grid-column: 1; color: var(--ink-soft); font-size: 15px; line-height: 1.55; }
 .project::after { content: "↗"; grid-column: 2; grid-row: 1; color: var(--accent); transition: transform 200ms ease; }
+.project .stack { margin-top: 6px; font-size: 13px; letter-spacing: 0.02em; color: var(--accent); }
 .project:hover::after { transform: translate(2px, -2px); }
 
 .jobs { list-style: none; margin: 0; padding: 0; }
@@ -286,6 +287,28 @@ section p:last-child { margin-bottom: 0; }
 .jobs .role { display: block; font-weight: 600; }
 .jobs .org { display: block; color: var(--ink-soft); }
 .jobs .desc { display: block; font-size: 15px; color: var(--ink-soft); }
+.points { margin: 8px 0 0; padding: 0; list-style: none; }
+.jobs .points li {
+  display: block;
+  position: relative;
+  padding: 2px 0 2px 18px;
+  border: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.points li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.8em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.55;
+}
+.points b { font-weight: 600; color: var(--ink); }
 
 .skills { display: grid; gap: 16px; margin: 0; }
 .skills div { display: grid; grid-template-columns: 170px 1fr; gap: 18px; }
@@ -306,12 +329,15 @@ section p:last-child { margin-bottom: 0; }
 .edu strong { font-weight: 600; margin-right: 10px; }
 .edu .gpa { margin: 14px 0 10px; }
 .course { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.course + .course { margin-top: 12px; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 
 .awards { list-style: none; margin: 0; padding: 0; }
 .awards li { padding: 12px 0; border-bottom: 1px dashed var(--line); }
 .awards li:last-child { border-bottom: 0; }
+.awards li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
 .awards strong { font-weight: 600; }
+.awards span { color: var(--ink-soft); font-size: 15px; white-space: nowrap; }
 
 footer {
   max-width: var(--width);
