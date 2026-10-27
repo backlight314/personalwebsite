@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="terminal.css?v=4">
+<link rel="stylesheet" href="terminal.css?v=5">
 </head>
 <body>
 
@@ -20,6 +20,7 @@
   </div>
 
   <div class="screen">
+    <div class="pane pane-info">
     <section aria-labelledby="name">
       <p class="cmd"><span class="ps">alina@columbia</span>:~$ whoami</p>
       <h1 id="name">Alina Du</h1>
@@ -39,21 +40,35 @@
     <section aria-labelledby="exp-h" data-file="experience.log">
       <p class="cmd" id="exp-h"><span class="ps">alina@columbia</span>:~$ cat experience.log</p>
       <ol class="exp">
-        <li><span class="when">2026.10 – now</span><div><p class="role">Data &amp; ML Researcher <span class="sep">&middot;</span> Columbia Plasma Physics Lab</p><p class="note">Prediction challenge on ~15K DIII-D tokamak shots</p></div></li>
-        <li><span class="when">2026.09 – now</span><div><p class="role">Research Assistant, Data Engineering <span class="sep">&middot;</span> Columbia University</p><p class="note">Study UI and LLM pipelines for econ-LLM experiments</p></div></li>
-        <li><span class="when">2026.05 – 2026.09</span><div><p class="role">ML Research Intern <span class="sep">&middot;</span> Columbia University</p><p class="note">Risk-targeted verification raised reliability from 91.8% to 96.5%</p></div></li>
-        <li><span class="when">2026.03 – 2026.06</span><div><p class="role">Software Engineer Intern <span class="sep">&middot;</span> Intelligence Cubed</p><p class="note">One API to deploy AI models to AWS, GCP, and Cloudflare</p></div></li>
-        <li><span class="when">2025.08 – 2026.03</span><div><p class="role">Software Engineer Intern <span class="sep">&middot;</span> MeloMed</p><p class="note">React Native recommendations for 1,200+ users; queries ~800 → ~150 ms</p></div></li>
+        <li><span class="when">2026.10 – now</span><div><p class="role">Data &amp; ML Researcher <span class="sep">&middot;</span> Columbia Plasma Physics Lab</p></div></li>
+        <li><span class="when">2026.09 – now</span><div><p class="role">Research Assistant, Data Engineering <span class="sep">&middot;</span> Columbia University</p></div></li>
+        <li><span class="when">2026.05 – 2026.09</span><div><p class="role">ML Research Intern <span class="sep">&middot;</span> Columbia University</p></div></li>
+        <li><span class="when">2026.03 – 2026.06</span><div><p class="role">Software Engineer Intern <span class="sep">&middot;</span> Intelligence Cubed</p></div></li>
+        <li><span class="when">2025.08 – 2026.03</span><div><p class="role">Software Engineer Intern <span class="sep">&middot;</span> MeloMed</p></div></li>
       </ol>
     </section>
 
+    <section aria-labelledby="awards-h" data-file="awards.txt">
+      <p class="cmd" id="awards-h"><span class="ps">alina@columbia</span>:~$ cat awards.txt</p>
+      <ul class="awards">
+        <li>Jane Street WiSE (top 60)</li>
+        <li>MIT Math Prize for Girls</li>
+        <li>2x AIME Qualifier</li>
+        <li>8x Waterloo math contest, top 1%</li>
+        <li>Waterloo National Math Scholarship (15 recipients)</li>
+      </ul>
+    </section>
+    </div>
+
+    <div class="pane pane-shell">
+    <div class="scroll">
     <section aria-labelledby="projects-h">
-      <p class="cmd" id="projects-h"><span class="ps">alina@columbia</span>:~$ ls projects/ <span class="comment"># click one</span></p>
-      <div class="files" role="tablist" aria-label="Projects">
-        <button role="tab" id="t-pac" aria-controls="p-pac" aria-selected="true">pac-manhattan.md</button>
-        <button role="tab" id="t-home" aria-controls="p-home" aria-selected="false" tabindex="-1">home-again.md</button>
-        <button role="tab" id="t-heart" aria-controls="p-heart" aria-selected="false" tabindex="-1">hack-the-heart.md</button>
-        <button role="tab" id="t-trust" aria-controls="p-trust" aria-selected="false" tabindex="-1">think-before-you-trust.md</button>
+      <p class="cmd" id="projects-h"><span class="ps">alina@columbia</span>:~$ ls -l projects/ <span class="comment"># click one</span></p>
+      <div class="files" role="tablist" aria-label="Projects" aria-orientation="vertical">
+        <button role="tab" id="t-pac" aria-controls="p-pac" aria-selected="true"><span class="fname">pac-manhattan.md</span><span class="sum">3D Pac-Man on real NYC</span></button>
+        <button role="tab" id="t-home" aria-controls="p-home" aria-selected="false" tabindex="-1"><span class="fname">home-again.md</span><span class="sum">Dementia memory game</span></button>
+        <button role="tab" id="t-heart" aria-controls="p-heart" aria-selected="false" tabindex="-1"><span class="fname">hack-the-heart.md</span><span class="sum">AI agents date for you</span></button>
+        <button role="tab" id="t-trust" aria-controls="p-trust" aria-selected="false" tabindex="-1"><span class="fname">think-before-you-trust.md</span><span class="sum">Which LLM steps to verify</span></button>
       </div>
 
       <article class="cat" role="tabpanel" id="p-pac" aria-labelledby="t-pac">
@@ -93,17 +108,6 @@
       </article>
     </section>
 
-    <section aria-labelledby="awards-h" data-file="awards.txt">
-      <p class="cmd" id="awards-h"><span class="ps">alina@columbia</span>:~$ cat awards.txt</p>
-      <ul class="awards">
-        <li>Jane Street WiSE (top 60)</li>
-        <li>MIT Math Prize for Girls</li>
-        <li>2x AIME Qualifier</li>
-        <li>8x Waterloo math contest, top 1%</li>
-        <li>Waterloo National Math Scholarship (15 recipients)</li>
-      </ul>
-    </section>
-
     <div id="log" aria-live="polite"></div>
     <form class="cmd last prompt" id="prompt" autocomplete="off">
       <label for="cmd-in"><span class="ps">alina@columbia</span>:~$</label>
@@ -112,6 +116,14 @@
         <span class="comment hint" id="cmd-hint"># try: help, ls, cat pac-manhattan.md</span>
       </span>
     </form>
+    </div>
+    </div>
+  </div>
+
+  <div class="status">
+    <span class="seg">[0] alina</span>
+    <span class="keys">help <i>&middot;</i> tab complete <i>&middot;</i> &uarr;&darr; history <i>&middot;</i> ^L clear</span>
+    <span class="clock" aria-hidden="true"></span>
   </div>
 </main>
 
@@ -140,6 +152,6 @@
     select(tabs[0]);
   })();
 </script>
-<script src="terminal.js?v=4"></script>
+<script src="terminal.js?v=5"></script>
 </body>
 </html>

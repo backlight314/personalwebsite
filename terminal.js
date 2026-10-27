@@ -4,11 +4,12 @@
   const input = document.getElementById("cmd-in");
   const log = document.getElementById("log");
   const screen = document.querySelector(".screen");
+  const shell = document.querySelector(".pane-shell");
 
   // read projects and links from the page so there's one place to edit them
   const projects = {};
   for (const tab of document.querySelectorAll('[role="tab"]')) {
-    projects[tab.textContent.trim()] = document.querySelector("#" + tab.getAttribute("aria-controls") + " .md");
+    projects[tab.querySelector(".fname").textContent.trim()] = document.querySelector("#" + tab.getAttribute("aria-controls") + " .md");
   }
   const links = {};
   for (const a of document.querySelectorAll(".links a")) {
@@ -33,7 +34,7 @@
     ["cat <file>", "read a file, e.g. cat experience.log"],
     ["open <link>", Object.keys(links).join(", ")],
     ["history", "commands you've run"],
-    ["clear", "clear the screen"],
+    ["clear", "clear this pane"],
   ];
 
   const history = [];
@@ -97,9 +98,10 @@
     echo: arg => text(arg),
     sudo: () => text("alina is not in the sudoers file. This incident will be reported.", "out err"),
     exit: () => text("there's no leaving. try 'help'."),
+    // like clear in one tmux pane: the info pane stays put
     clear: () => {
       log.replaceChildren();
-      for (const el of screen.children) if (el !== log && el !== form) el.hidden = true;
+      for (const el of shell.querySelectorAll("section")) el.hidden = true;
       return null;
     },
   };
@@ -170,6 +172,17 @@
       commands.clear();
     }
   });
+
+  // status bar clock, tmux style: 14:05 27-Oct-26
+  const clock = document.querySelector(".status .clock");
+  const tick = () => {
+    const d = new Date();
+    const pad = n => String(n).padStart(2, "0");
+    const mon = "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(" ")[d.getMonth()];
+    clock.textContent = `${pad(d.getHours())}:${pad(d.getMinutes())} ${pad(d.getDate())}-${mon}-${pad(d.getFullYear() % 100)}`;
+  };
+  tick();
+  setInterval(tick, 15000);
 
   // clicking empty terminal space focuses the prompt, like a real one
   screen.addEventListener("click", e => {
