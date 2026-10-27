@@ -92,7 +92,18 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--prompt); outlin
 .md .meta { margin: 0 0 6px; color: var(--ink-dim); }
 .md p { margin: 0; color: var(--ink-soft); }
 
+/* ---------- experience & awards ---------- */
+.exp, .awards { list-style: none; margin: 0; padding: 0; }
+.exp li { display: grid; grid-template-columns: 18ch 1fr; gap: 0 2ch; margin-bottom: 12px; }
+.exp li:last-child { margin-bottom: 0; }
+.exp .when { color: var(--ink-dim); white-space: nowrap; }
+.exp p { margin: 0; }
+.exp .sep { color: var(--ink-dim); }
+.exp .note { color: var(--ink-soft); }
+.awards { color: var(--ink-soft); }
+
 @media (max-width: 600px) {
+  .exp li { grid-template-columns: 1fr; }
   body { font-size: 14px; }
   .bar { height: 42px; font-size: 12px; }
   .dots { left: 14px; gap: 7px; }

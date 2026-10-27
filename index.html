@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="terminal.css?v=3">
+<link rel="stylesheet" href="terminal.css?v=4">
 </head>
 <body>
 
@@ -23,7 +23,7 @@
     <section aria-labelledby="name">
       <p class="cmd"><span class="ps">alina@columbia</span>:~$ whoami</p>
       <h1 id="name">Alina Du</h1>
-      <p class="out">CS at Columbia, minors in financial engineering and math. I build things with maps, data, and LLMs.</p>
+      <p class="out">CS, Financial Engineering and Math student at Columbia University.</p>
     </section>
 
     <section aria-label="Links">
@@ -33,8 +33,18 @@
         <a href="https://github.com/backlight314">github</a>
         <a href="https://www.linkedin.com/in/alina-du31415">linkedin</a>
         <a href="mailto:alinadu0703@gmail.com">email</a>
-        <a href="/gallery/">gallery/</a>
       </nav>
+    </section>
+
+    <section aria-labelledby="exp-h" data-file="experience.log">
+      <p class="cmd" id="exp-h"><span class="ps">alina@columbia</span>:~$ cat experience.log</p>
+      <ol class="exp">
+        <li><span class="when">2026.10 – now</span><div><p class="role">Data &amp; ML Researcher <span class="sep">&middot;</span> Columbia Plasma Physics Lab</p><p class="note">Prediction challenge on ~15K DIII-D tokamak shots</p></div></li>
+        <li><span class="when">2026.09 – now</span><div><p class="role">Research Assistant, Data Engineering <span class="sep">&middot;</span> Columbia University</p><p class="note">Study UI and LLM pipelines for econ-LLM experiments</p></div></li>
+        <li><span class="when">2026.05 – 2026.09</span><div><p class="role">ML Research Intern <span class="sep">&middot;</span> Columbia University</p><p class="note">Risk-targeted verification raised reliability from 91.8% to 96.5%</p></div></li>
+        <li><span class="when">2026.03 – 2026.06</span><div><p class="role">Software Engineer Intern <span class="sep">&middot;</span> Intelligence Cubed</p><p class="note">One API to deploy AI models to AWS, GCP, and Cloudflare</p></div></li>
+        <li><span class="when">2025.08 – 2026.03</span><div><p class="role">Software Engineer Intern <span class="sep">&middot;</span> MeloMed</p><p class="note">React Native recommendations for 1,200+ users; queries ~800 → ~150 ms</p></div></li>
+      </ol>
     </section>
 
     <section aria-labelledby="projects-h">
@@ -83,6 +93,17 @@
       </article>
     </section>
 
+    <section aria-labelledby="awards-h" data-file="awards.txt">
+      <p class="cmd" id="awards-h"><span class="ps">alina@columbia</span>:~$ cat awards.txt</p>
+      <ul class="awards">
+        <li>Jane Street WiSE (top 60)</li>
+        <li>MIT Math Prize for Girls</li>
+        <li>2x AIME Qualifier</li>
+        <li>8x Waterloo math contest, top 1%</li>
+        <li>Waterloo National Math Scholarship (15 recipients)</li>
+      </ul>
+    </section>
+
     <div id="log" aria-live="polite"></div>
     <form class="cmd last prompt" id="prompt" autocomplete="off">
       <label for="cmd-in"><span class="ps">alina@columbia</span>:~$</label>
@@ -119,6 +140,6 @@
     select(tabs[0]);
   })();
 </script>
-<script src="terminal.js?v=3"></script>
+<script src="terminal.js?v=4"></script>
 </body>
 </html>

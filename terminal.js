@@ -15,13 +15,22 @@
     links[a.textContent.trim().replace(/\/$|\.pdf$/, "")] = a;
   }
 
+  // top-level files like experience.log: every section marked with data-file
+  const files = {};
+  for (const sec of document.querySelectorAll("[data-file]")) files[sec.dataset.file] = sec;
+  const fileBody = sec => {
+    const frag = document.createDocumentFragment();
+    for (const el of sec.children) if (!el.matches(".cmd")) frag.append(el.cloneNode(true));
+    return frag;
+  };
+
   const linkNames = [...document.querySelectorAll(".links a")].map(a => a.textContent.trim());
 
   const help = [
     ["help", "show this list"],
     ["whoami", "who I am"],
-    ["ls [dir]", "list links/ or projects/"],
-    ["cat <file>", "read a project, e.g. cat pac-manhattan.md"],
+    ["ls [dir]", "list files, links/ or projects/"],
+    ["cat <file>", "read a file, e.g. cat experience.log"],
     ["open <link>", Object.keys(links).join(", ")],
     ["history", "commands you've run"],
     ["clear", "clear the screen"],
@@ -59,7 +68,8 @@
     },
     ls: arg => {
       const dir = (arg || "").replace(/\/$/, "");
-      if (!dir || dir === "." || dir === "~") return text("links/  projects/");
+      if (!dir || dir === "." || dir === "~") return text([...Object.keys(files), "links/", "projects/"].join("  "));
+      if (files[dir.replace(/^\.\//, "")]) return text(dir);
       if (dir === "projects") return text(Object.keys(projects).join("  "));
       if (dir === "links") return document.querySelector(".links").cloneNode(true);
       // a single link: open it in a new tab
@@ -69,6 +79,8 @@
     },
     cat: arg => {
       if (!arg) return text("usage: cat <file>", "out err");
+      const file = files[arg.replace(/^\.\//, "")];
+      if (file) return fileBody(file);
       const md = projectFile(arg);
       if (md) return md.cloneNode(true);
       if (/^(links|projects)\/?$/.test(arg)) return text(`cat: ${arg}: Is a directory`, "out err");
@@ -117,9 +129,9 @@
     const word = parts[parts.length - 1];
     let pool;
     if (parts.length === 1) pool = Object.keys(commands);
-    else if (parts[0] === "cat") pool = Object.keys(projects);
+    else if (parts[0] === "cat") pool = [...Object.keys(files), ...Object.keys(projects)];
     else if (parts[0] === "open") pool = Object.keys(links);
-    else if (parts[0] === "ls") pool = ["links/", "projects/", ...linkNames.map(n => "links/" + n), ...Object.keys(projects).map(n => "projects/" + n)];
+    else if (parts[0] === "ls") pool = [...Object.keys(files), "links/", "projects/", ...linkNames.map(n => "links/" + n), ...Object.keys(projects).map(n => "projects/" + n)];
     else return;
     const prefix = parts[0] === "ls" ? word : word.replace(/^projects\//, "");
     // only offer the next path segment, so "pro" completes to "projects/"
