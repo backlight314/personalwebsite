@@ -54,15 +54,6 @@ section { margin-bottom: 34px; }
 .ps { color: var(--prompt); }
 .cmd .comment { color: var(--ink-dim); }
 .last { margin: 0; }
-.cursor {
-  display: inline-block;
-  width: 0.6em;
-  height: 1.25em;
-  vertical-align: -0.25em;
-  background: var(--prompt);
-  animation: blink 1.1s steps(1) infinite;
-}
-@keyframes blink { 50% { opacity: 0; } }
 
 h1 {
   margin: 0 0 6px;
@@ -110,6 +101,33 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--prompt); outlin
   .md { padding-left: 14px; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .cursor { animation: none; }
+/* ---------- interactive prompt ---------- */
+.prompt { display: flex; gap: 0.6em; align-items: baseline; }
+.prompt .field { position: relative; flex: 1; display: flex; min-width: 0; }
+.prompt input {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  caret-color: var(--prompt);
 }
+/* the placeholder is a single space so :placeholder-shown means "empty" */
+.prompt .hint {
+  position: absolute;
+  inset: 0 0 auto 1.2ch;
+  color: var(--ink-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+}
+.prompt input:not(:placeholder-shown) + .hint { display: none; }
+#log > div { margin-bottom: 18px; }
+#log .out { white-space: pre-wrap; }
+#log .err { color: #ff9b9b; }
+#log .md { margin-bottom: 0; }
+#log .links { margin-top: 2px; }

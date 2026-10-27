@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="terminal.css?v=1">
+<link rel="stylesheet" href="terminal.css?v=3">
 </head>
 <body>
 
@@ -83,7 +83,14 @@
       </article>
     </section>
 
-    <p class="cmd last"><span class="ps">alina@columbia</span>:~$ <span class="cursor" aria-hidden="true"></span></p>
+    <div id="log" aria-live="polite"></div>
+    <form class="cmd last prompt" id="prompt" autocomplete="off">
+      <label for="cmd-in"><span class="ps">alina@columbia</span>:~$</label>
+      <span class="field">
+        <input id="cmd-in" type="text" spellcheck="false" autocapitalize="off" autocorrect="off" enterkeyhint="go" placeholder=" " aria-label="Terminal command" aria-describedby="cmd-hint">
+        <span class="comment hint" id="cmd-hint"># try: help, ls, cat pac-manhattan.md</span>
+      </span>
+    </form>
   </div>
 </main>
 
@@ -112,5 +119,6 @@
     select(tabs[0]);
   })();
 </script>
+<script src="terminal.js?v=3"></script>
 </body>
 </html>
