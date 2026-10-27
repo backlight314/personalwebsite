@@ -5,131 +5,112 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Alina Du</title>
 <meta name="description" content="Alina Du, Computer Science student at Columbia, minoring in Financial Engineering and Math. ML research, data and software engineering.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23DCE5EC'/><path d='M6 28V16h4v12M12 28V8h3v-4h2v4h3v20M22 28V13h4v15' fill='%2381A0B8'/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230F1218'/><path d='M8 10l6 6-6 6' stroke='%23A5D6FF' stroke-width='3' fill='none'/><rect x='16' y='20' width='9' height='3' fill='%23A5D6FF'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Great+Vibes&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=6">
-<script>
-  // play the signature intro once per visit, unless the visitor prefers reduced motion
-  try {
-    if (!sessionStorage.getItem("signed") && !matchMedia("(prefers-reduced-motion: reduce)").matches)
-      document.documentElement.classList.add("intro-on");
-  } catch (e) {}
-</script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="terminal.css?v=1">
 </head>
 <body>
 
-<div class="intro" id="intro" aria-hidden="true">
-  <svg viewBox="0 0 900 260">
-    <defs>
-      <linearGradient id="pen" x1="0" x2="1">
-        <stop offset="0.9" stop-color="#fff"/>
-        <stop offset="1" stop-color="#fff" stop-opacity="0"/>
-      </linearGradient>
-      <mask id="ink" maskUnits="userSpaceOnUse" x="0" y="0" width="900" height="260">
-        <rect class="nib" x="-1000" y="0" width="1000" height="260" fill="url(#pen)"/>
-      </mask>
-    </defs>
-    <text x="450" y="180" text-anchor="middle" mask="url(#ink)">Alina Du</text>
-  </svg>
-</div>
+<main class="term">
+  <div class="bar" aria-hidden="true">
+    <span class="dots"><i></i><i></i><i></i></span>
+    <span class="title">alina@columbia: ~</span>
+  </div>
 
-<img class="skyline" src="skyline.svg" alt="" aria-hidden="true">
+  <div class="screen">
+    <section aria-labelledby="name">
+      <p class="cmd"><span class="ps">alina@columbia</span>:~$ whoami</p>
+      <h1 id="name">Alina Du</h1>
+      <p class="out">CS at Columbia, minors in financial engineering and math. I build things with maps, data, and LLMs.</p>
+    </section>
 
-<div class="page">
-<nav class="quick" aria-label="Pages">
-  <a href="/" aria-current="page">Home</a>
-  <a href="#experience">Experience</a>
-  <a href="#projects">Projects</a>
-  <a href="#awards">Awards</a>
-  <a href="/gallery/">Gallery</a>
-</nav>
-  <header>
-    <h1>Alina Du</h1>
-    <p class="tag">Computer Science, Financial Engineering and Math at Columbia</p>
-    <nav class="contact" aria-label="Contact">
-      <a href="https://github.com/backlight314" title="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a>
-      <a href="mailto:alinadu0703@gmail.com" title="Email" aria-label="Email"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 5.46v13.9c0 .9-.73 1.64-1.64 1.64h-3.82v-9.27L12 16.64l-6.55-4.91V21H1.64C.73 21 0 20.27 0 19.37V5.46c0-2.02 2.31-3.18 3.93-1.97l1.52 1.15L12 9.55l6.55-4.91 1.52-1.15C21.69 2.28 24 3.43 24 5.46z"/></svg></a>
-      <a href="https://www.linkedin.com/in/alina-du31415" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zm1.78 13.02H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
-    </nav>
-  </header>
+    <section aria-label="Links">
+      <p class="cmd"><span class="ps">alina@columbia</span>:~$ ls links/</p>
+      <nav class="links">
+        <a href="resume.pdf" target="_blank" rel="noopener">resume.pdf</a>
+        <a href="https://github.com/backlight314">github</a>
+        <a href="https://www.linkedin.com/in/alina-du31415">linkedin</a>
+        <a href="mailto:alinadu0703@gmail.com">email</a>
+        <a href="/gallery/">gallery/</a>
+      </nav>
+    </section>
 
-<main>
-  <section aria-labelledby="about">
-    <h2 id="about">Hey!</h2>
-    <p>I'm Alina, a Computer Science student at Columbia University, minoring in Financial Engineering and Math. I work across machine learning research, data engineering and software engineering.</p>
-    <p>Outside of classes, I like to walk/jog around Manhattan, try out new sports, hunt down restaurants, test new recipes, travel and more&hellip;</p>
-    <p>I love meeting new people, feel free to reach out at <a href="mailto:alinadu0703@gmail.com">alinadu0703@gmail.com</a> or <a href="mailto:xd2364@columbia.edu">xd2364@columbia.edu</a>!</p>
-    <div class="actions">
-      <a class="btn" href="#experience">💼 View Experiences</a>
-      <a class="btn" href="resume.pdf" target="_blank" rel="noopener">📄 View Resume</a>
-      <a class="btn" href="#projects">💻 View Projects</a>
-    </div>
-  </section>
-
-  <section id="education" aria-labelledby="education-h">
-    <h2 id="education-h">Education</h2>
-    <div class="edu">
-      <div class="edu-head">
-        <div><span class="role">Columbia University</span><span class="org">B.S. Computer Science &middot; Minors in Financial Engineering and Math</span></div>
+    <section aria-labelledby="projects-h">
+      <p class="cmd" id="projects-h"><span class="ps">alina@columbia</span>:~$ ls projects/ <span class="comment"># click one</span></p>
+      <div class="files" role="tablist" aria-label="Projects">
+        <button role="tab" id="t-pac" aria-controls="p-pac" aria-selected="true">pac-manhattan.md</button>
+        <button role="tab" id="t-home" aria-controls="p-home" aria-selected="false" tabindex="-1">home-again.md</button>
+        <button role="tab" id="t-heart" aria-controls="p-heart" aria-selected="false" tabindex="-1">hack-the-heart.md</button>
+        <button role="tab" id="t-trust" aria-controls="p-trust" aria-selected="false" tabindex="-1">think-before-you-trust.md</button>
       </div>
-      <p class="gpa"><strong>GPA</strong> 3.9 / 4.0</p>
-      <div class="course"><strong>Coursework</strong><span class="chips"><span class="chip">Machine Learning</span><span class="chip">Optimization</span><span class="chip">Software Quality and Design</span><span class="chip">Data Structures</span><span class="chip">Multivariable Calculus</span><span class="chip">Probability Theory</span><span class="chip">Linear Algebra</span></span></div>
-      <div class="course"><strong>Activities</strong><span class="chips"><span class="chip">Teaching Assistant</span><span class="chip">Columbia Lioness Quantitative</span><span class="chip">WiCS</span><span class="chip">SWE</span></span></div>
-    </div>
-  </section>
 
-  <section id="experience" aria-labelledby="experience-h">
-    <h2 id="experience-h">Experience</h2>
-    <ol class="jobs">
-      <li><span class="when">Oct 2026 – now</span><div><span class="role">Data and ML Researcher</span><span class="org">Columbia Plasma Physics Lab</span></div></li>
-      <li><span class="when">Sep 2026 – now</span><div><span class="role">Research Assistant, Data Engineering</span><span class="org">Columbia University</span></div></li>
-      <li><span class="when">Sep 2026 – now</span><div><span class="role">Teaching Assistant</span><span class="org">Columbia University</span><span class="desc">Calc 1 [F26]</span><span class="desc">Intro to Python [F26]</span></div></li>
-      <li><span class="when">May 2026 – Sep 2026</span><div><span class="role">Machine Learning Research Intern</span><span class="org">Columbia University</span></div></li>
-      <li><span class="when">Mar 2026 – Jun 2026</span><div><span class="role">Software Engineer Intern</span><span class="org">Intelligence Cubed</span></div></li>
-      <li><span class="when">Aug 2025 – Mar 2026</span><div><span class="role">Software Engineer Intern</span><span class="org">MeloMed, Health Tech Startup</span></div></li>
-    </ol>
-  </section>
+      <article class="cat" role="tabpanel" id="p-pac" aria-labelledby="t-pac">
+        <p class="cmd"><span class="ps">alina@columbia</span>:~$ cat projects/pac-manhattan.md</p>
+        <div class="md">
+          <h2># <a href="https://github.com/backlight314/pacmanhattan">Pac-Manhattan</a></h2>
+          <p class="meta">JavaScript &middot; Three.js &middot; Python &middot; Gemini API &middot; ElevenLabs</p>
+          <p>Pac-Man on a 3D model of NYC where you play the ghost. 171K buildings in Three.js and A* pathfinding over the real street graph.</p>
+        </div>
+      </article>
 
-  <section id="projects" aria-labelledby="projects-h">
-    <h2 id="projects-h">Projects</h2>
-    <div class="projects">
-      <a class="project" href="https://github.com/backlight314/pacmanhattan"><strong>Pac-Manhattan</strong><span>A 3D Pac-Man across real New York streets where you play the ghost. Renders 171K NYC buildings with Three.js and runs A* pathfinding over a 27K-edge street graph, with Gemini-checked riddles and ElevenLabs narration.</span><span class="stack">JavaScript &middot; Three.js &middot; Python &middot; Shapely &middot; Gemini API &middot; ElevenLabs</span></a>
-      <a class="project" href="https://github.com/backlight314/home-again"><strong>Home Again</strong><span>A game that brings families together around a loved one living with dementia. Relatives share photos, voice messages and songs with a Gemini guide, which turns them into a gentle game, set in a three.js dollhouse, that helps their loved one revisit their own life story. There is nothing to fail.</span><span class="stack">JavaScript &middot; Node.js &middot; Three.js &middot; Gemini API &middot; ElevenLabs &middot; Postgres &middot; Snowflake</span></a>
-      <a class="project" href="https://github.com/backlight314/gptinder"><strong>Hack the Heart</strong><span>Two AI agents learn how two people text, then go on a simulated date to guess whether the real people would get along. Combines rule-based NLP with an LLM, and resumes failed dates without duplicate turns.</span><span class="stack">Python &middot; FastAPI &middot; Next.js &middot; OpenAI / Anthropic API &middot; MongoDB &middot; pytest</span></a>
-      <a class="project" href="https://github.com/backlight314/think-before-you-trust"><strong>Think before you trust</strong><span>Research code for choosing which steps of an LLM's reasoning to verify under a fixed budget.</span><span class="stack">Python &middot; PyTorch &middot; LLM evaluation</span></a>
-    </div>
-  </section>
+      <article class="cat" role="tabpanel" id="p-home" aria-labelledby="t-home">
+        <p class="cmd"><span class="ps">alina@columbia</span>:~$ cat projects/home-again.md</p>
+        <div class="md">
+          <h2># <a href="https://github.com/backlight314/home-again">Home Again</a></h2>
+          <p class="meta">JavaScript &middot; Node.js &middot; Three.js &middot; Gemini API &middot; Postgres &middot; Snowflake</p>
+          <p>A game that brings families together around a loved one living with dementia. Photos, voice messages and songs become a gentle walk through their own life story, in a three.js dollhouse.</p>
+        </div>
+      </article>
 
-  <section id="skills" aria-labelledby="skills-h">
-    <h2 id="skills-h">Skills</h2>
-    <dl class="skills">
-      <div><dt>Languages</dt><dd>Python &middot; Java &middot; TypeScript &middot; JavaScript &middot; SQL &middot; HTML</dd></div>
-      <div><dt>ML &amp; Data</dt><dd>PyTorch &middot; Scikit-learn &middot; Hugging Face &middot; NumPy &middot; Pandas &middot; SciPy</dd></div>
-      <div><dt>Frameworks</dt><dd>React / React Native &middot; Next.js &middot; FastAPI &middot; LangChain &middot; LangGraph</dd></div>
-      <div><dt>Infrastructure</dt><dd>AWS &middot; Google Cloud &middot; Vercel &middot; PostgreSQL &middot; MongoDB &middot; Supabase &middot; Firebase &middot; Git</dd></div>
-    </dl>
-  </section>
+      <article class="cat" role="tabpanel" id="p-heart" aria-labelledby="t-heart">
+        <p class="cmd"><span class="ps">alina@columbia</span>:~$ cat projects/hack-the-heart.md</p>
+        <div class="md">
+          <h2># <a href="https://github.com/backlight314/gptinder">Hack the Heart</a></h2>
+          <p class="meta">Python &middot; FastAPI &middot; Next.js &middot; MongoDB</p>
+          <p>Two AI agents learn how two people text, then go on a simulated date to guess whether the real people would get along.</p>
+        </div>
+      </article>
 
-  <section id="awards" aria-labelledby="awards-h">
-    <h2 id="awards-h">Awards</h2>
-    <ul class="awards">
-      <li><strong>Jane Street WiSE</strong></li>
-      <li><strong>MIT Math Prize for Girls</strong></li>
-      <li><strong>2&times; AIME Qualifier</strong></li>
-      <li><strong>8&times; Waterloo Math Contests National Top 1%</strong></li>
-      <li><strong>Waterloo National Math Scholarship</strong></li>
-      <li><strong>3&times; AMC Distinction</strong></li>
-      <li><strong>2&times; Hackathon Winner</strong></li>
-      <li><strong>Exploring Math and Computer Science Workshop</strong></li>
-    </ul>
-  </section>
+      <article class="cat" role="tabpanel" id="p-trust" aria-labelledby="t-trust">
+        <p class="cmd"><span class="ps">alina@columbia</span>:~$ cat projects/think-before-you-trust.md</p>
+        <div class="md">
+          <h2># <a href="https://github.com/backlight314/think-before-you-trust">Think before you trust</a></h2>
+          <p class="meta">Python &middot; PyTorch &middot; LLM evaluation</p>
+          <p>Research code for choosing which steps of an LLM's reasoning to verify under a fixed budget.</p>
+        </div>
+      </article>
+    </section>
+
+    <p class="cmd last"><span class="ps">alina@columbia</span>:~$ <span class="cursor" aria-hidden="true"></span></p>
+  </div>
 </main>
 
-<footer>Alina Du &middot; New York</footer>
-</div>
-
-<script src="site.js?v=6"></script>
+<script>
+  // project picker: show one file at a time, arrow keys move between tabs
+  (function () {
+    const tabs = [...document.querySelectorAll('[role="tab"]')];
+    const select = (tab, focus) => {
+      for (const t of tabs) {
+        const on = t === tab;
+        t.setAttribute("aria-selected", on);
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+      }
+      if (focus) tab.focus();
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener("click", () => select(t));
+      t.addEventListener("keydown", e => {
+        const step = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+        if (!step) return;
+        e.preventDefault();
+        select(tabs[(i + step + tabs.length) % tabs.length], true);
+      });
+    });
+    select(tabs[0]);
+  })();
+</script>
 </body>
 </html>
