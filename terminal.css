@@ -46,7 +46,7 @@ body {
 .dots { position: absolute; left: 20px; display: flex; gap: 9px; }
 .dots i { width: 14px; height: 14px; border-radius: 50%; background: #3a404a; }
 .screen { padding: clamp(24px, 4vw, 44px) clamp(18px, 3.4vw, 40px) clamp(28px, 4vw, 44px); }
-.screen > * { max-width: 780px; }
+.pane > *, .scroll > * { max-width: 780px; }
 section { margin-bottom: 34px; }
 
 /* ---------- prompt lines ---------- */
@@ -70,20 +70,26 @@ a:hover { color: var(--prompt); }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--prompt); outline-offset: 3px; border-radius: 4px; }
 .links { display: flex; flex-wrap: wrap; gap: 6px 34px; }
 
-/* ---------- project files ---------- */
-.files { display: flex; flex-wrap: wrap; gap: 12px; margin: 12px 0 30px; }
+/* ---------- project files: an ls -l listing ---------- */
+.files { display: flex; flex-direction: column; gap: 2px; margin: 4px 0 26px -10px; }
 .files button {
+  display: grid;
+  grid-template-columns: 26ch 1fr;
+  gap: 0 2ch;
   font: inherit;
+  text-align: left;
   color: var(--ink);
   background: transparent;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  padding: 10px 18px;
+  border: 0;
+  border-radius: 4px;
+  padding: 2px 10px;
   cursor: pointer;
-  transition: background-color .15s, border-color .15s, color .15s;
+  transition: background-color .15s, color .15s;
 }
-.files button:hover { border-color: #3d4552; background: #151922; }
-.files button[aria-selected="true"] { background: var(--prompt); border-color: var(--prompt); color: #0b1220; }
+.files .sum { color: var(--ink-dim); }
+.files button:hover { background: var(--bar); }
+.files button[aria-selected="true"] { background: var(--prompt); color: #0b1220; }
+.files button[aria-selected="true"] .sum { color: #34465e; }
 
 .md { border-left: 2px solid var(--line); padding-left: 20px; margin-top: 4px; }
 .md h2 { margin: 0 0 4px; font-size: 1em; font-weight: 700; }
@@ -108,7 +114,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--prompt); outlin
   .bar { height: 42px; font-size: 12px; }
   .dots { left: 14px; gap: 7px; }
   .dots i { width: 11px; height: 11px; }
-  .files button { padding: 8px 12px; }
+  .files button { grid-template-columns: 1fr; padding: 4px 10px; }
+  .status .keys { display: none; }
   .md { padding-left: 14px; }
 }
 
@@ -142,3 +149,41 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--prompt); outlin
 #log .err { color: #ff9b9b; }
 #log .md { margin-bottom: 0; }
 #log .links { margin-top: 2px; }
+
+/* ---------- split panes, like tmux ---------- */
+.pane-shell { margin-top: 34px; }
+@media (min-width: 1000px) {
+  body { font-size: 15px; }
+  .term { max-width: 1320px; }
+  .screen { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); padding: 0; }
+  .pane-info { padding: 40px 36px; }
+  .pane-info > section:last-child { margin-bottom: 0; }
+  /* the shell pane takes the info pane's height and scrolls inside it, like a real pane */
+  .pane-shell { position: relative; min-height: 520px; margin: 0; border-left: 1px solid var(--line); }
+  .pane-shell .scroll {
+    position: absolute;
+    inset: 0;
+    overflow-y: auto;
+    padding: 40px 36px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--line) transparent;
+  }
+}
+
+/* ---------- status bar ---------- */
+.status {
+  display: flex;
+  align-items: center;
+  gap: 2ch;
+  padding: 0 16px 0 0;
+  background: var(--bar);
+  border-top: 1px solid var(--line);
+  color: var(--ink-dim);
+  font-size: 13px;
+  line-height: 30px;
+  white-space: nowrap;
+}
+.status .seg { padding: 0 12px; background: var(--prompt); color: #0b1220; font-weight: 700; }
+.status .keys { overflow: hidden; text-overflow: ellipsis; }
+.status .keys i { font-style: normal; color: #3d4552; }
+.status .clock { margin-left: auto; }
