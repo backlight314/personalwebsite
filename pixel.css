@@ -55,15 +55,9 @@ svg { display: block; width: 100%; height: 100%; }
   content: ""; position: absolute; right: 18px; bottom: -16px; width: 8px; height: 12px; background: var(--ink);
   box-shadow: 4px -4px 0 var(--ink);
 }
-.portrait {
-  position: relative; width: min(100%, 380px); aspect-ratio: 4 / 5; max-height: calc(100% - 80px);
-  display: grid; place-items: center;
-  background: repeating-linear-gradient(45deg, transparent 0 10px, rgba(42,33,24,.04) 10px 20px);
-  border: 3px dashed var(--line); border-bottom: 0;
-}
-.portrait img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: bottom; image-rendering: pixelated; z-index: 1; }
-.portrait:has(img) { border: 0; background: none; }
-.ph { font: 13px/1.4 var(--pixel); color: var(--dim); text-align: center; }
+.portrait { display: flex; justify-content: center; min-height: 0; }
+/* tall enough to fill the column, never taller than the space under the bubble */
+.portrait img { display: block; width: auto; height: auto; max-width: min(100%, 420px); max-height: calc(100vh - 2 * var(--gap) - 150px); max-height: calc(100dvh - 2 * var(--gap) - 150px); }
 
 .content { min-height: 0; overflow-y: auto; padding: 24px 28px 40px 8px; display: flex; flex-direction: column; scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
 .view { margin: auto 0; max-width: 560px; }
@@ -131,7 +125,7 @@ h2 { font: 30px/1.1 var(--pixel); margin: 0 0 20px; color: var(--accent); }
   .sections { position: static; gap: 18px; }
   .stage { display: block; }
   .avatar { padding: 28px 16px 0; }
-  .portrait { width: min(70%, 260px); max-height: none; }
+  .portrait img { max-width: min(72%, 280px); max-height: none; }
   .bubble { margin-bottom: 18px; font-size: 15px; }
   .content { overflow: visible; padding: 28px 20px 8px; }
   .view { margin: 0; }
