@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Alina Du · Press start demo</title>
+<meta name="description" content="Alina Du, Computer Science student at Columbia, minoring in Financial Engineering and Math. ML research, data and software engineering.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'><rect width='8' height='8' fill='%23efe6d4'/><path d='M2 1h1v6H2zM3 2h1v4H3zM4 3h1v2H4z' fill='%23c2410c'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../pixel.css?v=7">
+<style>
+  /* demo only: "start" set in the pixel font, with a blinking underline like an arcade prompt */
+  h1 .start { position: relative; font-family: var(--pixel); font-weight: 400; color: var(--accent); letter-spacing: -.02em; }
+  h1 .start::after { content: ""; position: absolute; left: 0; right: .1em; bottom: -.02em; height: .08em; background: var(--accent); animation: blink 1s steps(2, start) infinite; }
+  @media (prefers-reduced-motion: reduce) { h1 .start::after { animation: none; } }
+</style>
+</head>
+<body>
+<div class="frame">
+  <header class="top">
+    <a class="logo" href="#" data-go="">Alina&nbsp;Du</a>
+    <nav class="sections" aria-label="Sections">
+      <a href="#projects" data-go="projects">Projects</a>
+      <a href="#experience" data-go="experience">Experience</a>
+      <a href="#awards" data-go="awards">Awards</a>
+    </nav>
+  </header>
+
+  <div class="stage">
+    <figure class="avatar">
+      <p class="bubble">I'm Alina</p>
+      <div class="portrait">
+        <!-- add a picture as avatar.webp next to this file and it appears here -->
+        <img src="../avatar.webp?v=3" width="800" height="947" alt="Photo of Alina Du with the Lower Manhattan skyline at sunset" onerror="this.remove()">
+        <span class="ph" aria-hidden="true">your image here</span>
+      </div>
+    </figure>
+
+    <main class="content" id="content">
+      <section class="view home" data-view="">
+        <h1>Press <span class="start">start</span> to get to know me.</h1>
+        <p class="lede">Hi, I'm Alina, a student at Columbia based in New York.</p>
+        <nav class="menu" aria-label="Start">
+          <a href="#projects" data-go="projects"><svg viewBox="0 0 5 9" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><path fill="currentColor" d="M0 0h1v1h-1zM0 1h2v1h-2zM0 2h3v1h-3zM0 3h4v1h-4zM0 4h5v1h-5zM0 5h4v1h-4zM0 6h3v1h-3zM0 7h2v1h-2zM0 8h1v1h-1z"/></svg>Start</a>
+          <a href="../resume.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 5 9" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><path fill="currentColor" d="M0 0h1v1h-1zM0 1h2v1h-2zM0 2h3v1h-3zM0 3h4v1h-4zM0 4h5v1h-5zM0 5h4v1h-4zM0 6h3v1h-3zM0 7h2v1h-2zM0 8h1v1h-1z"/></svg>Read resume</a>
+          <a href="mailto:alinadu0703@gmail.com"><svg viewBox="0 0 5 9" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><path fill="currentColor" d="M0 0h1v1h-1zM0 1h2v1h-2zM0 2h3v1h-3zM0 3h4v1h-4zM0 4h5v1h-5zM0 5h4v1h-4zM0 6h3v1h-3zM0 7h2v1h-2zM0 8h1v1h-1z"/></svg>Say hi</a>
+        </nav>
+        <p class="keys" aria-hidden="true">↑ ↓ to move · enter to select</p>
+      </section>
+
+      <section class="view" id="projects" data-view="projects" aria-labelledby="projects-h">
+        <a class="back" href="#" data-go="">◀ Back</a>
+        <h2 id="projects-h">Projects</h2>
+        <ul class="cards">
+          <li><h3><a href="https://lionplan.ai">Lionplan.ai</a></h3><p class="meta">Next.js · TypeScript · Python · Postgres · Claude API</p><p>An AI course planner used by 1,000+ students, with a 4-year planner, conflict detection, and an agent that adds, drops and swaps courses against prereq rules. Built on 30K+ parsed reviews and 4.6K+ courses.</p></li>
+          <li><h3><a href="https://github.com/backlight314/pacmanhattan">Pac-Manhattan</a></h3><p class="meta">JavaScript · Three.js · Python · Gemini API · ElevenLabs</p><p>Pac-Man on a 3D model of NYC where you play the ghost. 171K buildings in Three.js and A* pathfinding over the real street graph.</p></li>
+          <li><h3><a href="https://github.com/backlight314/home-again">Home Again</a></h3><p class="meta">JavaScript · Node.js · Three.js · Gemini API · Postgres · Snowflake</p><p>A game that brings families together around a loved one living with dementia. Photos, voice messages and songs become a gentle walk through their own life story, in a three.js dollhouse.</p></li>
+          <li><h3><a href="https://github.com/backlight314/gptinder">Hack the Heart</a></h3><p class="meta">Python · FastAPI · Next.js · MongoDB</p><p>Two AI agents learn how two people text, then go on a simulated date to guess whether the real people would get along.</p></li>
+          <li><h3><a href="https://github.com/backlight314/think-before-you-trust">Think before you trust</a></h3><p class="meta">Python · PyTorch · LLM evaluation</p><p>Research code for choosing which steps of an LLM's reasoning to verify under a fixed budget.</p></li>
+        </ul>
+      </section>
+
+      <section class="view" id="experience" data-view="experience" aria-labelledby="experience-h">
+        <a class="back" href="#" data-go="">◀ Back</a>
+        <h2 id="experience-h">Experience</h2>
+        <ol class="exp">
+          <li><span class="when">2026.10 – now</span><div><p class="role">Software Engineer Intern <span>· Model OS</span></p><p>AI OS platform that fine-tunes private, self-hosted models for enterprises</p></div></li>
+          <li><span class="when">2026.10 – now</span><div><p class="role">Data &amp; ML Researcher <span>· Columbia Plasma Physics Lab</span></p><p>Prediction challenge on ~15K DIII-D tokamak shots</p></div></li>
+          <li><span class="when">2026.09 – now</span><div><p class="role">Research Assistant, Data Engineering <span>· Columbia Experimental Laboratory for the Social Sciences</span></p><p>Study UI and GPT-5 mini chat for econ-LLM experiments with 150 conditions</p></div></li>
+          <li><span class="when">2026.05 – 2026.09</span><div><p class="role">AI Research Intern <span>· Columbia University</span></p><p>Risk-targeted verification raised reliability from 91.8% to 96.5%</p></div></li>
+          <li><span class="when">2026.03 – 2026.06</span><div><p class="role">Software Engineer Intern <span>· Intelligence Cubed</span></p><p>One API to deploy AI models to AWS, GCP, and Cloudflare</p></div></li>
+          <li><span class="when">2025.08 – 2026.03</span><div><p class="role">Software Engineer Intern <span>· MeloMed</span></p><p>Infra costs down 23%; PostgreSQL queries ~800 → ~150 ms</p></div></li>
+        </ol>
+      </section>
+
+      <section class="view" id="awards" data-view="awards" aria-labelledby="awards-h">
+        <a class="back" href="#" data-go="">◀ Back</a>
+        <h2 id="awards-h">Awards</h2>
+        <ul class="awards">
+          <li><svg viewBox="0 0 9 7" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 0h1v1h-1zM3 1h3v1h-3zM0 2h9v1h-9zM1 3h7v1h-7zM2 4h5v1h-5zM1 5h3v1h-3zM5 5h3v1h-3zM0 6h2v1h-2zM7 6h2v1h-2z"/></svg><span>Jane Street WiSE <small>top 60</small></span></li>
+          <li><svg viewBox="0 0 9 7" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 0h1v1h-1zM3 1h3v1h-3zM0 2h9v1h-9zM1 3h7v1h-7zM2 4h5v1h-5zM1 5h3v1h-3zM5 5h3v1h-3zM0 6h2v1h-2zM7 6h2v1h-2z"/></svg><span>MIT Math Prize for Girls</span></li>
+          <li><svg viewBox="0 0 9 7" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 0h1v1h-1zM3 1h3v1h-3zM0 2h9v1h-9zM1 3h7v1h-7zM2 4h5v1h-5zM1 5h3v1h-3zM5 5h3v1h-3zM0 6h2v1h-2zM7 6h2v1h-2z"/></svg><span>2x AIME Qualifier</span></li>
+          <li><svg viewBox="0 0 9 7" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 0h1v1h-1zM3 1h3v1h-3zM0 2h9v1h-9zM1 3h7v1h-7zM2 4h5v1h-5zM1 5h3v1h-3zM5 5h3v1h-3zM0 6h2v1h-2zM7 6h2v1h-2z"/></svg><span>8x Waterloo math contest <small>top 1%</small></span></li>
+          <li><svg viewBox="0 0 9 7" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 0h1v1h-1zM3 1h3v1h-3zM0 2h9v1h-9zM1 3h7v1h-7zM2 4h5v1h-5zM1 5h3v1h-3zM5 5h3v1h-3zM0 6h2v1h-2zM7 6h2v1h-2z"/></svg><span>Waterloo National Math Scholarship <small>15 recipients</small></span></li>
+        </ul>
+      </section>
+    </main>
+
+    <nav class="rail" aria-label="Section indicator">
+      <a href="#" data-go="" aria-label="Home"></a>
+      <a href="#projects" data-go="projects" aria-label="Projects"></a>
+      <a href="#experience" data-go="experience" aria-label="Experience"></a>
+      <a href="#awards" data-go="awards" aria-label="Awards"></a>
+    </nav>
+  </div>
+
+  <nav class="dock" aria-label="Links">
+    <a href="https://www.linkedin.com/in/alina-du31415" aria-label="LinkedIn"><svg viewBox="0 0 14 14" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><path fill="currentColor" d="M1 0h12v1h-12zM0 1h14v1h-14zM0 2h2v1h-2zM4 2h10v1h-10zM0 3h2v1h-2zM4 3h10v1h-10zM0 4h14v1h-14zM0 5h2v1h-2zM4 5h2v1h-2zM11 5h3v1h-3zM0 6h2v1h-2zM4 6h2v1h-2zM12 6h2v1h-2zM0 7h2v1h-2zM4 7h2v1h-2zM8 7h2v1h-2zM12 7h2v1h-2zM0 8h2v1h-2zM4 8h2v1h-2zM8 8h2v1h-2zM12 8h2v1h-2zM0 9h2v1h-2zM4 9h2v1h-2zM8 9h2v1h-2zM12 9h2v1h-2zM0 10h2v1h-2zM4 10h2v1h-2zM8 10h2v1h-2zM12 10h2v1h-2zM0 11h2v1h-2zM4 11h2v1h-2zM8 11h2v1h-2zM12 11h2v1h-2zM0 12h14v1h-14zM1 13h12v1h-12z"/></svg><span>LinkedIn</span></a>
+    <a href="https://github.com/backlight314" aria-label="GitHub"><svg viewBox="0 0 14 14" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><path fill="currentColor" d="M2 0h1v1h-1zM11 0h1v1h-1zM2 1h2v1h-2zM10 1h2v1h-2zM2 2h10v1h-10zM1 3h12v1h-12zM1 4h12v1h-12zM0 5h14v1h-14zM0 6h4v1h-4zM5 6h4v1h-4zM10 6h4v1h-4zM0 7h4v1h-4zM5 7h4v1h-4zM10 7h4v1h-4zM1 8h12v1h-12zM2 9h10v1h-10zM3 10h8v1h-8zM0 11h1v1h-1zM4 11h2v1h-2zM8 11h2v1h-2zM1 12h1v1h-1zM4 12h2v1h-2zM8 12h2v1h-2zM2 13h2v1h-2z"/></svg><span>GitHub</span></a>
+    <a href="../gallery/" aria-label="Gallery"><svg viewBox="0 0 14 14" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><path fill="currentColor" d="M0 0h14v1h-14zM0 1h1v1h-1zM13 1h1v1h-1zM0 2h1v1h-1zM10 2h2v1h-2zM13 2h1v1h-1zM0 3h1v1h-1zM10 3h2v1h-2zM13 3h1v1h-1zM0 4h1v1h-1zM13 4h1v1h-1zM0 5h1v1h-1zM5 5h1v1h-1zM13 5h1v1h-1zM0 6h1v1h-1zM4 6h3v1h-3zM13 6h1v1h-1zM0 7h1v1h-1zM3 7h5v1h-5zM10 7h1v1h-1zM13 7h1v1h-1zM0 8h1v1h-1zM2 8h10v1h-10zM13 8h1v1h-1zM0 9h14v1h-14zM0 10h1v1h-1zM13 10h1v1h-1zM0 11h1v1h-1zM2 11h10v1h-10zM13 11h1v1h-1zM0 12h1v1h-1zM13 12h1v1h-1zM0 13h14v1h-14z"/></svg><span>Gallery</span></a>
+    <a href="mailto:alinadu0703@gmail.com" aria-label="Email"><svg viewBox="0 0 14 10" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><path fill="currentColor" d="M0 0h14v1h-14zM0 1h2v1h-2zM12 1h2v1h-2zM0 2h1v1h-1zM2 2h1v1h-1zM11 2h1v1h-1zM13 2h1v1h-1zM0 3h1v1h-1zM3 3h1v1h-1zM10 3h1v1h-1zM13 3h1v1h-1zM0 4h1v1h-1zM4 4h1v1h-1zM9 4h1v1h-1zM13 4h1v1h-1zM0 5h1v1h-1zM5 5h1v1h-1zM8 5h1v1h-1zM13 5h1v1h-1zM0 6h1v1h-1zM6 6h2v1h-2zM13 6h1v1h-1zM0 7h1v1h-1zM13 7h1v1h-1zM0 8h1v1h-1zM13 8h1v1h-1zM0 9h14v1h-14z"/></svg><span>Email</span></a>
+    <a href="../resume.pdf" target="_blank" rel="noopener" aria-label="Resume"><svg viewBox="0 0 14 14" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><path fill="currentColor" d="M2 0h7v1h-7zM2 1h1v1h-1zM8 1h2v1h-2zM2 2h1v1h-1zM8 2h1v1h-1zM10 2h1v1h-1zM2 3h1v1h-1zM8 3h4v1h-4zM2 4h1v1h-1zM11 4h1v1h-1zM2 5h1v1h-1zM4 5h5v1h-5zM11 5h1v1h-1zM2 6h1v1h-1zM11 6h1v1h-1zM2 7h1v1h-1zM4 7h6v1h-6zM11 7h1v1h-1zM2 8h1v1h-1zM11 8h1v1h-1zM2 9h1v1h-1zM4 9h6v1h-6zM11 9h1v1h-1zM2 10h1v1h-1zM11 10h1v1h-1zM2 11h1v1h-1zM4 11h4v1h-4zM11 11h1v1h-1zM2 12h1v1h-1zM11 12h1v1h-1zM2 13h10v1h-10z"/></svg><span>Resume</span></a>
+  </nav>
+</div>
+<script src="../pixel.js?v=2"></script>
+</body>
+</html>
