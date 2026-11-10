@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Alina Du</title>
+<meta name="description" content="Alina Du, Computer Science student at Columbia, minoring in Financial Engineering and Math. ML research, data and software engineering.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230F1218'/><path d='M8 10l6 6-6 6' stroke='%23A5D6FF' stroke-width='3' fill='none'/><rect x='16' y='20' width='9' height='3' fill='%23A5D6FF'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../terminal.css?v=5">
+</head>
+<body>
+
+<main class="term">
+  <div class="bar" aria-hidden="true">
+    <span class="dots"><i></i><i></i><i></i></span>
+    <span class="title">alina@columbia: ~</span>
+  </div>
+
+  <div class="screen">
+    <section aria-labelledby="name" data-home>
+      <p class="cmd"><span class="ps">alina@columbia</span>:~$ whoami</p>
+      <h1 id="name">Alina Du</h1>
+      <p class="out">CS, Financial Engineering and Math student at Columbia University.</p>
+    </section>
+
+    <section aria-label="Links" data-home>
+      <p class="cmd"><span class="ps">alina@columbia</span>:~$ ls links/</p>
+      <nav class="links">
+        <a href="../resume.pdf" target="_blank" rel="noopener">resume.pdf</a>
+        <a href="https://github.com/backlight314">github</a>
+        <a href="https://www.linkedin.com/in/alina-du31415">linkedin</a>
+        <a href="mailto:alinadu0703@gmail.com">email</a>
+      </nav>
+    </section>
+
+    <section aria-label="Sections">
+      <p class="cmd"><span class="ps">alina@columbia</span>:~$ ls <span class="comment"># click one, or type cd &lt;name&gt;</span></p>
+      <nav class="menu" aria-label="Sections">
+        <a href="#" data-go="" hidden>~</a>
+        <a href="#experience" data-go="experience">experience.log</a>
+        <a href="#projects" data-go="projects">projects/</a>
+        <a href="#awards" data-go="awards">awards.txt</a>
+      </nav>
+    </section>
+
+    <section id="experience" data-view="experience" aria-labelledby="exp-h" data-file="experience.log">
+      <p class="cmd" id="exp-h"><span class="ps">alina@columbia</span>:~$ cat experience.log</p>
+      <ol class="exp">
+        <li><span class="when">2026.10 – now</span><div><p class="role">Software Engineer Intern <span class="sep">&middot;</span> Model OS</p><p class="note">AI OS platform that fine-tunes private, self-hosted models for enterprises</p></div></li>
+        <li><span class="when">2026.10 – now</span><div><p class="role">Data &amp; ML Researcher <span class="sep">&middot;</span> Columbia Plasma Physics Lab</p><p class="note">Prediction challenge on ~15K DIII-D tokamak shots</p></div></li>
+        <li><span class="when">2026.09 – now</span><div><p class="role">Research Assistant, Data Engineering <span class="sep">&middot;</span> Columbia Experimental Laboratory for the Social Sciences</p><p class="note">Study UI and GPT-5 mini chat for econ-LLM experiments with 150 conditions</p></div></li>
+        <li><span class="when">2026.05 – 2026.09</span><div><p class="role">AI Research Intern <span class="sep">&middot;</span> Columbia University</p><p class="note">Risk-targeted verification raised reliability from 91.8% to 96.5%</p></div></li>
+        <li><span class="when">2026.03 – 2026.06</span><div><p class="role">Software Engineer Intern <span class="sep">&middot;</span> Intelligence Cubed</p><p class="note">One API to deploy AI models to AWS, GCP, and Cloudflare</p></div></li>
+        <li><span class="when">2025.08 – 2026.03</span><div><p class="role">Software Engineer Intern <span class="sep">&middot;</span> MeloMed</p><p class="note">Infra costs down 23%; PostgreSQL queries ~800 → ~150 ms</p></div></li>
+      </ol>
+    </section>
+
+    <section id="projects" data-view="projects" aria-labelledby="projects-h">
+      <p class="cmd" id="projects-h"><span class="ps">alina@columbia</span>:~$ ls projects/ <span class="comment"># click one</span></p>
+      <div class="files" role="tablist" aria-label="Projects">
+        <button role="tab" id="t-lion" aria-controls="p-lion" aria-selected="true">lionplan.md</button>
+        <button role="tab" id="t-pac" aria-controls="p-pac" aria-selected="false" tabindex="-1">pac-manhattan.md</button>
+        <button role="tab" id="t-home" aria-controls="p-home" aria-selected="false" tabindex="-1">home-again.md</button>
+        <button role="tab" id="t-heart" aria-controls="p-heart" aria-selected="false" tabindex="-1">hack-the-heart.md</button>
+        <button role="tab" id="t-trust" aria-controls="p-trust" aria-selected="false" tabindex="-1">think-before-you-trust.md</button>
+      </div>
+
+      <article class="cat" role="tabpanel" id="p-lion" aria-labelledby="t-lion">
+        <p class="cmd"><span class="ps">alina@columbia</span>:~$ cat projects/lionplan.md</p>
+        <div class="md">
+          <h2># <a href="https://lionplan.ai">Lionplan.ai</a></h2>
+          <p class="meta">Next.js &middot; TypeScript &middot; Python &middot; Postgres &middot; Claude API</p>
+          <p>An AI course planner used by 1,000+ students, with a 4-year planner, conflict detection, and an agent that adds, drops and swaps courses against prereq rules. Built on 30K+ parsed reviews and 4.6K+ courses.</p>
+        </div>
+      </article>
+
+      <article class="cat" role="tabpanel" id="p-pac" aria-labelledby="t-pac">
+        <p class="cmd"><span class="ps">alina@columbia</span>:~$ cat projects/pac-manhattan.md</p>
+        <div class="md">
+          <h2># <a href="https://github.com/backlight314/pacmanhattan">Pac-Manhattan</a></h2>
+          <p class="meta">JavaScript &middot; Three.js &middot; Python &middot; Gemini API &middot; ElevenLabs</p>
+          <p>Pac-Man on a 3D model of NYC where you play the ghost. 171K buildings in Three.js and A* pathfinding over the real street graph.</p>
+        </div>
+      </article>
+
+      <article class="cat" role="tabpanel" id="p-home" aria-labelledby="t-home">
+        <p class="cmd"><span class="ps">alina@columbia</span>:~$ cat projects/home-again.md</p>
+        <div class="md">
+          <h2># <a href="https://github.com/backlight314/home-again">Home Again</a></h2>
+          <p class="meta">JavaScript &middot; Node.js &middot; Three.js &middot; Gemini API &middot; Postgres &middot; Snowflake</p>
+          <p>A game that brings families together around a loved one living with dementia. Photos, voice messages and songs become a gentle walk through their own life story, in a three.js dollhouse.</p>
+        </div>
+      </article>
+
+      <article class="cat" role="tabpanel" id="p-heart" aria-labelledby="t-heart">
+        <p class="cmd"><span class="ps">alina@columbia</span>:~$ cat projects/hack-the-heart.md</p>
+        <div class="md">
+          <h2># <a href="https://github.com/backlight314/gptinder">Hack the Heart</a></h2>
+          <p class="meta">Python &middot; FastAPI &middot; Next.js &middot; MongoDB</p>
+          <p>Two AI agents learn how two people text, then go on a simulated date to guess whether the real people would get along.</p>
+        </div>
+      </article>
+
+      <article class="cat" role="tabpanel" id="p-trust" aria-labelledby="t-trust">
+        <p class="cmd"><span class="ps">alina@columbia</span>:~$ cat projects/think-before-you-trust.md</p>
+        <div class="md">
+          <h2># <a href="https://github.com/backlight314/think-before-you-trust">Think before you trust</a></h2>
+          <p class="meta">Python &middot; PyTorch &middot; LLM evaluation</p>
+          <p>Research code for choosing which steps of an LLM's reasoning to verify under a fixed budget.</p>
+        </div>
+      </article>
+    </section>
+
+    <section id="awards" data-view="awards" aria-labelledby="awards-h" data-file="awards.txt">
+      <p class="cmd" id="awards-h"><span class="ps">alina@columbia</span>:~$ cat awards.txt</p>
+      <ul class="awards">
+        <li>Jane Street WiSE (top 60)</li>
+        <li>MIT Math Prize for Girls</li>
+        <li>2x AIME Qualifier</li>
+        <li>8x Waterloo math contest, top 1%</li>
+        <li>Waterloo National Math Scholarship (15 recipients)</li>
+      </ul>
+    </section>
+
+    <div id="log" aria-live="polite"></div>
+    <form class="cmd last prompt" id="prompt" autocomplete="off">
+      <label for="cmd-in"><span class="ps">alina@columbia</span>:~$</label>
+      <span class="field">
+        <input id="cmd-in" type="text" spellcheck="false" autocapitalize="off" autocorrect="off" enterkeyhint="go" placeholder=" " aria-label="Terminal command" aria-describedby="cmd-hint">
+        <span class="comment hint" id="cmd-hint"># try: help, cd projects, cat lionplan.md</span>
+      </span>
+    </form>
+  </div>
+</main>
+
+<script>
+  // project picker: show one file at a time, arrow keys move between tabs
+  (function () {
+    const tabs = [...document.querySelectorAll('[role="tab"]')];
+    const select = (tab, focus) => {
+      for (const t of tabs) {
+        const on = t === tab;
+        t.setAttribute("aria-selected", on);
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+      }
+      if (focus) tab.focus();
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener("click", () => select(t));
+      t.addEventListener("keydown", e => {
+        const step = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+        if (!step) return;
+        e.preventDefault();
+        select(tabs[(i + step + tabs.length) % tabs.length], true);
+      });
+    });
+    select(tabs[0]);
+  })();
+</script>
+<script src="../terminal.js?v=5"></script>
+</body>
+</html>
