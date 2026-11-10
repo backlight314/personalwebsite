@@ -43,7 +43,7 @@ svg { display: block; width: 100%; height: 100%; }
 /* ---------- stage: avatar | content | rail ---------- */
 .stage { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr) 44px; min-height: 0; }
 
-.avatar { margin: 0; padding-left: 96px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; min-height: 0; }
+.avatar { margin: 0; padding: 0 0 64px 96px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 0; }
 .bubble {
   position: relative; align-self: center; margin: 0 0 22px 18%;
   font: 18px/1 var(--pixel); color: var(--accent); background: var(--paper);
@@ -56,12 +56,12 @@ svg { display: block; width: 100%; height: 100%; }
   box-shadow: 4px -4px 0 var(--ink);
 }
 .portrait {
-  position: relative; width: min(100%, 380px); aspect-ratio: 4 / 5; max-height: calc(100% - 80px);
+  position: relative; width: min(100%, 330px); aspect-ratio: 1 / 1; max-height: calc(100% - 80px);
   display: grid; place-items: center;
   background: repeating-linear-gradient(45deg, transparent 0 10px, rgba(42,33,24,.04) 10px 20px);
-  border: 3px dashed var(--line); border-bottom: 0;
+  border: 3px dashed var(--line);
 }
-.portrait img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index: 1; }
+.portrait img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; z-index: 1; } /* square crop: a little off the top, a bit more off the bottom */
 .portrait:has(img) { border: 0; background: none; }
 .ph { font: 13px/1.4 var(--pixel); color: var(--dim); text-align: center; }
 
@@ -131,7 +131,7 @@ h2 { font: 30px/1.1 var(--pixel); margin: 0 0 20px; color: var(--accent); }
   .sections { position: static; gap: 18px; }
   .stage { display: block; }
   .avatar { padding: 28px 16px 0; }
-  .portrait { width: min(70%, 260px); max-height: none; }
+  .portrait { width: min(64%, 240px); max-height: none; }
   .bubble { margin-bottom: 18px; font-size: 15px; }
   .content { overflow: visible; padding: 28px 20px 8px; }
   .view { margin: 0; }
