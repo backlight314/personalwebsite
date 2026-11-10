@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alina Du · Paper demo</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/aaaakshat/cm-web-fonts@latest/fonts.css">
+<style>
+  :root { --ink: #1a1a1a; --soft: #4a4a4a; --rule: #d8d4cc; --link: #8b1c1c; }
+  * { box-sizing: border-box; }
+  html { background: #f4f1ea; }
+  body {
+    margin: 0; padding: clamp(16px, 5vw, 56px) 14px;
+    font-family: "Computer Modern Serif", "Latin Modern Roman", Georgia, serif;
+    font-size: 18px; line-height: 1.55; color: var(--ink);
+  }
+  .page {
+    max-width: 760px; margin: 0 auto; background: #fffdf8;
+    padding: clamp(28px, 7vw, 72px) clamp(22px, 8vw, 84px);
+    box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 12px 40px rgba(0,0,0,.08);
+  }
+  .arxiv { font-size: 13px; color: var(--soft); letter-spacing: .02em; margin: 0 0 28px; font-variant: small-caps; }
+  h1 { font-size: clamp(26px, 4.4vw, 34px); font-weight: 700; text-align: center; margin: 0 0 18px; line-height: 1.25; }
+  .author { text-align: center; margin: 0; font-size: 19px; }
+  .affil { text-align: center; margin: 2px 0 0; font-style: italic; color: var(--soft); font-size: 16px; }
+  .contact { text-align: center; margin: 6px 0 34px; font-family: "Computer Modern Typewriter", ui-monospace, monospace; font-size: 14px; }
+  .contact a { margin: 0 .6em; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .abstract { margin: 0 clamp(0px, 5vw, 48px) 36px; font-size: 16px; }
+  .abstract h2 { text-align: center; font-size: 16px; margin: 0 0 6px; font-variant: small-caps; letter-spacing: .04em; }
+  .abstract p { margin: 0; text-align: justify; hyphens: auto; }
+  h2.sec { font-size: 21px; margin: 34px 0 12px; }
+  h2.sec span { margin-right: .7em; }
+  h3 { font-size: 18px; margin: 18px 0 2px; }
+  p { margin: 0 0 10px; }
+  .def { margin: 14px 0; }
+  .def b { font-weight: 700; }
+  .def .when { font-style: normal; color: var(--soft); float: right; font-size: 15px; margin-left: 1em; }
+  .def i { display: block; }
+  .thm { margin: 14px 0; padding-left: 0; }
+  .thm b { font-weight: 700; }
+  .thm em { font-style: italic; }
+  .proof { margin: 4px 0 14px; color: var(--soft); }
+  .proof::before { content: "Proof. "; font-style: italic; color: var(--ink); }
+  .proof::after { content: " ∎"; color: var(--ink); }
+  .tag { font-family: "Computer Modern Typewriter", ui-monospace, monospace; font-size: 14px; color: var(--soft); }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0 6px; font-size: 16px; }
+  caption { caption-side: top; text-align: left; font-size: 15px; margin-bottom: 6px; }
+  th, td { padding: 4px 8px; text-align: left; }
+  thead tr { border-top: 1.5px solid var(--ink); border-bottom: 1px solid var(--ink); }
+  tbody tr:last-child { border-bottom: 1.5px solid var(--ink); }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  ol.refs { padding-left: 2.4em; font-size: 16px; }
+  ol.refs li { margin-bottom: 4px; }
+  .foot { margin-top: 40px; text-align: center; color: var(--soft); font-size: 14px; }
+  @media (max-width: 560px) { body { font-size: 16px; } .def .when { float: none; display: block; } }
+</style>
+</head>
+<body>
+<article class="page">
+  <p class="arxiv">alina.du:2611.00314 [cs.LG] &nbsp;·&nbsp; v3 &nbsp;·&nbsp; November 2026</p>
+  <h1>On the Construction of a Computer Scientist:<br>Experience, Projects, and Bounds</h1>
+  <p class="author">Alina Du</p>
+  <p class="affil">Columbia University, Department of Computer Science</p>
+  <p class="contact"><a href="../resume.pdf">resume.pdf</a><a href="https://github.com/backlight314">github</a><a href="https://www.linkedin.com/in/alina-du31415">linkedin</a><a href="mailto:alinadu0703@gmail.com">email</a></p>
+
+  <section class="abstract">
+    <h2>Abstract</h2>
+    <p>We present a Computer Science student at Columbia University, minoring in Financial Engineering and Mathematics. The work spans ML research, data engineering and software engineering, including LLM verification under a fixed budget, prediction on tokamak shot data, and an AI course planner used by over 1,000 students. We describe six positions (§1), five projects (§2) and several results in competition mathematics (§3).</p>
+  </section>
+
+  <h2 class="sec"><span>1</span>Experience</h2>
+  <div class="def"><span class="when">2026.10 – present</span><b>Definition 1.1</b> (Software Engineer Intern, Model OS). <i>An AI OS platform that fine-tunes private, self-hosted models for enterprises.</i></div>
+  <div class="def"><span class="when">2026.10 – present</span><b>Definition 1.2</b> (Data &amp; ML Researcher, Columbia Plasma Physics Lab). <i>A prediction challenge on ~15K DIII-D tokamak shots.</i></div>
+  <div class="def"><span class="when">2026.09 – present</span><b>Definition 1.3</b> (Research Assistant, Data Engineering, Columbia Experimental Laboratory for the Social Sciences). <i>Study UI and GPT-5 mini chat for econ-LLM experiments with 150 conditions.</i></div>
+  <div class="def"><span class="when">2026.05 – 2026.09</span><b>Definition 1.4</b> (AI Research Intern, Columbia University). <i>See Theorem 1.5.</i></div>
+  <div class="thm"><b>Theorem 1.5.</b> <em>Risk-targeted verification of LLM reasoning steps raises reliability from 91.8% to 96.5% under a fixed verification budget.</em></div>
+  <p class="proof">See [5].</p>
+  <div class="def"><span class="when">2026.03 – 2026.06</span><b>Definition 1.6</b> (Software Engineer Intern, Intelligence Cubed). <i>One API to deploy AI models to AWS, GCP, and Cloudflare.</i></div>
+  <div class="def"><span class="when">2025.08 – 2026.03</span><b>Definition 1.7</b> (Software Engineer Intern, MeloMed). <i>See Table 1.</i></div>
+  <table>
+    <caption><b>Table 1.</b> Results at MeloMed.</caption>
+    <thead><tr><th>Metric</th><th class="num">Before</th><th class="num">After</th></tr></thead>
+    <tbody>
+      <tr><td>PostgreSQL query latency</td><td class="num">~800 ms</td><td class="num">~150 ms</td></tr>
+      <tr><td>Infrastructure cost</td><td class="num">1.00</td><td class="num">0.77</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="sec"><span>2</span>Projects</h2>
+  <h3>2.1 &nbsp;Lionplan.ai [1]</h3>
+  <p>An AI course planner used by 1,000+ students, with a 4-year planner, conflict detection, and an agent that adds, drops and swaps courses against prereq rules. Built on 30K+ parsed reviews and 4.6K+ courses. <span class="tag">Next.js · TypeScript · Python · Postgres · Claude API</span></p>
+  <h3>2.2 &nbsp;Pac-Manhattan [2]</h3>
+  <p>Pac-Man on a 3D model of NYC where you play the ghost. 171K buildings in Three.js and A* pathfinding over the real street graph. <span class="tag">JavaScript · Three.js · Python · Gemini API · ElevenLabs</span></p>
+  <h3>2.3 &nbsp;Home Again [3]</h3>
+  <p>A game that brings families together around a loved one living with dementia. Photos, voice messages and songs become a gentle walk through their own life story, in a three.js dollhouse. <span class="tag">JavaScript · Node.js · Three.js · Gemini API · Postgres · Snowflake</span></p>
+  <h3>2.4 &nbsp;Hack the Heart [4]</h3>
+  <p>Two AI agents learn how two people text, then go on a simulated date to guess whether the real people would get along. <span class="tag">Python · FastAPI · Next.js · MongoDB</span></p>
+  <h3>2.5 &nbsp;Think Before You Trust [5]</h3>
+  <p>Research code for choosing which steps of an LLM's reasoning to verify under a fixed budget. <span class="tag">Python · PyTorch · LLM evaluation</span></p>
+
+  <h2 class="sec"><span>3</span>Main Results</h2>
+  <div class="thm"><b>Theorem 3.1</b> (Jane Street). <em>The author was selected for Jane Street WiSE, among the top 60 applicants.</em></div>
+  <div class="thm"><b>Theorem 3.2.</b> <em>The author competed in the MIT Math Prize for Girls and qualified for the AIME twice.</em></div>
+  <div class="thm"><b>Theorem 3.3</b> (Waterloo). <em>The author placed in the top 1% of eight Waterloo math contests and received the Waterloo National Math Scholarship, awarded to 15 students.</em></div>
+  <p class="proof">Left as an exercise to the recruiter.</p>
+
+  <h2 class="sec">References</h2>
+  <ol class="refs">
+    <li>A. Du. <i>Lionplan.ai.</i> <a href="https://lionplan.ai">lionplan.ai</a></li>
+    <li>A. Du et al. <i>Pac-Manhattan.</i> <a href="https://github.com/backlight314/pacmanhattan">github.com/backlight314/pacmanhattan</a></li>
+    <li>A. Du et al. <i>Home Again.</i> <a href="https://github.com/backlight314/home-again">github.com/backlight314/home-again</a></li>
+    <li>A. Du et al. <i>Hack the Heart.</i> <a href="https://github.com/backlight314/gptinder">github.com/backlight314/gptinder</a></li>
+    <li>A. Du. <i>Think before you trust: budgeted verification of LLM reasoning.</i> <a href="https://github.com/backlight314/think-before-you-trust">github.com/backlight314/think-before-you-trust</a></li>
+  </ol>
+  <p class="foot">— 1 —</p>
+</article>
+</body>
+</html>

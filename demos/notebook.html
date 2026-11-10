@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alina Du · Notebook demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafafa; --cell: #fff; --line: #e3e3e3; --ink: #1f2328; --dim: #6e7781;
+    --in: #303f9f; --out: #d84315; --code-bg: #f6f8fa; --accent: #f57c00;
+    --sans: "Inter", system-ui, sans-serif; --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.6 var(--sans); }
+  a { color: #0969da; }
+
+  .menubar { display: flex; align-items: center; gap: 16px; padding: 10px 20px; background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 2; flex-wrap: wrap; }
+  .logo { display: flex; align-items: center; gap: 8px; font-weight: 600; }
+  .logo i { width: 22px; height: 22px; border-radius: 50%; background: conic-gradient(var(--accent) 0 25%, transparent 0 50%, var(--accent) 0 75%, transparent 0); border: 2px solid var(--accent); }
+  .menubar .file { font-family: var(--mono); font-size: 14px; color: var(--dim); }
+  .menubar .kernel { margin-left: auto; font-size: 13px; color: var(--dim); display: flex; align-items: center; gap: 6px; }
+  .kernel i { width: 9px; height: 9px; border-radius: 50%; background: #2da44e; }
+  .kernel.busy i { background: var(--accent); }
+  .run-all { font: inherit; font-size: 13px; padding: 5px 12px; border: 1px solid var(--line); background: #fff; border-radius: 6px; cursor: pointer; }
+  .run-all:hover { background: #f3f4f6; }
+
+  main { max-width: 980px; margin: 0 auto; padding: 28px 16px 80px; }
+  .cell { display: grid; grid-template-columns: 76px 1fr; margin-bottom: 14px; }
+  .prompt { font-family: var(--mono); font-size: 13px; text-align: right; padding: 9px 10px 0 0; white-space: nowrap; }
+  .prompt.in { color: var(--in); }
+  .prompt.out { color: var(--out); }
+  .src { position: relative; background: var(--code-bg); border: 1px solid var(--line); border-radius: 4px; padding: 8px 40px 8px 12px; font: 14px/1.55 var(--mono); white-space: pre-wrap; overflow-x: auto; }
+  .src .run { position: absolute; right: 6px; top: 5px; width: 26px; height: 26px; border: 0; border-radius: 4px; background: transparent; cursor: pointer; color: var(--dim); font-size: 13px; }
+  .src .run:hover { background: #e8eaed; color: var(--ink); }
+  .cell.active .src { border-color: #64b5f6; box-shadow: inset 3px 0 #42a5f5; }
+  .output { padding: 8px 12px; min-width: 0; }
+  .output[hidden] { display: block; visibility: hidden; height: 0; padding: 0; overflow: hidden; }
+  .k { color: #cf222e; } .f { color: #8250df; } .s { color: #0a3069; } .c { color: #6e7781; font-style: italic; } .n { color: #0550ae; }
+
+  .md-cell { grid-column: 2; padding: 4px 12px 6px; }
+  .md-cell h1 { font-size: 34px; margin: 6px 0 4px; letter-spacing: -.01em; }
+  .md-cell h2 { font-size: 22px; margin: 22px 0 0; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+  .md-cell p { margin: 4px 0; color: #444c56; }
+  .links a { margin-right: 16px; }
+
+  table.df { border-collapse: collapse; font-size: 13.5px; width: 100%; }
+  .df th, .df td { padding: 6px 10px; text-align: left; vertical-align: top; }
+  .df thead th { border-bottom: 1px solid #c9ccd1; font-weight: 600; }
+  .df tbody tr:nth-child(odd) { background: #f5f5f5; }
+  .df tbody th { font-weight: 600; color: var(--dim); font-family: var(--mono); font-size: 12.5px; }
+  .df td.when { white-space: nowrap; font-family: var(--mono); font-size: 12.5px; }
+  .df-shape { font-size: 12.5px; color: var(--dim); margin-top: 6px; font-family: var(--mono); }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+  .card { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; background: #fff; }
+  .card h3 { margin: 0 0 2px; font-size: 16px; }
+  .card h3 a { text-decoration: none; }
+  .card h3 a:hover { text-decoration: underline; }
+  .card .stack { font: 12px/1.5 var(--mono); color: var(--dim); margin: 0 0 6px; }
+  .card p { margin: 0; font-size: 14px; color: #444c56; }
+
+  figure { margin: 0; }
+  figcaption { font-size: 13px; color: var(--dim); margin-top: 4px; }
+  pre.stdout { margin: 0; font: 14px/1.6 var(--mono); white-space: pre-wrap; }
+
+  @media (max-width: 640px) {
+    .cell { grid-template-columns: 1fr; }
+    .prompt { text-align: left; padding: 0 0 2px; }
+    .md-cell { grid-column: 1; padding: 4px 0; }
+    .output { padding: 8px 0; }
+    .df .hide-sm { display: none; }
+  }
+</style>
+</head>
+<body>
+<header class="menubar">
+  <span class="logo"><i></i>notebook</span>
+  <span class="file">alina_du.ipynb</span>
+  <button class="run-all" id="run-all">▶▶ Restart &amp; Run All</button>
+  <span class="kernel" id="kernel"><i></i><span>Python 3 (ipykernel) · Idle</span></span>
+</header>
+
+<main id="nb">
+  <div class="cell"><div class="md-cell">
+    <h1>Alina Du</h1>
+    <p>Computer Science at Columbia University, minoring in Financial Engineering and Math. ML research, data and software engineering.</p>
+    <p class="links"><a href="../resume.pdf">resume.pdf</a><a href="https://github.com/backlight314">github</a><a href="https://www.linkedin.com/in/alina-du31415">linkedin</a><a href="mailto:alinadu0703@gmail.com">email</a></p>
+  </div></div>
+
+  <div class="cell code">
+    <div class="prompt in">In [<span class="n-exec">1</span>]:</div>
+    <div class="src"><button class="run" aria-label="Run cell">▶</button><span class="k">import</span> pandas <span class="k">as</span> pd
+<span class="k">from</span> alina <span class="k">import</span> experience, projects, awards</div>
+  </div>
+
+  <div class="cell"><div class="md-cell"><h2>Experience</h2></div></div>
+  <div class="cell code">
+    <div class="prompt in">In [<span class="n-exec">2</span>]:</div>
+    <div class="src"><button class="run" aria-label="Run cell">▶</button>df = pd.DataFrame(experience).sort_values(<span class="s">"start"</span>, ascending=<span class="k">False</span>)
+df</div>
+  </div>
+  <div class="cell">
+    <div class="prompt out">Out[<span class="n-exec">2</span>]:</div>
+    <div class="output">
+      <table class="df">
+        <thead><tr><th></th><th>when</th><th>role</th><th>org</th><th class="hide-sm">note</th></tr></thead>
+        <tbody>
+          <tr><th>0</th><td class="when">2026.10 – now</td><td>Software Engineer Intern</td><td>Model OS</td><td class="hide-sm">AI OS platform that fine-tunes private, self-hosted models for enterprises</td></tr>
+          <tr><th>1</th><td class="when">2026.10 – now</td><td>Data &amp; ML Researcher</td><td>Columbia Plasma Physics Lab</td><td class="hide-sm">Prediction challenge on ~15K DIII-D tokamak shots</td></tr>
+          <tr><th>2</th><td class="when">2026.09 – now</td><td>Research Assistant, Data Engineering</td><td>Columbia Experimental Laboratory for the Social Sciences</td><td class="hide-sm">Study UI and GPT-5 mini chat for econ-LLM experiments with 150 conditions</td></tr>
+          <tr><th>3</th><td class="when">2026.05 – 2026.09</td><td>AI Research Intern</td><td>Columbia University</td><td class="hide-sm">Risk-targeted verification raised reliability from 91.8% to 96.5%</td></tr>
+          <tr><th>4</th><td class="when">2026.03 – 2026.06</td><td>Software Engineer Intern</td><td>Intelligence Cubed</td><td class="hide-sm">One API to deploy AI models to AWS, GCP, and Cloudflare</td></tr>
+          <tr><th>5</th><td class="when">2025.08 – 2026.03</td><td>Software Engineer Intern</td><td>MeloMed</td><td class="hide-sm">Infra costs down 23%; PostgreSQL queries ~800 → ~150 ms</td></tr>
+        </tbody>
+      </table>
+      <div class="df-shape">6 rows × 4 columns</div>
+    </div>
+  </div>
+
+  <div class="cell code">
+    <div class="prompt in">In [<span class="n-exec">3</span>]:</div>
+    <div class="src"><button class="run" aria-label="Run cell">▶</button><span class="c"># AI Research Intern: risk-targeted verification of LLM reasoning</span>
+plot_reliability(baseline=<span class="n">0.918</span>, ours=<span class="n">0.965</span>)</div>
+  </div>
+  <div class="cell">
+    <div class="prompt out">Out[<span class="n-exec">3</span>]:</div>
+    <div class="output">
+      <figure>
+        <svg viewBox="0 0 440 210" width="100%" style="max-width:440px" role="img" aria-label="Bar chart: reliability 91.8% baseline, 96.5% with risk-targeted verification">
+          <g font-family="Inter, sans-serif" font-size="12" fill="#57606a">
+            <line x1="60" y1="20" x2="60" y2="170" stroke="#c9ccd1"/>
+            <line x1="60" y1="170" x2="420" y2="170" stroke="#c9ccd1"/>
+            <text x="52" y="174" text-anchor="end">90%</text>
+            <text x="52" y="99" text-anchor="end">95%</text>
+            <text x="52" y="24" text-anchor="end">100%</text>
+            <line x1="60" y1="95" x2="420" y2="95" stroke="#eaecef" stroke-dasharray="3 3"/>
+            <rect x="110" y="143" width="90" height="27" fill="#9aa5b1"/>
+            <rect x="270" y="72.5" width="90" height="97.5" fill="#f57c00"/>
+            <text x="155" y="136" text-anchor="middle" fill="#1f2328" font-weight="600">91.8%</text>
+            <text x="315" y="65" text-anchor="middle" fill="#1f2328" font-weight="600">96.5%</text>
+            <text x="155" y="190" text-anchor="middle">baseline</text>
+            <text x="315" y="190" text-anchor="middle">risk-targeted</text>
+          </g>
+        </svg>
+        <figcaption>Figure 1. Reliability under a fixed verification budget (axis starts at 90%).</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="cell"><div class="md-cell"><h2>Projects</h2></div></div>
+  <div class="cell code">
+    <div class="prompt in">In [<span class="n-exec">4</span>]:</div>
+    <div class="src"><button class="run" aria-label="Run cell">▶</button><span class="k">for</span> p <span class="k">in</span> projects: display(p)</div>
+  </div>
+  <div class="cell">
+    <div class="prompt out"></div>
+    <div class="output">
+      <div class="cards">
+        <div class="card"><h3><a href="https://lionplan.ai">Lionplan.ai</a></h3><p class="stack">Next.js · TypeScript · Python · Postgres · Claude API</p><p>An AI course planner used by 1,000+ students, with a 4-year planner, conflict detection, and an agent that adds, drops and swaps courses against prereq rules. Built on 30K+ parsed reviews and 4.6K+ courses.</p></div>
+        <div class="card"><h3><a href="https://github.com/backlight314/pacmanhattan">Pac-Manhattan</a></h3><p class="stack">JavaScript · Three.js · Python · Gemini API · ElevenLabs</p><p>Pac-Man on a 3D model of NYC where you play the ghost. 171K buildings in Three.js and A* pathfinding over the real street graph.</p></div>
+        <div class="card"><h3><a href="https://github.com/backlight314/home-again">Home Again</a></h3><p class="stack">JavaScript · Node.js · Three.js · Gemini API · Postgres · Snowflake</p><p>A game that brings families together around a loved one living with dementia. Photos, voice messages and songs become a gentle walk through their own life story, in a three.js dollhouse.</p></div>
+        <div class="card"><h3><a href="https://github.com/backlight314/gptinder">Hack the Heart</a></h3><p class="stack">Python · FastAPI · Next.js · MongoDB</p><p>Two AI agents learn how two people text, then go on a simulated date to guess whether the real people would get along.</p></div>
+        <div class="card"><h3><a href="https://github.com/backlight314/think-before-you-trust">Think before you trust</a></h3><p class="stack">Python · PyTorch · LLM evaluation</p><p>Research code for choosing which steps of an LLM's reasoning to verify under a fixed budget.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cell"><div class="md-cell"><h2>Awards</h2></div></div>
+  <div class="cell code">
+    <div class="prompt in">In [<span class="n-exec">5</span>]:</div>
+    <div class="src"><button class="run" aria-label="Run cell">▶</button><span class="k">print</span>(*awards, sep=<span class="s">"\n"</span>)</div>
+  </div>
+  <div class="cell">
+    <div class="prompt out"></div>
+    <div class="output"><pre class="stdout">Jane Street WiSE (top 60)
+MIT Math Prize for Girls
+2x AIME Qualifier
+8x Waterloo math contest, top 1%
+Waterloo National Math Scholarship (15 recipients)</pre></div>
+  </div>
+
+  <div class="cell code">
+    <div class="prompt in">In [<span class="n-exec"> </span>]:</div>
+    <div class="src"><button class="run" aria-label="Run cell">▶</button><span class="c"># your turn: say hi →</span> <a href="mailto:alinadu0703@gmail.com">alinadu0703@gmail.com</a></div>
+  </div>
+</main>
+
+<script>
+  // "Run" a cell: fade its output, show [*], then count up like a real kernel
+  const kernel = document.getElementById("kernel");
+  let count = 5;
+  const outputOf = cell => {
+    const next = cell.nextElementSibling;
+    return next && !next.classList.contains("code") && next.querySelector(".output");
+  };
+  const run = (cell, n) => new Promise(done => {
+    const out = outputOf(cell);
+    const labels = [cell.querySelector(".n-exec"), out && out.parentElement.querySelector(".n-exec")].filter(Boolean);
+    document.querySelectorAll(".cell.active").forEach(c => c.classList.remove("active"));
+    cell.classList.add("active");
+    labels[0].textContent = "*";
+    if (out) out.hidden = true;
+    kernel.classList.add("busy"); kernel.lastElementChild.textContent = "Python 3 (ipykernel) · Busy";
+    setTimeout(() => {
+      for (const l of labels) l.textContent = n;
+      if (out) out.hidden = false;
+      kernel.classList.remove("busy"); kernel.lastElementChild.textContent = "Python 3 (ipykernel) · Idle";
+      done();
+    }, 260 + Math.random() * 240);
+  });
+  document.querySelectorAll(".cell.code .run").forEach(b =>
+    b.addEventListener("click", () => run(b.closest(".cell"), ++count)));
+  document.getElementById("run-all").addEventListener("click", async () => {
+    count = 0;
+    const cells = [...document.querySelectorAll(".cell.code")].slice(0, -1);
+    for (const c of cells) { const o = outputOf(c); if (o) o.hidden = true; c.querySelector(".n-exec").textContent = " "; }
+    for (const c of cells) await run(c, ++count);
+  });
+</script>
+</body>
+</html>

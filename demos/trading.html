@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alina Du · Trading terminal demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #050608; --panel: #0b0d11; --line: #1d222b; --amber: #ffb000; --amber-dim: #a87400;
+    --ink: #d9dee6; --dim: #6b7380; --up: #3ddc84; --down: #ff5f56; --blue: #5ab0ff;
+    --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.5 var(--mono); }
+  a { color: inherit; }
+
+  .top { display: flex; align-items: center; gap: 18px; padding: 8px 14px; background: var(--amber); color: #000; font-weight: 700; flex-wrap: wrap; }
+  .top .sym { font-size: 18px; letter-spacing: .04em; }
+  .top .px { font-size: 18px; }
+  .top .chg { color: #0a5a2b; }
+  .top .clock { margin-left: auto; font-weight: 500; }
+
+  .tape { overflow: hidden; border-bottom: 1px solid var(--line); background: #000; white-space: nowrap; }
+  .tape-inner { display: inline-block; padding: 6px 0; animation: tape 60s linear infinite; }
+  .tape span { margin-right: 42px; }
+  .tape b { color: var(--amber); font-weight: 500; }
+  .tape .up { color: var(--up); }
+  @keyframes tape { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .tape-inner { animation: none; } }
+
+  .fkeys { display: flex; gap: 6px; padding: 10px 14px; flex-wrap: wrap; border-bottom: 1px solid var(--line); }
+  .fkeys a { text-decoration: none; padding: 4px 10px; background: #14171d; border: 1px solid var(--line); }
+  .fkeys a:hover, .fkeys a:focus-visible { background: var(--amber); color: #000; outline: none; }
+  .fkeys kbd { color: var(--amber); font-family: inherit; margin-right: 6px; }
+  .fkeys a:hover kbd, .fkeys a:focus-visible kbd { color: #000; }
+
+  .grid { display: grid; gap: 1px; background: var(--line); grid-template-columns: 1.5fr 1fr; }
+  .panel { background: var(--panel); padding: 14px 16px 18px; min-width: 0; }
+  .panel h2 { margin: 0 0 10px; font-size: 12px; font-weight: 500; letter-spacing: .12em; color: var(--amber); display: flex; justify-content: space-between; }
+  .panel h2 small { color: var(--dim); letter-spacing: 0; }
+  .wide { grid-column: 1 / -1; }
+
+  .bio { display: flex; gap: 28px; flex-wrap: wrap; align-items: baseline; }
+  .bio h1 { margin: 0; font-size: 28px; color: #fff; letter-spacing: .02em; }
+  .bio p { margin: 0; color: var(--dim); }
+  .stats { display: flex; gap: 26px; flex-wrap: wrap; margin-top: 12px; }
+  .stats div { font-size: 12px; color: var(--dim); }
+  .stats b { display: block; font-size: 18px; color: var(--ink); font-weight: 500; }
+
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: left; font-weight: 500; color: var(--dim); font-size: 12px; padding: 4px 8px 6px 0; border-bottom: 1px solid var(--line); }
+  td { padding: 7px 8px 7px 0; border-bottom: 1px solid #12161c; vertical-align: top; }
+  tr.row { cursor: pointer; }
+  tr.row:hover td, tr.row.sel td { background: #12161d; }
+  tr.row.sel td:first-child { box-shadow: inset 2px 0 var(--amber); }
+  .tick { color: var(--amber); font-weight: 700; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .up { color: var(--up); }
+  .dim { color: var(--dim); }
+  svg.spark { display: block; width: 90px; height: 24px; }
+
+  .detail { margin-top: 14px; padding: 12px 14px; border: 1px solid var(--line); background: #07090c; }
+  .detail h3 { margin: 0 0 4px; color: #fff; font-size: 15px; }
+  .detail h3 a { color: var(--blue); }
+  .detail p { margin: 4px 0 0; }
+
+  .blotter td:first-child { white-space: nowrap; color: var(--dim); }
+  .blotter .side { color: var(--up); font-weight: 700; }
+  .blotter .open { color: var(--amber); }
+
+  .book td { padding: 6px 8px 6px 0; }
+  .book .bar { position: relative; }
+  .book .bar i { position: absolute; inset: 3px auto 3px 0; background: rgba(61,220,132,.14); }
+  .book .bar span { position: relative; }
+
+  .cmd { display: flex; gap: 8px; align-items: center; padding: 10px 14px; border-top: 1px solid var(--line); background: #000; position: sticky; bottom: 0; }
+  .cmd label { color: var(--amber); font-weight: 700; }
+  .cmd input { flex: 1; background: transparent; border: 0; outline: 0; color: var(--ink); font: inherit; caret-color: var(--amber); }
+  .cmd .msg { color: var(--dim); font-size: 12px; }
+
+  @media (max-width: 820px) {
+    .grid { grid-template-columns: 1fr; }
+    .hide-sm { display: none; }
+  }
+</style>
+</head>
+<body>
+<header class="top">
+  <span class="sym">ADU US Equity</span>
+  <span class="px">96.50</span>
+  <span class="chg">▲ +4.70 (+5.1%)</span>
+  <span>CS · FIN ENG · MATH — COLUMBIA</span>
+  <span class="clock" id="clock"></span>
+</header>
+
+<div class="tape" aria-hidden="true"><div class="tape-inner" id="tape"></div></div>
+
+<nav class="fkeys" aria-label="Links">
+  <a href="../resume.pdf"><kbd>F1</kbd>RESUME</a>
+  <a href="https://github.com/backlight314"><kbd>F2</kbd>GITHUB</a>
+  <a href="https://www.linkedin.com/in/alina-du31415"><kbd>F3</kbd>LINKEDIN</a>
+  <a href="mailto:alinadu0703@gmail.com"><kbd>F4</kbd>EMAIL</a>
+  <a href="#positions"><kbd>F5</kbd>PROJECTS</a>
+  <a href="#blotter"><kbd>F6</kbd>EXPERIENCE</a>
+  <a href="#book"><kbd>F7</kbd>AWARDS</a>
+</nav>
+
+<main class="grid">
+  <section class="panel wide">
+    <h2>DES · DESCRIPTION <small>CUSIP COLUMBIA-CS</small></h2>
+    <div class="bio">
+      <h1>ALINA DU</h1>
+      <p>Computer Science at Columbia, minoring in Financial Engineering and Math. ML research, data and software engineering.</p>
+    </div>
+    <div class="stats">
+      <div>RELIABILITY<b class="up">91.8 → 96.5%</b></div>
+      <div>QUERY LATENCY<b class="up">800 → 150ms</b></div>
+      <div>INFRA COST<b class="up">−23%</b></div>
+      <div>LIONPLAN USERS<b>1,000+</b></div>
+      <div>JANE STREET WiSE<b>TOP 60</b></div>
+    </div>
+  </section>
+
+  <section class="panel" id="positions">
+    <h2>PORT · POSITIONS <small>click a row</small></h2>
+    <table>
+      <thead><tr><th>TICKER</th><th>NAME</th><th class="hide-sm">STACK</th><th class="num">30D</th></tr></thead>
+      <tbody id="pos"></tbody>
+    </table>
+    <div class="detail" id="detail" aria-live="polite"></div>
+  </section>
+
+  <section class="panel" id="book">
+    <h2>AWRD · ORDER BOOK <small>bid side only</small></h2>
+    <table class="book">
+      <thead><tr><th>AWARD</th><th class="num">SIZE</th></tr></thead>
+      <tbody id="awards"></tbody>
+    </table>
+  </section>
+
+  <section class="panel wide" id="blotter">
+    <h2>BLTR · TRADE BLOTTER <small>experience, newest first</small></h2>
+    <table class="blotter">
+      <thead><tr><th>DATE</th><th>SIDE</th><th>COUNTERPARTY</th><th class="hide-sm">NOTES</th><th class="num">STATUS</th></tr></thead>
+      <tbody id="exp"></tbody>
+    </table>
+  </section>
+</main>
+
+<form class="cmd" id="cmd" autocomplete="off">
+  <label for="cmd-in">&gt;</label>
+  <input id="cmd-in" placeholder="type a ticker (LION, PACM, HOME, HEART, TRUST) and press GO" spellcheck="false">
+  <span class="msg" id="msg"></span>
+</form>
+
+<script>
+  const projects = [
+    { t: "LION", name: "Lionplan.ai", url: "https://lionplan.ai", stack: "Next.js · TS · Python · Postgres · Claude API",
+      d: "An AI course planner used by 1,000+ students, with a 4-year planner, conflict detection, and an agent that adds, drops and swaps courses against prereq rules. Built on 30K+ parsed reviews and 4.6K+ courses." },
+    { t: "PACM", name: "Pac-Manhattan", url: "https://github.com/backlight314/pacmanhattan", stack: "JS · Three.js · Python · Gemini · ElevenLabs",
+      d: "Pac-Man on a 3D model of NYC where you play the ghost. 171K buildings in Three.js and A* pathfinding over the real street graph." },
+    { t: "HOME", name: "Home Again", url: "https://github.com/backlight314/home-again", stack: "JS · Node · Three.js · Gemini · Postgres · Snowflake",
+      d: "A game that brings families together around a loved one living with dementia. Photos, voice messages and songs become a gentle walk through their own life story, in a three.js dollhouse." },
+    { t: "HEART", name: "Hack the Heart", url: "https://github.com/backlight314/gptinder", stack: "Python · FastAPI · Next.js · MongoDB",
+      d: "Two AI agents learn how two people text, then go on a simulated date to guess whether the real people would get along." },
+    { t: "TRUST", name: "Think before you trust", url: "https://github.com/backlight314/think-before-you-trust", stack: "Python · PyTorch · LLM eval",
+      d: "Research code for choosing which steps of an LLM's reasoning to verify under a fixed budget." },
+  ];
+  const exp = [
+    ["2026.10", "Model OS", "Software Engineer Intern", "AI OS platform that fine-tunes private, self-hosted models for enterprises", true],
+    ["2026.10", "Columbia Plasma Physics Lab", "Data & ML Researcher", "Prediction challenge on ~15K DIII-D tokamak shots", true],
+    ["2026.09", "Columbia Experimental Lab for the Social Sciences", "Research Assistant, Data Eng", "Study UI and GPT-5 mini chat for econ-LLM experiments with 150 conditions", true],
+    ["2026.05", "Columbia University", "AI Research Intern", "Risk-targeted verification raised reliability from 91.8% to 96.5%", false],
+    ["2026.03", "Intelligence Cubed", "Software Engineer Intern", "One API to deploy AI models to AWS, GCP, and Cloudflare", false],
+    ["2025.08", "MeloMed", "Software Engineer Intern", "Infra costs down 23%; PostgreSQL queries ~800 → ~150 ms", false],
+  ];
+  // [award, size column, bar width %]; the bar is decoration, the numbers are the real ones
+  const awards = [
+    ["Jane Street WiSE", "TOP 60", 100],
+    ["Waterloo National Math Scholarship", "1 OF 15", 92],
+    ["Waterloo math contests, top 1%", "8x", 80],
+    ["AIME Qualifier", "2x", 66],
+    ["MIT Math Prize for Girls", "QUAL", 54],
+  ];
+
+  const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+
+  // deterministic, always-rising sparkline per ticker
+  const spark = seed => {
+    let x = 0, y = 18, pts = [];
+    let s = [...seed].reduce((a, c) => a * 31 + c.charCodeAt(0), 7);
+    const rnd = () => ((s = (s * 9301 + 49297) % 233280) / 233280);
+    for (let i = 0; i < 24; i++) { pts.push(`${x.toFixed(1)},${y.toFixed(1)}`); x += 90 / 23; y = Math.max(2, Math.min(22, y - 0.6 + (rnd() - 0.5) * 3.2)); }
+    return `<svg class="spark" viewBox="0 0 90 24" aria-hidden="true"><polyline fill="none" stroke="#3ddc84" stroke-width="1.5" points="${pts.join(" ")}"/></svg>`;
+  };
+
+  const pos = document.getElementById("pos");
+  pos.innerHTML = projects.map((p, i) =>
+    `<tr class="row" data-i="${i}" tabindex="0"><td class="tick">${p.t}</td><td>${esc(p.name)}</td><td class="dim hide-sm">${esc(p.stack)}</td><td class="num">${spark(p.t)}</td></tr>`).join("");
+  const detail = document.getElementById("detail");
+  const show = i => {
+    const p = projects[i];
+    for (const r of pos.children) r.classList.toggle("sel", +r.dataset.i === i);
+    detail.innerHTML = `<h3><span class="tick">${p.t}</span> &nbsp;<a href="${p.url}">${esc(p.name)} ↗</a></h3><p class="dim">${esc(p.stack)}</p><p>${esc(p.d)}</p>`;
+  };
+  pos.addEventListener("click", e => { const r = e.target.closest("tr"); if (r) show(+r.dataset.i); });
+  pos.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); show(+e.target.dataset.i); } });
+  show(0);
+
+  document.getElementById("exp").innerHTML = exp.map(([d, cp, role, note, open]) =>
+    `<tr><td>${d}</td><td class="side">BUY</td><td><b>${esc(cp)}</b><br><span class="dim">${esc(role)}</span></td><td class="dim hide-sm">${esc(note)}</td><td class="num ${open ? "open" : "dim"}">${open ? "OPEN" : "FILLED"}</td></tr>`).join("");
+
+  document.getElementById("awards").innerHTML = awards.map(([n, size, w]) =>
+    `<tr><td class="bar"><i style="width:${w}%"></i><span>${esc(n)}</span></td><td class="num up">${size}</td></tr>`).join("");
+
+  const tapeItems = [
+    ...projects.map(p => `<span><b>${p.t}</b> ${esc(p.name)} <span class="up">▲</span></span>`),
+    ...exp.map(e => `<span><b>${esc(e[1].split(" ")[0].toUpperCase())}</b> ${esc(e[2])} <span class="up">▲</span></span>`),
+  ].join("");
+  document.getElementById("tape").innerHTML = tapeItems + tapeItems;
+
+  const clock = document.getElementById("clock");
+  const tick = () => clock.textContent = new Date().toLocaleTimeString("en-US", { timeZone: "America/New_York", hour12: false }) + " NY";
+  tick(); setInterval(tick, 1000);
+
+  // command line: ticker → select project; RESUME/GH/etc → open link
+  const msg = document.getElementById("msg");
+  document.getElementById("cmd").addEventListener("submit", e => {
+    e.preventDefault();
+    const inp = document.getElementById("cmd-in");
+    const v = inp.value.trim().toUpperCase().replace(/\s*(<?GO>?|EQUITY)$/, "");
+    inp.value = "";
+    const i = projects.findIndex(p => p.t === v);
+    const go = { RESUME: "../resume.pdf", GITHUB: "https://github.com/backlight314", GH: "https://github.com/backlight314", LINKEDIN: "https://www.linkedin.com/in/alina-du31415", EMAIL: "mailto:alinadu0703@gmail.com" }[v];
+    if (i >= 0) { show(i); document.getElementById("positions").scrollIntoView({ behavior: "smooth" }); msg.textContent = ""; }
+    else if (go) location.href = go;
+    else msg.textContent = v ? `UNKNOWN SECURITY: ${v}` : "";
+  });
+  // F1–F7 keyboard shortcuts
+  addEventListener("keydown", e => {
+    const m = /^F([1-7])$/.exec(e.key);
+    if (!m) return;
+    e.preventDefault();
+    document.querySelectorAll(".fkeys a")[m[1] - 1].click();
+  });
+</script>
+</body>
+</html>

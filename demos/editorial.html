@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alina Du · Editorial demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #141414; --soft: #5c5c5c; --faint: #a3a3a3; --rule: #e6e3dd; --bg: #fbfaf7; --accent: #c2410c; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.65 "Inter", system-ui, sans-serif; }
+  a { color: inherit; text-decoration-color: var(--faint); text-underline-offset: 4px; }
+  a:hover { color: var(--accent); text-decoration-color: currentColor; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: clamp(48px, 12vh, 120px) 24px 96px; }
+
+  h1 { font-family: "Fraunces", Georgia, serif; font-weight: 400; font-size: clamp(48px, 10vw, 88px); line-height: 1; letter-spacing: -.03em; margin: 0; }
+  .lede { font-family: "Fraunces", Georgia, serif; font-size: clamp(21px, 3vw, 26px); line-height: 1.4; margin: 26px 0 0; max-width: 34ch; }
+  .lede em { color: var(--accent); font-style: italic; }
+  nav { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 30px; font-weight: 500; }
+
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .14em; color: var(--soft); font-weight: 600; margin: 84px 0 18px; padding-top: 18px; border-top: 1px solid var(--rule); }
+
+  .numbers { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 24px; margin-top: 64px; }
+  .numbers b { display: block; font-family: "Fraunces", Georgia, serif; font-size: 40px; font-weight: 400; line-height: 1.1; letter-spacing: -.02em; }
+  .numbers span { color: var(--soft); font-size: 14px; }
+
+  .job { display: grid; grid-template-columns: 1fr auto; gap: 2px 24px; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+  .job:last-child { border-bottom: 0; }
+  .job .role { font-weight: 600; }
+  .job .org { color: var(--soft); }
+  .job .when { color: var(--faint); font-size: 14px; font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; }
+  .job .note { grid-column: 1 / -1; color: var(--soft); font-size: 15px; }
+
+  .project { padding: 22px 0; border-bottom: 1px solid var(--rule); }
+  .project:last-child { border-bottom: 0; }
+  .project h3 { font-family: "Fraunces", Georgia, serif; font-weight: 600; font-size: 26px; letter-spacing: -.01em; margin: 0 0 6px; }
+  .project h3 a { text-decoration: none; }
+  .project h3 a::after { content: " ↗"; font-size: .6em; color: var(--faint); vertical-align: .3em; }
+  .project p { margin: 0; color: #333; }
+  .project .stack { color: var(--faint); font-size: 14px; margin-top: 8px; }
+
+  ul.awards { list-style: none; padding: 0; margin: 0; columns: 2 260px; column-gap: 32px; }
+  ul.awards li { padding: 6px 0; break-inside: avoid; }
+  ul.awards span { color: var(--faint); }
+
+  footer { margin-top: 96px; font-family: "Fraunces", Georgia, serif; font-size: 26px; }
+  @media (max-width: 520px) { .job { grid-template-columns: 1fr; } .job .when { text-align: left; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Alina Du</h1>
+    <p class="lede">I study Computer Science at Columbia, with minors in Financial Engineering and Math. I do <em>ML research</em> and build data and software systems.</p>
+    <nav aria-label="Links">
+      <a href="../resume.pdf">Resume</a>
+      <a href="https://github.com/backlight314">GitHub</a>
+      <a href="https://www.linkedin.com/in/alina-du31415">LinkedIn</a>
+      <a href="mailto:alinadu0703@gmail.com">Email</a>
+    </nav>
+  </header>
+
+  <div class="numbers" aria-label="Highlights">
+    <div><b>96.5%</b><span>LLM reliability, up from 91.8%</span></div>
+    <div><b>1,000+</b><span>students using Lionplan.ai</span></div>
+    <div><b>5×</b><span>faster PostgreSQL queries at MeloMed</span></div>
+  </div>
+
+  <section aria-labelledby="h-exp">
+    <h2 id="h-exp">Experience</h2>
+    <div class="job"><div><span class="role">Software Engineer Intern</span> <span class="org">· Model OS</span></div><span class="when">2026.10 – now</span><p class="note">AI OS platform that fine-tunes private, self-hosted models for enterprises</p></div>
+    <div class="job"><div><span class="role">Data &amp; ML Researcher</span> <span class="org">· Columbia Plasma Physics Lab</span></div><span class="when">2026.10 – now</span><p class="note">Prediction challenge on ~15K DIII-D tokamak shots</p></div>
+    <div class="job"><div><span class="role">Research Assistant, Data Engineering</span> <span class="org">· Columbia Experimental Laboratory for the Social Sciences</span></div><span class="when">2026.09 – now</span><p class="note">Study UI and GPT-5 mini chat for econ-LLM experiments with 150 conditions</p></div>
+    <div class="job"><div><span class="role">AI Research Intern</span> <span class="org">· Columbia University</span></div><span class="when">2026.05 – 2026.09</span><p class="note">Risk-targeted verification raised reliability from 91.8% to 96.5%</p></div>
+    <div class="job"><div><span class="role">Software Engineer Intern</span> <span class="org">· Intelligence Cubed</span></div><span class="when">2026.03 – 2026.06</span><p class="note">One API to deploy AI models to AWS, GCP, and Cloudflare</p></div>
+    <div class="job"><div><span class="role">Software Engineer Intern</span> <span class="org">· MeloMed</span></div><span class="when">2025.08 – 2026.03</span><p class="note">Infra costs down 23%; PostgreSQL queries ~800 → ~150 ms</p></div>
+  </section>
+
+  <section aria-labelledby="h-proj">
+    <h2 id="h-proj">Selected projects</h2>
+    <article class="project"><h3><a href="https://lionplan.ai">Lionplan.ai</a></h3><p>An AI course planner used by 1,000+ students, with a 4-year planner, conflict detection, and an agent that adds, drops and swaps courses against prereq rules. Built on 30K+ parsed reviews and 4.6K+ courses.</p><p class="stack">Next.js, TypeScript, Python, Postgres, Claude API</p></article>
+    <article class="project"><h3><a href="https://github.com/backlight314/pacmanhattan">Pac-Manhattan</a></h3><p>Pac-Man on a 3D model of NYC where you play the ghost. 171K buildings in Three.js and A* pathfinding over the real street graph.</p><p class="stack">JavaScript, Three.js, Python, Gemini API, ElevenLabs</p></article>
+    <article class="project"><h3><a href="https://github.com/backlight314/home-again">Home Again</a></h3><p>A game that brings families together around a loved one living with dementia. Photos, voice messages and songs become a gentle walk through their own life story, in a three.js dollhouse.</p><p class="stack">JavaScript, Node.js, Three.js, Gemini API, Postgres, Snowflake</p></article>
+    <article class="project"><h3><a href="https://github.com/backlight314/gptinder">Hack the Heart</a></h3><p>Two AI agents learn how two people text, then go on a simulated date to guess whether the real people would get along.</p><p class="stack">Python, FastAPI, Next.js, MongoDB</p></article>
+    <article class="project"><h3><a href="https://github.com/backlight314/think-before-you-trust">Think before you trust</a></h3><p>Research code for choosing which steps of an LLM's reasoning to verify under a fixed budget.</p><p class="stack">Python, PyTorch, LLM evaluation</p></article>
+  </section>
+
+  <section aria-labelledby="h-awards">
+    <h2 id="h-awards">Awards</h2>
+    <ul class="awards">
+      <li>Jane Street WiSE <span>top 60</span></li>
+      <li>MIT Math Prize for Girls</li>
+      <li>AIME Qualifier <span>2×</span></li>
+      <li>Waterloo math contests <span>8×, top 1%</span></li>
+      <li>Waterloo National Math Scholarship <span>15 recipients</span></li>
+    </ul>
+  </section>
+
+  <footer>Say hello: <a href="mailto:alinadu0703@gmail.com">alinadu0703@gmail.com</a></footer>
+</div>
+</body>
+</html>
