@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="terminal.css?v=4">
+<link rel="stylesheet" href="terminal.css?v=5">
 </head>
 <body>
 
@@ -20,13 +20,13 @@
   </div>
 
   <div class="screen">
-    <section aria-labelledby="name">
+    <section aria-labelledby="name" data-home>
       <p class="cmd"><span class="ps">alina@columbia</span>:~$ whoami</p>
       <h1 id="name">Alina Du</h1>
       <p class="out">CS, Financial Engineering and Math student at Columbia University.</p>
     </section>
 
-    <section aria-label="Links">
+    <section aria-label="Links" data-home>
       <p class="cmd"><span class="ps">alina@columbia</span>:~$ ls links/</p>
       <nav class="links">
         <a href="resume.pdf" target="_blank" rel="noopener">resume.pdf</a>
@@ -36,7 +36,17 @@
       </nav>
     </section>
 
-    <section aria-labelledby="exp-h" data-file="experience.log">
+    <section aria-label="Sections">
+      <p class="cmd"><span class="ps">alina@columbia</span>:~$ ls <span class="comment"># click one, or type cd &lt;name&gt;</span></p>
+      <nav class="menu" aria-label="Sections">
+        <a href="#" data-go="" hidden>~</a>
+        <a href="#experience" data-go="experience">experience.log</a>
+        <a href="#projects" data-go="projects">projects/</a>
+        <a href="#awards" data-go="awards">awards.txt</a>
+      </nav>
+    </section>
+
+    <section id="experience" data-view="experience" aria-labelledby="exp-h" data-file="experience.log">
       <p class="cmd" id="exp-h"><span class="ps">alina@columbia</span>:~$ cat experience.log</p>
       <ol class="exp">
         <li><span class="when">2026.10 – now</span><div><p class="role">Software Engineer Intern <span class="sep">&middot;</span> Model OS</p><p class="note">AI OS platform that fine-tunes private, self-hosted models for enterprises</p></div></li>
@@ -48,7 +58,7 @@
       </ol>
     </section>
 
-    <section aria-labelledby="projects-h">
+    <section id="projects" data-view="projects" aria-labelledby="projects-h">
       <p class="cmd" id="projects-h"><span class="ps">alina@columbia</span>:~$ ls projects/ <span class="comment"># click one</span></p>
       <div class="files" role="tablist" aria-label="Projects">
         <button role="tab" id="t-lion" aria-controls="p-lion" aria-selected="true">lionplan.md</button>
@@ -104,7 +114,7 @@
       </article>
     </section>
 
-    <section aria-labelledby="awards-h" data-file="awards.txt">
+    <section id="awards" data-view="awards" aria-labelledby="awards-h" data-file="awards.txt">
       <p class="cmd" id="awards-h"><span class="ps">alina@columbia</span>:~$ cat awards.txt</p>
       <ul class="awards">
         <li>Jane Street WiSE (top 60)</li>
@@ -120,7 +130,7 @@
       <label for="cmd-in"><span class="ps">alina@columbia</span>:~$</label>
       <span class="field">
         <input id="cmd-in" type="text" spellcheck="false" autocapitalize="off" autocorrect="off" enterkeyhint="go" placeholder=" " aria-label="Terminal command" aria-describedby="cmd-hint">
-        <span class="comment hint" id="cmd-hint"># try: help, ls, cat lionplan.md</span>
+        <span class="comment hint" id="cmd-hint"># try: help, cd projects, cat lionplan.md</span>
       </span>
     </form>
   </div>
@@ -151,6 +161,6 @@
     select(tabs[0]);
   })();
 </script>
-<script src="terminal.js?v=4"></script>
+<script src="terminal.js?v=5"></script>
 </body>
 </html>

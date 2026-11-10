@@ -26,9 +26,52 @@
 
   const linkNames = [...document.querySelectorAll(".links a")].map(a => a.textContent.trim());
 
+  // views: the landing screen ("") plus one per [data-view] section, addressed by #hash
+  const views = {};
+  for (const sec of document.querySelectorAll("[data-view]")) views[sec.dataset.view] = sec;
+  const homeEls = document.querySelectorAll("[data-home]");
+  const menuLinks = document.querySelectorAll(".menu a");
+  const title = document.querySelector(".bar .title");
+  const label = form.querySelector("label");
+  const baseTitle = document.title;
+  let current = "";
+  const cwd = () => (current ? "~/" + current : "~");
+  const psHTML = () => `<span class="ps">alina@columbia</span>:${cwd()}$`;
+
+  const render = view => {
+    current = views[view] ? view : "";
+    for (const el of screen.children) el.hidden = false; // undo a previous clear
+    for (const el of homeEls) el.hidden = !!current;
+    for (const [name, sec] of Object.entries(views)) sec.hidden = name !== current;
+    for (const a of menuLinks) {
+      if (a.dataset.go === current) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
+      if (a.dataset.go === "") a.hidden = !current;
+    }
+    title.textContent = "alina@columbia: " + cwd();
+    label.innerHTML = psHTML();
+    document.title = current ? `${current[0].toUpperCase() + current.slice(1)} · ${baseTitle}` : baseTitle;
+  };
+
+  // change view and record it in the URL so links can be shared and Back works
+  const go = view => {
+    view = views[view] ? view : "";
+    if (location.hash.slice(1) !== view) window.history.pushState(null, "", view ? "#" + view : location.pathname + location.search);
+    render(view);
+  };
+
+  // "projects", "./projects/", "~/experience.log" all name the same view
+  const viewName = arg => {
+    const n = (arg || "").trim().replace(/^(\.\/|~\/)/, "").replace(/\/$/, "").replace(/\.(log|txt)$/, "");
+    if (n === "" || n === "~" || n === ".." || n === "/home/alina") return "";
+    if (n === ".") return current;
+    return views[n] ? n : null;
+  };
+
   const help = [
     ["help", "show this list"],
     ["whoami", "who I am"],
+    ["cd <dir>", Object.keys(views).join(", ") + ", or ~ for home"],
     ["ls [dir]", "list files, links/ or projects/"],
     ["cat <file>", "read a file, e.g. cat experience.log"],
     ["open <link>", Object.keys(links).join(", ")],
@@ -92,7 +135,13 @@
       return visit(a);
     },
     history: () => text(history.map((c, i) => String(i + 1).padStart(4) + "  " + c).join("\n")),
-    pwd: () => text("/home/alina"),
+    cd: arg => {
+      const view = viewName(arg);
+      if (view === null) return text(`cd: ${arg}: No such file or directory`, "out err");
+      go(view);
+      return document.createDocumentFragment();
+    },
+    pwd: () => text("/home/alina" + (current ? "/" + current : "")),
     date: () => text(new Date().toString()),
     echo: arg => text(arg),
     sudo: () => text("alina is not in the sudoers file. This incident will be reported.", "out err"),
@@ -104,6 +153,7 @@
     },
   };
   for (const name of Object.keys(links)) commands[name] = () => commands.open(name);
+  for (const name of Object.keys(views)) commands[name] = () => commands.cd(name);
 
   const run = line => {
     const [cmd, ...rest] = line.trim().split(/\s+/);
@@ -111,7 +161,7 @@
     const entry = document.createElement("div");
     const echo = document.createElement("p");
     echo.className = "cmd";
-    echo.innerHTML = '<span class="ps">alina@columbia</span>:~$ ';
+    echo.innerHTML = psHTML() + " ";
     echo.append(line);
     entry.append(echo);
     if (cmd) {
@@ -131,6 +181,7 @@
     if (parts.length === 1) pool = Object.keys(commands);
     else if (parts[0] === "cat") pool = [...Object.keys(files), ...Object.keys(projects)];
     else if (parts[0] === "open") pool = Object.keys(links);
+    else if (parts[0] === "cd") pool = ["~", ...Object.keys(views)];
     else if (parts[0] === "ls") pool = [...Object.keys(files), "links/", "projects/", ...linkNames.map(n => "links/" + n), ...Object.keys(projects).map(n => "projects/" + n)];
     else return;
     const prefix = parts[0] === "ls" ? word : word.replace(/^projects\//, "");
@@ -170,6 +221,22 @@
       commands.clear();
     }
   });
+
+  // menu clicks navigate in place; modified clicks still open a new tab
+  for (const a of menuLinks) {
+    a.addEventListener("click", e => {
+      if (e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
+      go(a.dataset.go);
+      window.scrollTo(0, 0);
+      const heading = current ? views[current].querySelector(".cmd") : document.getElementById("name");
+      heading.tabIndex = -1;
+      heading.focus({ preventScroll: true });
+    });
+  }
+  addEventListener("popstate", () => render(location.hash.slice(1)));
+  addEventListener("hashchange", () => render(location.hash.slice(1)));
+  render(location.hash.slice(1));
 
   // clicking empty terminal space focuses the prompt, like a real one
   screen.addEventListener("click", e => {
