@@ -11,10 +11,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=Silkscreen&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../pixel.css?v=7">
 <style>
-  /* demo only: "start" set in the pixel font, with a blinking underline like an arcade prompt */
-  h1 .start { position: relative; font-family: var(--pixel); font-weight: 400; color: var(--accent); letter-spacing: -.02em; }
-  h1 .start::after { content: ""; position: absolute; left: 0; right: .1em; bottom: -.02em; height: .08em; background: var(--accent); animation: blink 1s steps(2, start) infinite; }
-  @media (prefers-reduced-motion: reduce) { h1 .start::after { animation: none; } }
+  /* demo only: "start" in the pixel font is itself a link to the next page */
+  h1 .start { position: relative; font-family: var(--pixel); font-weight: 400; color: var(--accent); letter-spacing: -.02em; text-decoration: none; }
+  h1 .start::after { content: ""; position: absolute; left: 0; right: .1em; bottom: -.02em; height: .08em; background: var(--accent); }
+  h1 .start:hover { color: var(--ink); }
+  h1 .start:hover::after { background: var(--ink); }
+  .home .lede { font-size: 20px; }
 </style>
 </head>
 <body>
@@ -22,8 +24,8 @@
   <header class="top">
     <a class="logo" href="#" data-go="">Alina&nbsp;Du</a>
     <nav class="sections" aria-label="Sections">
-      <a href="#projects" data-go="projects">Projects</a>
       <a href="#experience" data-go="experience">Experience</a>
+      <a href="#projects" data-go="projects">Projects</a>
       <a href="#awards" data-go="awards">Awards</a>
     </nav>
   </header>
@@ -40,7 +42,7 @@
 
     <main class="content" id="content">
       <section class="view home" data-view="">
-        <h1>Press <span class="start">start</span> to get to know me.</h1>
+        <h1>Press <a class="start" href="#projects" data-go="projects">start</a> to get to know me.</h1>
         <p class="lede">CS, Financial Engineering and Math at Columbia</p>
         <nav class="menu" aria-label="Start">
           <a href="#projects" data-go="projects"><svg viewBox="0 0 5 9" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><path fill="currentColor" d="M0 0h1v1h-1zM0 1h2v1h-2zM0 2h3v1h-3zM0 3h4v1h-4zM0 4h5v1h-5zM0 5h4v1h-4zM0 6h3v1h-3zM0 7h2v1h-2zM0 8h1v1h-1z"/></svg>Start</a>
@@ -90,8 +92,8 @@
 
     <nav class="rail" aria-label="Section indicator">
       <a href="#" data-go="" aria-label="Home"></a>
-      <a href="#projects" data-go="projects" aria-label="Projects"></a>
       <a href="#experience" data-go="experience" aria-label="Experience"></a>
+      <a href="#projects" data-go="projects" aria-label="Projects"></a>
       <a href="#awards" data-go="awards" aria-label="Awards"></a>
     </nav>
   </div>
